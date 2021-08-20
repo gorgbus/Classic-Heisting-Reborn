@@ -38,7 +38,7 @@ function PlayerProfileGuiObject:init(ws)
 		local rank_text, level_text = nil
 
 		if use_linebreak then
-			rank_text = player_level_panel:text({
+			--[[rank_text = player_level_panel:text({
 				vertical = "top",
 				align = "center",
 				rotation = 360,
@@ -47,7 +47,7 @@ function PlayerProfileGuiObject:init(ws)
 				font_size = tweak_data.menu.pd2_medium_font_size - 5,
 				text = "[" .. rank_string .. "]",
 				color = tweak_data.screen_colors.infamy_color
-			})
+			})]]--
 			level_text = player_level_panel:text({
 				vertical = "top",
 				align = "center",
@@ -55,14 +55,14 @@ function PlayerProfileGuiObject:init(ws)
 				layer = 1,
 				font = tweak_data.menu.pd2_medium_font,
 				font_size = tweak_data.menu.pd2_medium_font_size - 5,
-				text = level_string,
+				text = rank_string .. "-" .. level_string,
 				color = tweak_data.screen_colors.text
 			})
 
-			self:_make_fine_text(rank_text)
+			--self:_make_fine_text(rank_text)
 			self:_make_fine_text(level_text)
 
-			max_w = math.max(max_w, rank_text:w(), level_text:w())
+			max_w = math.max(max_w, level_text:w())
 		else
 			local text_string, name_color_ranges = managers.experience:gui_string(player_level, player_rank)
 			level_text = player_level_panel:text({
@@ -331,6 +331,30 @@ function PlayerProfileGuiObject:init(ws)
 	self:_rec_round_object(panel)
 
 	managers.menu_scene:_set_character_equipment()
+
+	--[[if not _G.mainmenu then
+		return
+	end]]--
+
+	if MenuCallbackHandler:can_become_infamous() then
+
+		params = {
+			name = "become_infamous_btn",
+			text_id = "menu_become_infamous",
+			help_id = "menu_become_infamous_help",
+			callback = "become_infamous"
+		}
+		new_item = _G.mainmenu:create_item(data, params)
+		new_item.dirty_callback = callback(_G.mainmenu, _G.mainmenu, "item_dirty")
+		if _G.mainmenu.callback_handler then
+			new_item:set_callback_handler(_G.mainmenu.callback_handler)
+		end
+
+		position = 16
+		table.insert(_G.mainmenu._items, position, new_item)
+	else
+		MenuHelper:RemoveMenuItem(_G.mainmenu, "become_infamous_btn")
+	end
 
 end
 

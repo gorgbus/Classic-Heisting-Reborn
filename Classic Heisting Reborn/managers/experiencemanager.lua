@@ -147,3 +147,17 @@ function ExperienceManager:get_xp_by_params(params)
 
 	return math.round(total_xp), dissection_table
 end
+
+function ExperienceManager:gui_string(level, rank, offset)
+	offset = offset or 0
+	local rank_string = rank > 0 and self:rank_string(rank) or ""
+	local gui_string
+	if rank > 0 then
+		gui_string =  rank_string .."-" .. tostring(level)
+	else
+		gui_string =  tostring(level)
+	end
+	
+
+	return gui_string
+end

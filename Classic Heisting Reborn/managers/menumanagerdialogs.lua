@@ -24,3 +24,12 @@ function MenuManager:show_confirm_respec_skilltree(params)
 
 	managers.system_menu:show(dialog_data)
 end
+
+function MenuManager:show_question_new_safehouse(params)
+end
+
+function MenuManager:show_question_new_safehouse_new_player(params)
+end
+
+function MenuManager:show_question_start_tutorial(params)
+end

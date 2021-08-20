@@ -96,9 +96,64 @@ function CrimeNetGui:add_special_contracts(no_casino, no_quickplay)
 	end
 end
 
+function CrimeNetGui:open_filters(o, k)
+	if k == Idstring("f") and alive(self._panel:child("filters_button")) then
+		managers.menu:open_node("crimenet_filters", {})
+	end
+end
+
 Hooks:PreHook(CrimeNetGui, "update_job_gui", "old_skulls", function(data, job, inside)
 	local stars_panel = job.side_panel:child("stars_panel")
 	stars_panel:set_w(44)
+end)
+
+Hooks:PostHook(CrimeNetGui, "init", "initFilter", function(self, ws, fullscreen_ws, node)
+		local filters_button = self._panel:text({
+			name = "filters_button",
+			text = string.upper("[F] Filters"),
+			font_size = tweak_data.menu.pd2_small_font_size,
+			font = tweak_data.menu.pd2_small_font,
+			color = tweak_data.screen_colors.button_stage_3,
+			layer = 40,
+			y = 40,
+			blend_mode = "add"
+		})
+		self:make_fine_text(filters_button)
+		filters_button:set_right(self._panel:w() - 10)
+		self._fullscreen_ws:connect_keyboard(Input:keyboard())  
+		self._fullscreen_panel:key_press(callback(self, self, "open_filters")) 
+end)
+
+local orig_mouse_pressed = CrimeNetGui.mouse_pressed
+function CrimeNetGui:mouse_pressed(o, button, x, y)
+	if not self._crimenet_enabled or self._getting_hacked then
+		return
+	end
+	local filters_button = self._panel:child("filters_button")
+	if alive(filters_button) and filters_button:inside(x, y) then
+		managers.menu:open_node("crimenet_filters", {}) 
+		return true
+	end
+	return orig_mouse_pressed(self, o, button, x, y)
+end
+
+Hooks:PostHook(CrimeNetGui, "mouse_moved", "mouse_movedFilter", function(self, o, x, y)
+	if not self._crimenet_enabled or self._getting_hacked then
+		return
+	end
+	local filters_button = self._panel:child("filters_button")
+	if alive(filters_button) then
+		if filters_button:inside(x, y) then
+			if not self._filters_highlighted then
+				self._filters_highlighted = true
+				filters_button:set_color(tweak_data.screen_colors.button_stage_2)
+				managers.menu_component:post_event("highlight")
+			end
+		elseif self._filters_highlighted then
+			self._filters_highlighted = false
+			filters_button:set_color(tweak_data.screen_colors.button_stage_3)
+		end
+	end
 end)
 
 CriminalsManager.MAX_NR_TEAM_AI = 2

@@ -102,7 +102,12 @@ function HUDMissionBriefing:init(hud, workspace)
 				visible = false,
 				y = 1,
 				texture = infamy_icon,
-				texture_rect = infamy_rect,
+				texture_rect = {
+					0,
+					0,
+					16,
+					16
+				},
 				color = color
 			})
 			--[[local detection = slot_panel:panel({
@@ -175,8 +180,10 @@ function HUDMissionBriefing:init(hud, workspace)
 			criminal:set_text("")
 			name:set_left(voice:right() + 2)
 			status:set_align("left")
-			status:set_left(name:w() - 60)
+			
 			infamy:set_left(name:x())
+			local x, y, w, h = name:text_rect()
+			status:set_left(w + ((name:x() / h) + h))
 		end
 
 		BoxGuiObject:new(self._ready_slot_panel, {
@@ -611,6 +618,50 @@ function HUDMissionBriefing:init(hud, workspace)
 			w = self._job_schedule_panel:width(),
 			h = self._job_schedule_panel:height()
 		})
+	end
+end
+
+function HUDMissionBriefing:set_player_slot(nr, params)
+	local slot = self._ready_slot_panel:child("slot_" .. tostring(nr))
+
+	if not slot or not alive(slot) then
+		return
+	end
+
+	slot:child("status"):stop()
+	slot:child("status"):set_alpha(1)
+	slot:child("status"):set_color(slot:child("status"):color():with_alpha(1))
+	slot:child("status"):set_font_size(tweak_data.menu.pd2_small_font_size)
+	slot:child("name"):set_color(slot:child("name"):color():with_alpha(1))
+	slot:child("name"):set_text(params.name)
+	slot:child("criminal"):set_color(slot:child("criminal"):color():with_alpha(1))
+	slot:child("criminal"):set_text(managers.localization:to_upper_text("menu_" .. tostring(params.character)))
+
+	local name_len = utf8.len(slot:child("name"):text())
+	local color_range_offset = name_len + 2
+	local experience, color_ranges = managers.experience:gui_string(params.level, params.rank, color_range_offset)
+
+	slot:child("name"):set_text(slot:child("name"):text() .. " (" .. experience .. ")  ")
+
+	for _, color_range in ipairs(color_ranges or {}) do
+		slot:child("name"):set_range_color(color_range.start, color_range.stop, color_range.color)
+	end
+	
+	local x, y, w, h = slot:child("name"):text_rect()
+	slot:child("status"):set_left(w + (slot:child("name"):x() + h))
+
+	if params.rank > 0 then
+		local texture, texture_rect = managers.experience:rank_icon_data(params.rank)
+
+		slot:child("infamy"):set_image(texture, unpack(texture_rect))
+		slot:child("infamy"):set_visible(true)
+		slot:child("name"):set_x(slot:child("infamy"):right())
+	else
+		slot:child("infamy"):set_visible(false)
+	end
+
+	if params.status then
+		slot:child("status"):set_text(params.status)
 	end
 end
 

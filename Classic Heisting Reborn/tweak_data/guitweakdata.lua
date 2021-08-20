@@ -1,13 +1,6 @@
 Hooks:PostHook(GuiTweakData, "init", "restore_init", function(self, tweak_data)
 	self.crime_net.sidebar = {
-		--hide most of sidebar
-		{
-			visible_callback = "clbk_visible_multiplayer",
-			btn_macro = "menu_toggle_filters",
-			callback = "clbk_crimenet_filters",
-			name_id = "menu_cn_filters_sidebar",
-			icon = "sidebar_filters"
-		}
+		--hide sidebar
 	}
 	self.crime_net.special_contracts = {
 		{

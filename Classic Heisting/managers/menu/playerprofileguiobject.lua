@@ -332,9 +332,9 @@ function PlayerProfileGuiObject:init(ws)
 
 	managers.menu_scene:_set_character_equipment()
 
-	--[[if not _G.mainmenu then
+	if not _G.mainmenu then
 		return
-	end]]--
+	end
 
 	if MenuCallbackHandler:can_become_infamous() then
 

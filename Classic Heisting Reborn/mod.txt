@@ -5,7 +5,7 @@
 	"contact" : "gorgbus - github or modworkshop.net",
 	"version" : "3",
 	"priority" : "-11",
-	"image" : "ch_reborn.dds"
+	"image" : "ch_reborn.dds",
 	"blt_version" : 2,
 	"color" : "0 0 1",
 	"hooks" : [

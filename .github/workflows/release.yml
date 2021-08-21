@@ -1,4 +1,4 @@
-name: Create PAYDAY mod release
+name: Create PAYDAY 2 mod release
 on:
     push:
         branches: [ main ]

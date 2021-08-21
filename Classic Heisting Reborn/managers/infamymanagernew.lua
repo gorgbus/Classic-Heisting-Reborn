@@ -142,3 +142,12 @@ end
 
 function InfamyManager:is_join_stinger_unlocked(stinger_id)
 end
+
+function InfamyManager:get_all_join_stingers()
+end
+
+function InfamyManager:get_unlocked_join_stingers()
+end
+
+function InfamyManager:get_join_stinger_name_id(stinger_name)
+end

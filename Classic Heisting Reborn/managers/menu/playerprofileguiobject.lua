@@ -364,6 +364,6 @@ Hooks:Add("LocalizationManagerPostInit", "##removal/fix", function(loc)
         menu_cash = "Cash: $money",
 		menu_skilltree = "SKILLS",
 		menu_crimenet = "CRIME.NET",
-		menu_crimenet_offline = "CRIME.NET Offline",	
+		menu_crimenet_offline = "CRIME.NET Offline",
 	})
 end)

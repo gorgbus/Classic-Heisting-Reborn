@@ -185,9 +185,7 @@ Hooks:PostHook(LootDropManager, "add_qlvl_to_weapon_mods", "add_qlvl_to_weapon_m
     end
 
     for item, item_tweak in pairs(tweak_data.blackmarket.weapon_mods) do
-        if has_id(whitelist, item_tweak.name_id) then
-
-        else
+        if not has_id(whitelist, item_tweak.name_id) then
             tweak_data.blackmarket.weapon_mods[item].qlvl = 101
         end
     end

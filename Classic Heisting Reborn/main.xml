@@ -1,8 +1,0 @@
-<mod name="Classic Heisting">
-    <AddFiles directory="assets">
-	<texture path="guis/textures/pd2/skilltree/icons_atlas" force="true"/>
-
-    </AddFiles>
-	<Localization directory="loc" default="english.txt">
-    </Localization>
-</mod>

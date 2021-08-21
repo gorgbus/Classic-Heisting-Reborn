@@ -15,6 +15,6 @@ tweak_data.difficulty_level_locks = {
 	0,
 	0,
 	80,
-	69420,
-	69420
+	1337,
+	1337
 }

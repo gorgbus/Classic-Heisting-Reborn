@@ -1,1 +1,8 @@
-
+[
+    {
+        "ident": "classic_heisting_reborn",
+        "hash": "%HASH%",
+        "patchnotes_url": "https://github.com/gorgbus/Classic-Heisting-Reborn/commits/main",
+        "download_url": "https://github.com/gorgbus/Classic-Heisting-Reborn/releases/download/refs%2Fheads%2Fmain/Classic.Heisting.Reborn.zip"
+    }
+]

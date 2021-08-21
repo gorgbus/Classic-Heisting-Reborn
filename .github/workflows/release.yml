@@ -1,9 +1,9 @@
 name: Create PAYDAY mod release
 on:
     push:
-        branches: [main]
+        branches: [ main ]
     pull_request:
-        branches: [main]
+        branches: [ main ]
 jobs:
     build:
         runs-on: windows-latest
@@ -15,7 +15,7 @@ jobs:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
             - name: Archive Mod
               run: |
-                  .\.github\7za.exe -tzip a ".\Classic.Heisting.Reborn.zip" ".\Classic Heisting Reborn"
+                  .\.github\7za.exe -tzip a ".\Classic Heisting Reborn.zip" ".\Classic Heisting Reborn"
               shell: powershell
             - name: Create New Release
               id: create_release
@@ -36,13 +36,13 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-                  asset_path: ./pd2autoupdatexample.zip
-                  asset_name: pd2autoupdatexample.zip
+                  asset_path: ./Classic Heisting Reborn.zip
+                  asset_name: Classic Heisting Reborn.zip
                   asset_content_type: application/zip
             - name: Hash mod and create mod meta file
               id: create_meta_file
               run: |
-                  $(cat .\.github\meta.json).Replace("%HASH%", $(./.github/hash.exe "./SampleMod").Substring(17)) > ./meta.json
+                  $(cat .\.github\meta.json).Replace("%HASH%", $(./.github/hash.exe "./Classic Heisting Reborn").Substring(17)) > ./meta.json
             - name: Upload meta file to Release
               id: upload-meta-asset
               uses: actions/upload-release-asset@v1

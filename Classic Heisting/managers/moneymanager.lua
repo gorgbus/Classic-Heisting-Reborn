@@ -32,6 +32,7 @@ function MoneyManager:get_money_by_params(params)
 	local bag_risk = 0
 	local vehicle_risk = 0
 	local small_risk = 0
+	local total_stages = job_id and #tweak_data.narrative:job_chain(job_id) or 1
 	local static_value, base_static_value, risk_static_value = self:get_money_by_job(job_id, difficulty_stars + 1)
 	static_value = static_value * cash_skill_bonus
 	base_static_value = static_value - risk_static_value
@@ -46,7 +47,7 @@ function MoneyManager:get_money_by_params(params)
 		end
 
 		if on_last_stage then
-			bag_value = bonus_bags * tweak_data.narrative:job_data(job_id).jc * 0.03
+			bag_value = bonus_bags * total_stages
 			bag_risk = math.round(bag_value * money_multiplier * bag_skill_bonus)
 			bag_value = (bag_value + mandatory_bags) * bag_skill_bonus
 			vehicle_value = bonus_vehicles
@@ -96,7 +97,7 @@ function MoneyManager:get_money_by_params(params)
 
 		if on_last_stage then
 			job_value = self:get_job_payout_by_stars(total_stars) or 0
-			bonus_bag_value = bonus_bags * tweak_data.narrative:job_data(job_id).jc * 0.03
+			bonus_bag_value = bonus_bags * total_stages
 			mandatory_bag_value = mandatory_bags
 		end
 

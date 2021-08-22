@@ -7120,7 +7120,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_s552", "restore", function(self)
 end)
 
 Hooks:PostHook(WeaponFactoryTweakData, "_init_ppk", "restore", function(self)
-	self.parts.wpn_fps_pis_ppk_b_long = {
+	--[[self.parts.wpn_fps_pis_ppk_b_long = {
 		pcs = {
 			10,
 			20,
@@ -7232,7 +7232,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_ppk", "restore", function(self)
 		wpn_fps_upg_fl_pis_tlr1 = {
 			"wpn_fps_pis_ppk_fl_mount"
 		}
-	}
+	}]]--
 	self.wpn_fps_pis_ppk.default_blueprint = {
 		"wpn_fps_pis_ppk_b_standard",
 		"wpn_fps_pis_ppk_body_standard",
@@ -7693,7 +7693,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_scar", "restore", function(self)
 end)
 
 Hooks:PostHook(WeaponFactoryTweakData, "_init_p226", "restore", function(self)
-	self.parts.wpn_fps_pis_p226_b_standard = {
+	--[[self.parts.wpn_fps_pis_p226_b_standard = {
 		type = "slide",
 		name_id = "bm_wp_p226_b_standard",
 		texture_bundle_folder = "gage_pack",
@@ -7935,7 +7935,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_p226", "restore", function(self)
 		fire_steelsight = "recoil",
 		reload = "reload"
 	}
-	self.wpn_fps_pis_p226.optional_types = {"barrel_ext", "gadget"}
+	self.wpn_fps_pis_p226.optional_types = {"barrel_ext", "gadget"}]]--
 	self.wpn_fps_pis_p226.default_blueprint = {
 		"wpn_fps_pis_p226_b_standard",
 		"wpn_fps_pis_p226_body_standard",

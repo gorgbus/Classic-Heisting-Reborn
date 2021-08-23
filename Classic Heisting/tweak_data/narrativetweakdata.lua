@@ -238,6 +238,8 @@ function NarrativeTweakData:init(tweak_data)
 		"alex_prof",
 		"watchdogs_wrapper",
 		"watchdogs_wrapper_prof",
+		"watchdogs_night",
+		"watchdogs",
 		"framing_frame",
 		"framing_frame_prof",
 		"welcome_to_the_jungle_wrapper_prof",

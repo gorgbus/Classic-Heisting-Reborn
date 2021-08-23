@@ -2365,7 +2365,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_olympic", "restore", function(self
 	self.wpn_fps_smg_olympic_primary_npc.unit = "units/payday2/weapons/wpn_fps_smg_olympic/wpn_fps_smg_olympic_primary_npc"
 end)
 
-Hooks:PostHook(WeaponFactoryTweakData, "_init_ak_parts", "restore", function(self)
+--[[Hooks:PostHook(WeaponFactoryTweakData, "_init_ak_parts", "restore", function(self)
 	self.parts.wpn_upg_ak_fg_combo1 = {
 		type = "foregrip",
 		name_id = "bm_wp_ak_fg_combo1",
@@ -2604,7 +2604,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_ak_parts", "restore", function(sel
 	self.parts.wpn_fps_ass_akm_body_upperreceiver_vanilla = deep_clone(self.parts.wpn_fps_ass_akm_body_upperreceiver)
 	self.parts.wpn_fps_ass_akm_body_upperreceiver_vanilla.stats = nil
 	self.parts.wpn_fps_ass_akm_body_upperreceiver_vanilla.pc = nil
-end)
+end)]]--
 
 Hooks:PostHook(WeaponFactoryTweakData, "_init_ak74", "restore", function(self)
 	self.parts.wpn_fps_ass_74_b_standard = {

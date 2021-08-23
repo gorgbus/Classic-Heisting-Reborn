@@ -17,4 +17,19 @@ function CopLogicIntimidated._start_action_hands_up(data)
 end
 
 function CopLogicIntimidated._chk_begin_alarm_pager(data)
+	local hostages = managers.groupai:state():police_hostage_count()
+	local hostages_allowed = 0
+	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
+		if u_data.unit:base().is_local_player then
+			if managers.player:has_category_upgrade("player", "intimidate_enemies") then
+				hostages_allowed = hostages_allowed + 1
+			end
+		elseif u_data.unit:base():upgrade_value("player", "intimidate_enemies") then
+			hostages_allowed = hostages_allowed + 1
+		end
+	end
+
+	if hostages > hostages_allowed then
+		data.brain:begin_alarm_pager()
+	end
 end

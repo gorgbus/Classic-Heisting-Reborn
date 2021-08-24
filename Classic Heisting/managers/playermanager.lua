@@ -62,11 +62,11 @@ function PlayerManager:_add_equipment(params)
             if not upgrades then
             else
                 if upgrades["quantity_1"] then
-                    amount = amount + 1
+                    amt = amt + 1
                 end
 
                 if upgrades["quantity_3"] then
-                    amount = amount + 3
+                    amt = amt + 3
                 end
             end
         else

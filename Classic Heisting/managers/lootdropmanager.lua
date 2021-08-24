@@ -115,8 +115,6 @@ Hooks:PostHook(LootDropManager, "add_qlvl_to_weapon_mods", "add_qlvl_to_weapon_m
         "bm_wp_r870_body_rack",
         "bm_wp_smg_m45_body_green",
         "bm_wp_rage_body_smooth",
-        --bipod
-        "bm_wp_upg_lmg_lionbipod",
         --gadget
         "bm_wp_upg_fl_ass_smg_sho_surefire",
         "bm_wp_upg_fl_ass_smg_sho_peqbox",

@@ -3015,7 +3015,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_akmsu", "restore", function(self)
 end)
 
 Hooks:PostHook(WeaponFactoryTweakData, "_init_saiga", "restore", function(self)
-	self.parts.wpn_fps_shot_saiga_b_standard = {
+	--[[self.parts.wpn_fps_shot_saiga_b_standard = {
 		type = "barrel",
 		name_id = "bm_wp_saiga_b_standard",
 		a_obj = "a_b",
@@ -3119,7 +3119,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_saiga", "restore", function(self)
 		wpn_fps_upg_o_acog = {
 			"wpn_fps_ak_extra_ris"
 		}
-	}
+	}]]--
 	self.wpn_fps_shot_saiga.default_blueprint = {
 		"wpn_fps_smg_akmsu_body_lowerreceiver",
 		"wpn_fps_ass_akm_body_upperreceiver_vanilla",
@@ -8327,7 +8327,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_m249", "restore", function(self)
 end)
 
 Hooks:PostHook(WeaponFactoryTweakData, "_init_rpk", "restore", function(self)
-	self.parts.wpn_fps_lmg_rpk_b_standard = {
+	--[[self.parts.wpn_fps_lmg_rpk_b_standard = {
 		type = "barrel",
 		name_id = "bm_wp_rpk_b_standard",
 		a_obj = "a_b",
@@ -8439,7 +8439,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_rpk", "restore", function(self)
 		"gadget",
 		"sight",
 		"vertical_grip"
-	}
+	}]]--
 	self.wpn_fps_lmg_rpk.default_blueprint = {
 		"wpn_fps_lmg_rpk_b_standard",
 		"wpn_fps_lmg_rpk_fg_wood",
@@ -8477,6 +8477,38 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_rpk", "restore", function(self)
 end)
 
 function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
+end
+
+function WeaponFactoryTweakData:_init_bipods()
+	self.parts.wpn_fps_upg_bp_lmg_lionbipod = {
+		texture_bundle_folder = "par",
+		type = "bipod",
+		a_obj = "a_bp",
+		sub_type = "bipod",
+		name_id = "bm_wp_upg_lmg_lionbipod",
+		unit = "units/pd2_crimefest_2015/update_5/weapons/wpn_fps_upg_bp_lmg_lionbipod/wpn_fps_upg_bp_lmg_lionbipod",
+		pcs = {
+			10,
+			20,
+			30,
+			40
+		},
+		stats = {
+			value = 0,
+			zoom = 1
+		},
+		animations = {
+			undeploy = "undeploy",
+			deploy = "deploy"
+		},
+		forbids = {
+			"wpn_fps_lmg_hk21_fg_short"
+		},
+		perks = {
+			"bipod"
+		},
+		third_unit = "units/pd2_crimefest_2015/update_5/weapons/wpn_fps_upg_bp_lmg_lionbipod/wpn_third_upg_bp_lmg_lionbipod"
+	}
 end
 
 Hooks:PostHook(WeaponFactoryTweakData, "create_ammunition", "restore_create_ammunition", function(self)

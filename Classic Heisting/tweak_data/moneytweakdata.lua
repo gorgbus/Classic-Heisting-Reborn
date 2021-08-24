@@ -74,6 +74,15 @@ Hooks:PostHook(MoneyTweakData, "init", "restore_init", function(self)
 		overkill_290 = 360000,
 		sm_wish = 360000
 	}
+	self.difficulty_multiplier = {
+		4,
+		9,
+		12,
+		20,
+		40,
+		0,
+		0
+	}
 	local smallest_cashout = (self.stage_completion[1] + self.job_completion[1]) * self.offshore_rate
 	local biggest_mask_cost = self.biggest_cashout * 40
 	local biggest_mask_cost_deinfamous = math.round(biggest_mask_cost / self.global_value_multipliers.infamous)

@@ -1169,10 +1169,6 @@ function PlayerInventoryGui:init(ws, fullscreen_ws, node)
 				box.panel:hide()
 			end
 		end
-
-		for _, box in ipairs(self._boxes_by_layer[2]) do
-			box.panel:hide()
-		end
 	end
 
 	local function column_two_show_func()
@@ -1207,10 +1203,6 @@ function PlayerInventoryGui:init(ws, fullscreen_ws, node)
 			if box then
 				box.panel:show()
 			end
-		end
-
-		for _, box in ipairs(self._boxes_by_layer[2]) do
-			box.panel:show()
 		end
 	end
 
@@ -1248,7 +1240,7 @@ function PlayerInventoryGui:init(ws, fullscreen_ws, node)
 			end
 		end
 
-		for _, box in ipairs(self._boxes_by_layer[3]) do
+		for _, box in ipairs(self._boxes_by_layer[2]) do
 			if alive(box.panel) then
 				box.panel:hide()
 			end
@@ -1289,7 +1281,7 @@ function PlayerInventoryGui:init(ws, fullscreen_ws, node)
 			end
 		end
 
-		for _, box in ipairs(self._boxes_by_layer[3]) do
+		for _, box in ipairs(self._boxes_by_layer[2]) do
 			if alive(box.panel) then
 				box.panel:show()
 			end

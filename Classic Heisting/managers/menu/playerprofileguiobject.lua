@@ -365,9 +365,6 @@ Hooks:Add("LocalizationManagerPostInit", "##removal/fix_and_other_stuff", functi
 		menu_skilltree = "SKILLS",
 		menu_crimenet = "CRIME.NET",
 		menu_crimenet_offline = "CRIME.NET Offline",
-		menu_difficulty_easy_wish = "Death Wish",
-		menu_american = "Hoxton",
-		american_desc_codex = "Hoxton could never hold a job even if his life would depend on it. His life style turned him to a life of cons and burglary. He committed his first major felony at the age of 24 and the stakes have only increased since.",
-		american_desc = "Nationality: American$NL;Age: 31$NL;$NL;Hoxton could never hold a job even if his life would depend on it. His life style turned him to a life of cons and burglary. His debts grew, as did his collection of enemies from years of swindlery. He needed to gather larger and larger sums of money to keep the loan sharks at bay. He committed his first major felony at the age of 24 and the stakes have only increased since."
+		menu_difficulty_easy_wish = "Death Wish"
 	})
 end)

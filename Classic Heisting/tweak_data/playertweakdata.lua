@@ -394,9 +394,9 @@ Hooks:PostHook(PlayerTweakData, "_init_new_stances", "restore_init_new_stances",
 	self.stances.ak5.crouched.shoulders.rotation = pivot_head_rotation * pivot_shoulder_rotation:inverse()
 	self.stances.ak5.crouched.vel_overshot.pivot = pivot_shoulder_translation + Vector3(0, -30, 0)
 	self.stances.aug = deep_clone(self.stances.default)
-	local pivot_shoulder_translation = Vector3(10.7046, 17.1499, -5.21193)
-	local pivot_shoulder_rotation = Rotation(0.106362, -0.0855956, 0.628962)
-	local pivot_head_translation = Vector3(7, 20, -1)
+	local pivot_shoulder_translation = Vector3(8.76358, 14.9033, -4.43681)
+	local pivot_shoulder_rotation = Rotation(0.106171, -0.0839854, 0.627887)
+	local pivot_head_translation = Vector3(8.5, 16, -3.5)
 	local pivot_head_rotation = Rotation(0, 0, 0)
 	self.stances.aug.standard.shoulders.translation = pivot_head_translation - pivot_shoulder_translation:rotate_with(pivot_shoulder_rotation:inverse()):rotate_with(pivot_head_rotation)
 	self.stances.aug.standard.shoulders.rotation = pivot_head_rotation * pivot_shoulder_rotation:inverse()
@@ -414,7 +414,7 @@ Hooks:PostHook(PlayerTweakData, "_init_new_stances", "restore_init_new_stances",
 	self.stances.aug.steelsight.vel_overshot.yaw_pos = -4
 	self.stances.aug.steelsight.vel_overshot.pitch_neg = -17
 	self.stances.aug.steelsight.vel_overshot.pitch_pos = 17
-	local pivot_head_translation = Vector3(4, 18, 0)
+	local pivot_head_translation = Vector3(7, 14, -3)
 	local pivot_head_rotation = Rotation(0, 0, 0)
 	self.stances.aug.crouched.shoulders.translation = pivot_head_translation - pivot_shoulder_translation:rotate_with(pivot_shoulder_rotation:inverse()):rotate_with(pivot_head_rotation)
 	self.stances.aug.crouched.shoulders.rotation = pivot_head_rotation * pivot_shoulder_rotation:inverse()

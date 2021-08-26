@@ -4,7 +4,7 @@ Hooks:PostHook(CopActionTase, "on_attention", "sh_on_attention", function (self)
     end
 end)
 
-function CopActionTase:update(t)
+--[[function CopActionTase:update(t)
 	if self._expired then
 		return
 	end
@@ -128,5 +128,5 @@ function CopActionTase:update(t)
 
 	end
 
-end
+end]]--
 

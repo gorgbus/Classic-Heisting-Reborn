@@ -153,8 +153,7 @@ function MenuCallbackHandler:max_progress_msg()
 end
 
 function MenuCallbackHandler:max_progress()
-	managers.experience:_set_current_level(100)
-	managers.skilltree:_set_points(120 - (120 - managers.skilltree:points()))
+	for i=managers.experience:current_level(), 99 do managers.experience:_level_up() end
 	managers.experience:set_current_rank(5)
 	managers.infamy:_set_points(managers.experience:current_rank())
 	managers.money:_set_offshore(10000000000)

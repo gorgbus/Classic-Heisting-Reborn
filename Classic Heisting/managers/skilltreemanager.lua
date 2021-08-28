@@ -153,7 +153,6 @@ function SkillTreeManager:_unlock(tree, skill_id)
 end
 
 function SkillTreeManager:_aquire_skill(skill, skill_id, loading)
-	log(json.encode(skill), skill_id, "negrskil")
 	if skill and skill.upgrades then
 		for _, upgrade in ipairs(skill.upgrades) do
 			if upgrade == "player_corpse_dispose" then

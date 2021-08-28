@@ -153,8 +153,12 @@ function SkillTreeManager:_unlock(tree, skill_id)
 end
 
 function SkillTreeManager:_aquire_skill(skill, skill_id, loading)
+	log(json.encode(skill), skill_id, "negrskil")
 	if skill and skill.upgrades then
 		for _, upgrade in ipairs(skill.upgrades) do
+			if upgrade == "player_corpse_dispose" then
+				upgrade = "player_extra_corpse_dispose_amount"
+			end
 			managers.upgrades:aquire(upgrade, loading, UpgradesManager.AQUIRE_STRINGS[2] .. "_" .. tostring(skill_id))
 		end
 	end
@@ -172,6 +176,28 @@ function SkillTreeManager:_reset_skilltree(tree, forced_respec_multiplier)
 		end
 	end
 	self:_unaquire_skill(tree_data.skill)
+end
+
+function SkillTreeManager:_unaquire_skill(skill_id)
+	local progress_data = self._global.skills[skill_id]
+	local skill_data = tweak_data.skilltree.skills[skill_id]
+	for i = progress_data.unlocked, 1, -1 do
+		local step_data = skill_data[i]
+		local upgrades = step_data.upgrades
+		if upgrades then
+			for i = #upgrades, 1, -1 do
+				local upgrade = upgrades[i]
+				if upgrade == "player_corpse_dispose" then
+					upgrade = "player_extra_corpse_dispose_amount"
+				end
+				managers.upgrades:unaquire(upgrade, UpgradesManager.AQUIRE_STRINGS[2] .. "_" .. tostring(skill_id))
+			end
+
+		end
+
+	end
+
+	progress_data.unlocked = 0
 end
 
 function SkillTreeManager:_verify_loaded_data(points_aquired_during_load)

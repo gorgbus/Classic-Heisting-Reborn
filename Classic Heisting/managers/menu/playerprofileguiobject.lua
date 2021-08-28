@@ -357,14 +357,3 @@ function PlayerProfileGuiObject:init(ws)
 	end
 
 end
-
-Hooks:Add("LocalizationManagerPostInit", "##removal/fix_and_other_stuff", function(loc)
-	LocalizationManager:add_localized_strings({
-		menu_spendable_skill_points = "Unspent skill points: $points",
-        menu_cash = "Cash: $money",
-		menu_skilltree = "SKILLS",
-		menu_crimenet = "CRIME.NET",
-		menu_crimenet_offline = "CRIME.NET Offline",
-		menu_difficulty_easy_wish = "Death Wish"
-	})
-end)

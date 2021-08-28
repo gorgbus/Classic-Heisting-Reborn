@@ -28,6 +28,12 @@ function PlayerTased:call_teammate(line, t, no_gesture, skip_alert)
 	end
 end
 
+function PlayerTased:_start_action_counter_tase(t, prime_target)
+	self._counter_taser_unit = prime_target.unit
+	self._unit:camera():play_redirect(self._ids_counter_tase)
+	--self:give_shock_to_taser()
+end
+
 function PlayerTased:_on_tased_event(taser_unit, tased_unit)
 	if self._unit == tased_unit then
 		self._taser_unit = taser_unit

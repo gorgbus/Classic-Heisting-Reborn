@@ -124,3 +124,161 @@ function PlayerManager:remove_equipment(equipment_id, slot)
 		self:update_deployable_equipment_amount_to_peers(equipment.equipment, new_amount)
 	end
 end
+
+function PlayerManager:upgrade_value(category, upgrade, default)
+	if upgrade == "no_ammo_cost" then
+		category = "player"
+	end
+
+	if not self._global.upgrades[category] then
+		return default or 0
+	end
+
+	if not self._global.upgrades[category][upgrade] then
+		return default or 0
+	end
+
+	local level = self._global.upgrades[category][upgrade]
+
+	if upgrade == "no_ammo_cost" then
+		category = "temporary"
+	end
+
+	local value = tweak_data.upgrades.values[category][upgrade][level]
+	return value
+end
+
+function PlayerManager:activate_temporary_upgrade(category, upgrade)
+	local upgrade_value = self:upgrade_value(category, upgrade)
+
+	if upgrade_value == 0 then
+		return
+	end
+
+	local time = upgrade_value[2]
+	self._temporary_upgrades[category] = self._temporary_upgrades[category] or {}
+	self._temporary_upgrades[category][upgrade] = {
+		expire_time = Application:time() + time
+	}
+
+	if self:is_upgrade_synced(category, upgrade) then
+		managers.network:session():send_to_peers("sync_temporary_upgrade_activated", self:temporary_upgrade_index(category, upgrade))
+	end
+end
+
+function PlayerManager:_internal_load()
+	local player = self:player_unit()
+
+	if not player then
+		return
+	end
+
+	local default_weapon_selection = 1
+	local secondary = managers.blackmarket:equipped_secondary()
+	local secondary_slot = managers.blackmarket:equipped_weapon_slot("secondaries")
+	local texture_switches = managers.blackmarket:get_weapon_texture_switches("secondaries", secondary_slot, secondary)
+
+	player:inventory():add_unit_by_factory_name(secondary.factory_id, default_weapon_selection == 1, false, secondary.blueprint, secondary.cosmetics, texture_switches)
+
+	local primary = managers.blackmarket:equipped_primary()
+
+	if primary then
+		local primary_slot = managers.blackmarket:equipped_weapon_slot("primaries")
+		local texture_switches = managers.blackmarket:get_weapon_texture_switches("primaries", primary_slot, primary)
+
+		player:inventory():add_unit_by_factory_name(primary.factory_id, default_weapon_selection == 2, false, primary.blueprint, primary.cosmetics, texture_switches)
+	end
+
+	player:inventory():set_melee_weapon(managers.blackmarket:equipped_melee_weapon())
+
+	local peer_id = managers.network:session():local_peer():id()
+	local grenade, amount = managers.blackmarket:equipped_grenade()
+
+	if self:has_grenade(peer_id) then
+		amount = self:get_grenade_amount(peer_id) or amount
+	end
+
+	amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", amount)
+
+	self:_set_grenade({
+		grenade = grenade,
+		amount = math.min(amount, self:get_max_grenades())
+	})
+
+	if self:has_category_upgrade("player", "extra_corpse_dispose_amount") then
+		self:_set_body_bags_amount(2)
+	else
+		self:_set_body_bags_amount(managers.blackmarket:forced_body_bags() or self._local_player_body_bags or self:total_body_bags())
+	end
+
+	
+
+	if not self._respawn then
+		self:_add_level_equipment(player)
+
+		for i, name in ipairs(self._global.default_kit.special_equipment_slots) do
+			local ok_name = self._global.equipment[name] and name
+
+			if ok_name then
+				local upgrade = tweak_data.upgrades.definitions[ok_name]
+
+				if upgrade and (upgrade.slot and upgrade.slot < 2 or not upgrade.slot) then
+					self:add_equipment({
+						silent = true,
+						equipment = upgrade.equipment_id
+					})
+				end
+			end
+		end
+
+		local slot = 2
+
+		if self:has_category_upgrade("player", "second_deployable") then
+			slot = 3
+		else
+			self:set_equipment_in_slot(nil, 2)
+		end
+
+		local equipment_list = self:equipment_slots()
+
+		for i, name in ipairs(equipment_list) do
+			local ok_name = self._global.equipment[name] and name or self:equipment_in_slot(i)
+
+			if ok_name then
+				local upgrade = tweak_data.upgrades.definitions[ok_name]
+
+				if upgrade and (upgrade.slot and upgrade.slot < slot or not upgrade.slot) then
+					self:add_equipment({
+						silent = true,
+						equipment = upgrade.equipment_id,
+						slot = i
+					})
+				end
+			end
+		end
+
+		self:update_deployable_selection_to_peers()
+	end
+
+	if self:has_category_upgrade("player", "cocaine_stacking") then
+		self:update_synced_cocaine_stacks_to_peers(0, self:upgrade_value("player", "sync_cocaine_upgrade_level", 1), self:upgrade_level("player", "cocaine_stack_absorption_multiplier", 0))
+		managers.hud:set_info_meter(nil, {
+			icon = "guis/dlcs/coco/textures/pd2/hud_absorb_stack_icon_01",
+			max = 1,
+			current = self:get_local_cocaine_damage_absorption_ratio(),
+			total = self:get_local_cocaine_damage_absorption_max_ratio()
+		})
+	end
+
+	self:update_cocaine_hud()
+
+	local equipment = self:selected_equipment()
+
+	if equipment then
+		add_hud_item(get_as_digested(equipment.amount), equipment.icon)
+	end
+
+	if self:has_equipment("armor_kit") then
+		managers.mission:call_global_event("player_regenerate_armor", true)
+	end
+end

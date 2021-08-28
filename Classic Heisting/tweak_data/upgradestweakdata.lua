@@ -548,7 +548,11 @@ function UpgradesTweakData:init(tweak_data)
 				"20%",
 				"10"
 			},
-			{"75%"}
+			{
+				"75%",
+				"0",
+				"9"
+			}
 		},
 		insulation = {
 			{},

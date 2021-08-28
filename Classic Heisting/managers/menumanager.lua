@@ -156,7 +156,7 @@ function MenuCallbackHandler:max_progress()
 	managers.experience:_set_current_level(100)
 	managers.skilltree:_set_points(120 - (120 - managers.skilltree:points()))
 	managers.experience:set_current_rank(5)
-	managers.infamy:_set_points(5 - managers.experience:current_rank())
+	managers.infamy:_set_points(managers.experience:current_rank())
 	managers.money:_set_offshore(10000000000)
 	managers.money:_set_total(1000000000)
 

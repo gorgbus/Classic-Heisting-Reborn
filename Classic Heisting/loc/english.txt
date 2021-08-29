@@ -47,4 +47,8 @@
 	"menu_progress_msg": "Are you sure you want to max out your progress? This will max out your level, infamy, cash, and unlock all available items.",
 	
 	"menu_difficulty_easy_wish": "Death Wish",
+	
+	"menu_ch_changelog_title": "Latest Changelog:",
+	"menu_ch_changelog_text": "-fixed | counterfeit cops having pagers",
+	"menu_ch_changelog_btn_text": "Confirm",
 }

@@ -154,8 +154,6 @@ Hooks:PostHook(LootDropManager, "add_qlvl_to_weapon_mods", "add_qlvl_to_weapon_m
         "bm_wp_upg_o_specter",
         "bm_wp_upg_o_cmore",
         "bm_wp_upg_o_marksmansight_rear",
-        --extra
-        "bm_wpn_fps_upg_o_xpsg33_magnifier",
         --slide
         "bm_wp_pis_usp_b_expert",
         "bm_wp_pis_usp_b_match",

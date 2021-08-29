@@ -85,6 +85,7 @@
 		{ "hook_id" : "lib/units/enemies/cop/logics/coplogicidle", "script_path": "units/cop/logics/coplogicidle.lua" },
 		{ "hook_id" : "lib/units/enemies/cop/logics/coplogicintimidated", "script_path": "units/cop/logics/coplogicintimidated.lua" },
 		{ "hook_id" : "lib/units/enemies/cop/logics/coplogictravel", "script_path": "units/cop/logics/coplogictravel.lua" },
+		{ "hook_id" : "lib/units/enemies/cop/copdamage", "script_path": "units/cop/copdamage.lua" },
 		{ "hook_id" : "lib/units/weapons/grenades/quickflashgrenade", "script_path": "units/weapons/grenades/quickflashgrenade.lua" },
 		{ "hook_id" : "lib/units/beings/player/playerdamage", "script_path": "units/beings/player/playerdamage.lua" },
 		{ "hook_id" : "lib/units/beings/player/playerequipment", "script_path": "units/beings/player/playerequipment.lua" },

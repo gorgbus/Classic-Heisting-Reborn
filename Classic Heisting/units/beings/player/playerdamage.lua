@@ -67,7 +67,7 @@ function PlayerDamage:damage_bullet(attack_data)
 		return
 	elseif self:incapacitated() then
 		return
-	elseif PlayerDamage:_look_for_friendly_fire(attack_data.attacker_unit) then
+	elseif self:is_friendly_fire(attack_data.attacker_unit) then
 		return
 	elseif self:_chk_dmg_too_soon(attack_data.damage) then
 		return
@@ -149,26 +149,4 @@ function PlayerDamage:_chk_dmg_too_soon(damage)
 		return true
 	end
 
-end
-
-function PlayerDamage:_look_for_friendly_fire(unit)
-	local players = managers.player:players()
-	do
-		local (for generator), (for state), (for control) = ipairs(players)
-		do
-			do break end
-			if player == unit then
-				return true
-			end
-
-		end
-
-	end
-
-	local criminals = managers.groupai:state():all_criminals()
-	if unit and criminals[unit:key()] then
-		return true
-	end
-
-	return false
 end

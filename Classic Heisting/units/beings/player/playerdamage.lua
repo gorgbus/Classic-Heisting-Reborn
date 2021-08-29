@@ -26,7 +26,7 @@ function PlayerDamage:_hit_direction(position_vector, ...)
 	return _hit_direction_actual(self, position_vector, ...)
 end
 
-function PlayerDamage:damage_bullet(attack_data)
+--[[function PlayerDamage:damage_bullet(attack_data)
 	local damage_info = {
 		result = {type = "hurt", variant = "bullet"},
 		attacker_unit = attack_data.attacker_unit
@@ -132,7 +132,6 @@ function PlayerDamage:damage_bullet(attack_data)
 	if not self._bleed_out and health_subtracted > 0 then
 		self:_send_damage_drama(attack_data, health_subtracted)
 	elseif self._bleed_out then
-		managers.challenges:set_flag("bullet_to_bleed_out")
 		if attack_data.attacker_unit and attack_data.attacker_unit:alive() and attack_data.attacker_unit:base()._tweak_table == "tank" then
 			self._kill_taunt_clbk_id = "kill_taunt" .. tostring(self._unit:key())
 			managers.enemy:add_delayed_clbk(self._kill_taunt_clbk_id, callback(self, self, "clbk_kill_taunt", attack_data), managers.player:player_timer():time() + tweak_data.timespeed.downed.fade_in + tweak_data.timespeed.downed.sustain + tweak_data.timespeed.downed.fade_out)
@@ -141,7 +140,7 @@ function PlayerDamage:damage_bullet(attack_data)
 	end
 
 	self:_call_listeners(damage_info)
-end
+end]]--
 
 function PlayerDamage:_chk_dmg_too_soon(damage)
 	local next_allowed_dmg_t = type(self._next_allowed_dmg_t) == "number" and self._next_allowed_dmg_t or Application:digest_value(self._next_allowed_dmg_t, false)

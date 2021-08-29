@@ -31,6 +31,7 @@ function MenuMainState:at_enter(old_state)
         write(new_version, path)
         local my_advanced_message = {
             focus_button = 1,
+            texture = nil,
             title = "menu_ch_changelog_title",
             text = "menu_ch_changelog_text"
         }

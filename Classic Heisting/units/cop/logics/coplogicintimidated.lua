@@ -30,7 +30,8 @@ function CopLogicIntimidated._chk_begin_alarm_pager(data)
 	end
 
 	if hostages > hostages_allowed then
-		if managers.job:current_job_id() ~= "pal" then
+		local level = Global.level_data and Global.level_data.level_id or ''
+		if level ~= "pal" then
 			data.brain:begin_alarm_pager()
 		end
 	end

@@ -30,7 +30,7 @@ function CopLogicIntimidated._chk_begin_alarm_pager(data)
 	end
 
 	if hostages > hostages_allowed then
-		if not managers.job:current_job_id() == "pal" then
+		if managers.job:current_job_id() ~= "pal" then
 			data.brain:begin_alarm_pager()
 		end
 	end

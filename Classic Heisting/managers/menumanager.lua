@@ -1,4 +1,37 @@
+_G.ch_settings = {}
+_G.ch_settings.path = SavePath .. "ch_settings.json"
+_G.ch_settings.flash_off = false
+
+local menu_id = "ch_settings"
+
+function json_encode(tab, path)
+	local file = io.open(path, "w+")
+	if file then
+		file:write(json.encode(tab))
+		file:close()
+	end
+end
+
+function json_decode(path)
+	local file = io.open(path, "r")
+	if file then
+		local results = json.decode(file:read("*all") or {})
+		_G.ch_settings.flash_off = results.flash_off
+		file:close()
+	end
+end
+
+json_decode(_G.ch_settings.path)
+
+Hooks:Add("MenuManagerSetupCustomMenus", "MenuManagerSetupCustomMenusSettingsCH", function(menu_manager, nodes)
+    MenuHelper:NewMenu(menu_id)
+end)
+
 Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_manager, nodes)
+		nodes[menu_id] = MenuHelper:BuildMenu(menu_id)
+    	MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "menu_ch_name", "menu_ch_name")
+
+		---------------------------
 
 		local mainmenu = nodes.main
 		if not mainmenu then
@@ -99,7 +132,19 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 
 		position = 10
 		table.insert(adv_options._items, position, new_item)
-	end)
+end)
+
+Hooks:Add("MenuManagerPopulateCustomMenus", "CSModifiersMenuManagerPopulateCustomMenus", function(menu_manager, nodes)
+	MenuHelper:AddToggle({
+		id = "ch_flash_toggle",
+		title = "menu_ch_flash_title",
+		desc = "menu_ch_flash_desc",
+		callback = "ch_toggle_flash",
+		value = _G.ch_settings.flash_off,
+		menu_id = menu_id,
+		priority = 10
+	})
+end)
 
 function MenuHelper:GetMenuItem(parent_menu, child_menu)
 	for i, item in pairs(parent_menu._items) do
@@ -113,6 +158,16 @@ function MenuHelper:RemoveMenuItem(parent_menu, child_menu)
 	local index = self:GetMenuItem(parent_menu, child_menu)
 	if index then
 		return table.remove(parent_menu._items, index)
+	end
+end
+
+function MenuCallbackHandler:ch_toggle_flash()
+	if _G.ch_settings.flash_off then
+		_G.ch_settings.flash_off = false
+		json_encode(_G.ch_settings, _G.ch_settings.path)
+	else
+		_G.ch_settings.flash_off = true
+		json_encode(_G.ch_settings, _G.ch_settings.path)
 	end
 end
 

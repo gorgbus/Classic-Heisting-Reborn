@@ -49,7 +49,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-fixed | shockproof\n-fixed | trip mines\n-fixed | viewmodels\n-added | option to disable hit flash",
+	"menu_ch_changelog_text": "-fixed | scarface mansion",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

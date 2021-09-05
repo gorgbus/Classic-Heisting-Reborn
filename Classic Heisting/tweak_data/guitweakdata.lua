@@ -1,4 +1,15 @@
 Hooks:PostHook(GuiTweakData, "init", "restore_init", function(self, tweak_data)
+	self.MAX_MASK_ROWS = math.round(12)
+	self.MAX_WEAPON_ROWS = math.round(12)
+
+	self.buy_weapon_category_groups = {
+		grenade_launcher = "wpn_special",
+		saw = "wpn_special",
+		minigun = "wpn_special",
+		flamethrower = "wpn_special",
+		bow = "wpn_special"
+	}
+
 	self.crime_net.sidebar = {
 		--hide sidebar
 	}

@@ -21,3 +21,6 @@ function MenuComponentManager:on_skill_unlocked(...)
 		self._skilltree_gui:on_skill_unlocked(...)
 	end
 end
+
+
+

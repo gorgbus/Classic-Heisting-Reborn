@@ -41,6 +41,9 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 		_G.mainmenu = mainmenu or {}
 
 		for index, item in pairs(mainmenu._items) do
+			if item._parameters.name == "inventory" then
+				item._parameters.next_node = "steam_inventory"
+			end
 			for i, v in pairs(item._parameters) do
 				if i == "font_size" then
 					item._parameters.font_size = 24
@@ -66,6 +69,7 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 
 		local position = 14
 		MenuHelper:RemoveMenuItem(mainmenu, "story_missions")
+		MenuHelper:RemoveMenuItem(mainmenu, "steam_inventory")
 		table.insert(mainmenu._items, position, new_item)
 
 		params = {
@@ -104,6 +108,12 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 		local lobby = nodes.lobby
 		if not lobby then
 			return
+		end
+
+		for index, item in pairs(lobby._items) do
+			if item._parameters.name == "inventory" then
+				item._parameters.next_node = "steam_inventory"
+			end
 		end
 
 		MenuHelper:RemoveMenuItem(lobby, "story_missions")

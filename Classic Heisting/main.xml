@@ -1,6 +1,7 @@
 <mod name="Classic Heisting">
     <AddFiles directory="assets">
 	<texture path="guis/textures/pd2/skilltree/icons_atlas" force="true"/>
+	<texture path="guis/textures/pd2/blackmarket/icons/colors/color_bg" force="true"/>
 
     </AddFiles>
 	<Localization directory="loc" default="english.txt">

@@ -49,7 +49,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-fixed | scarface mansion",
+	"menu_ch_changelog_text": "-restored | pre U78 inventory\n-fixed | alaskan deal boat npcs not moving\n\nnote: skins are temporary disabled",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

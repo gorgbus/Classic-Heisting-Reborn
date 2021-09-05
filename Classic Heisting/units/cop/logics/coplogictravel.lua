@@ -1,5 +1,5 @@
 local level = Global.level_data and Global.level_data.level_id or ''
-if level ~= 'spa' and level ~= 'hox_1' and level ~= 'hox_2' then
+if level ~= 'spa' and level ~= 'hox_1' and level ~= 'hox_2' and level ~= 'wwh' then
 	function CopLogicTravel.queued_update( data )
 		local unit = data.unit
 		local my_data = data.internal_data

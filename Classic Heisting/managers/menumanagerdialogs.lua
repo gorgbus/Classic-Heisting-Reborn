@@ -33,3 +33,6 @@ end
 
 function MenuManager:show_question_start_tutorial(params)
 end
+
+function MenuManager:show_new_item_gained(params)
+end

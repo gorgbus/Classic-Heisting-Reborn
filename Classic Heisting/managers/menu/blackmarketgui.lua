@@ -3544,7 +3544,7 @@ function BlackMarketGui:show_stats()
 		local selection_index = tweak_data:get_raw_value("weapon", self._slot_data.weapon_id, "use_data", "selection_index") or 1
 		local category = selection_index == 1 and "secondaries" or "primaries"
 		modifier_stats = tweak_data.weapon[self._slot_data.weapon_id] and tweak_data.weapon[self._slot_data.weapon_id].stats_modifiers
-		local base_stats, mods_stats, skill_stats = self:_get_stats(self._slot_data.weapon_id, nil, nil, self._slot_data.default_blueprint)
+		local base_stats, mods_stats, skill_stats = WeaponDescription._get_stats(self._slot_data.weapon_id, nil, nil, self._slot_data.default_blueprint)
 
 		self:set_weapons_stats_columns()
 		self._rweapon_stats_panel:show()
@@ -3638,8 +3638,8 @@ function BlackMarketGui:show_stats()
 			equipped_name = name
 		end
 
-		local equip_base_stats, equip_mods_stats, equip_skill_stats = self:_get_stats(equipped_name, category, equipped_slot)
-		local base_stats, mods_stats, skill_stats = self:_get_stats(name, category, slot, self._slot_data.default_blueprint)
+		local equip_base_stats, equip_mods_stats, equip_skill_stats = WeaponDescription._get_stats(equipped_name, category, equipped_slot)
+		local base_stats, mods_stats, skill_stats = WeaponDescription._get_stats(name, category, slot, self._slot_data.default_blueprint)
 
 		self._rweapon_stats_panel:show()
 		self:hide_armor_stats()
@@ -4070,11 +4070,11 @@ function BlackMarketGui:show_stats()
 		local tweak_parts = tweak_data.weapon.factory.parts[self._slot_data.name]
 		local unaltered_blueprint = managers.blackmarket:get_weapon_blueprint(category, slot)
 		local blueprint = clone(unaltered_blueprint)
-		local unaltered_total_base_stats, unaltered_total_mods_stats, unaltered_total_skill_stats = self:_get_stats(name, category, slot, blueprint)
+		local unaltered_total_base_stats, unaltered_total_mods_stats, unaltered_total_skill_stats = WeaponDescription._get_stats(name, category, slot, blueprint)
 
 		managers.weapon_factory:change_part_blueprint_only(weapon.factory_id, self._slot_data.name, blueprint, false)
 
-		local total_base_stats, total_mods_stats, total_skill_stats = self:_get_stats(name, category, slot, blueprint)
+		local total_base_stats, total_mods_stats, total_skill_stats = WeaponDescription._get_stats(name, category, slot, blueprint)
 		local mod_stats = self:_get_stats_for_mod(self._slot_data.name, name, category, slot)
 		local hide_equip = mod_stats.equip.name == mod_stats.chosen.name
 		local remove_stats = {}
@@ -6647,9 +6647,10 @@ function BlackMarketGui:populate_masks(data)
 			}
 			local default_blueprint = tweak_data.blackmarket.masks[crafted.mask_id] and tweak_data.blackmarket.masks[crafted.mask_id].default_blueprint or {}
 			for type, part in pairs(crafted.blueprint) do
-				if default_blueprint[type] ~= part.id and default_blueprint[name_converter[type]] ~= part.id and tweak_data.lootdrop.global_values[part.global_value] and tweak_data.lootdrop.global_values[part.global_value].dlc and not tweak_data.dlc[part.global_value].free and not managers.dlc:has_dlc(part.global_value) then
+				if default_blueprint[type] ~= part.id and default_blueprint[name_converter[type]] ~= part.id and tweak_data.lootdrop.global_values[part.global_value] and tweak_data.lootdrop.global_values[part.global_value].dlc and not managers.dlc:is_dlc_unlocked(part.global_value) then
 					locked_parts[type] = part.global_value
 					is_locked = true
+					locked_global_value = part.global_value or locked_global_value
 				end
 			end
 		end

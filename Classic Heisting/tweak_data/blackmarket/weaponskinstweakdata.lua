@@ -1,3 +1,10 @@
+Hooks:PostHook(BlackMarketTweakData, "_init_weapon_skins", "remove_skin_parts_and_boosts", function(self, tweak_data)
+	for _, skin in pairs(self.weapon_skins) do
+		skin.default_blueprint = nil
+        skin.bonus = nil
+	end
+end)
+
 function BlackMarketTweakData:create_new_color_skin(name, data, color_skin_data)
 	data.name_id = "bm_wskn_" .. name
 	data.rarity = "common"

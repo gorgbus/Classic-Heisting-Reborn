@@ -7,6 +7,54 @@ local function make_fine_text(text)
 	return x, y, w, h
 end
 
+local max_speed_up = 5
+HUDStageEndScreen.stages = {
+	{
+		"stage_money_counter_init",
+		max_speed_up
+	},
+	{
+		"stage_money_counter_count",
+		max_speed_up
+	},
+	{
+		"stage_money_counter_hide",
+		max_speed_up
+	},
+	{
+		"stage_experience_init",
+		max_speed_up
+	},
+	{
+		"stage_experience_count_exp",
+		max_speed_up
+	},
+	{
+		"stage_experience_spin_up",
+		max_speed_up
+	},
+	{
+		"stage_experience_show_all",
+		max_speed_up
+	},
+	{
+		"stage_experience_spin_levels",
+		max_speed_up
+	},
+	{
+		"stage_experience_spin_slowdown",
+		max_speed_up
+	},
+	{
+		"stage_experience_end",
+		max_speed_up
+	},
+	{
+		"stage_done",
+		max_speed_up
+	}
+}
+
 function HUDStageEndScreen:init(hud, workspace)
 	self._backdrop = MenuBackdropGUI:new(workspace)
 
@@ -566,188 +614,4 @@ function HUDStageEndScreen:init(hud, workspace)
 	make_fine_text(self._skip_text)
 	self._skip_text:set_right(skip_panel:w() - 10)
 	self._skip_text:set_bottom(skip_panel:h() - 10)
-end
-
-function HUDStageEndScreen:safehouse_currency_init(t, dt)
-	local safehouse_manager = nil
-	safehouse_manager = managers.custom_safehouse
-
-	if not safehouse_manager:unlocked() then
-		self._wait_t = 0
-		self._start_ramp_up_t = nil
-		self._ramp_up_timer = 0
-		self._safehouse_data = nil
-
-		self:step_stage_up()
-
-		return
-	end
-
-	local coins = safehouse_manager:coins()
-	local previous_coins = safehouse_manager:previous_coins()
-	local total_income = coins - previous_coins
-	local exp_income = total_income
-	local trophies = {}
-
-	for idx, trophy_data in ipairs(safehouse_manager:completed_trophies()) do
-		if trophy_data.type == "trophy" then
-			table.insert(trophies, {
-				trophy_data.name,
-				trophy_data.reward,
-				tweak_data.screen_colors.challenge_completed_color
-			})
-
-			exp_income = exp_income - trophy_data.reward
-		end
-	end
-
-	local is_success = game_state_machine:current_state().is_success and game_state_machine:current_state():is_success()
-	local has_completed_daily = safehouse_manager:has_completed_daily() and not safehouse_manager:has_rewarded_daily()
-
-	if has_completed_daily then
-		table.insert(trophies, {
-			"menu_es_safehouse_income_daily",
-			tweak_data.safehouse.rewards.daily_complete,
-			tweak_data.screen_colors.heat_warm_color
-		})
-
-		exp_income = exp_income - tweak_data.safehouse.rewards.daily_complete
-	end
-
-	local was_safehouse_raid = managers.job:current_job_id() == "chill_combat"
-
-	if was_safehouse_raid and is_success then
-		table.insert(trophies, {
-			"menu_es_safehouse_raid",
-			tweak_data.safehouse.rewards.raid,
-			tweak_data.screen_colors.important_1
-		})
-
-		exp_income = exp_income - tweak_data.safehouse.rewards.raid
-	end
-
-	if total_income <= 0 then
-		self._wait_t = 0
-		self._start_ramp_up_t = nil
-		self._ramp_up_timer = 0
-		self._safehouse_data = nil
-
-		self:step_stage_up()
-
-		return
-	end
-
-	self._coins_text:show()
-	self._coins_circle:show()
-	self._coins_backpanel:child("bg_progress_circle"):show()
-	self._coins_forepanel:child("coin_progress_text"):show()
-	self._coins_circle:set_alpha(0)
-	self._coins_backpanel:child("bg_progress_circle"):set_alpha(0)
-	self._coins_text:set_alpha(0)
-
-	self._safehouse_data = {
-		income = exp_income,
-		remaining_income = exp_income,
-		current = coins - total_income,
-		trophies = trophies
-	}
-
-	safehouse_manager:flush_completed_trophies()
-
-	local partial_coins = self._safehouse_data.current % 1
-
-	self._coins_circle:set_color(Color(partial_coins, 1, 1))
-	self:set_coin_text(self._safehouse_data.current)
-
-	self._bonuses_panel = self._lp_forepanel:panel({
-		y = 10,
-		x = self._lp_xp_gained:x(),
-		w = self._lp_forepanel:w() - self._lp_xp_gained:left() - 10,
-		h = self._lp_xp_gained:top() - 10
-	})
-	self._wait_t = 0.5
-	self._start_ramp_up_t = 1
-	self._ramp_up_timer = 0
-
-	managers.menu_component:post_event("box_tick")
-	self:step_stage_up()
-end
-
-function HUDStageEndScreen:safehouse_currency_count(t, dt)
-	local safehouse_manager = nil
-	safehouse_manager = managers.custom_safehouse
-	local data = self._safehouse_data
-
-	if not safehouse_manager:unlocked() or not data then
-		self:step_stage_up()
-
-		return
-	end
-
-	if not self._last_trophy_bonus then
-		local bonus = self:_create_bonus({
-			panel = self._bonuses_panel,
-			color = tweak_data.screen_colors.text,
-			title = managers.localization:to_upper_text("menu_experience"),
-			bonus = math.floor(self._safehouse_data.current + data.remaining_income) - math.floor(self._safehouse_data.current)
-		})
-
-		bonus:child("sign"):hide()
-
-		self._last_trophy_bonus = bonus
-	end
-
-	if not self._playing_sound then
-		self._playing_sound = true
-
-		managers.menu_component:post_event("count_1")
-	end
-
-	if data.remaining_income > 0 then
-		local initial_xp = self._safehouse_data.current % 1
-		local total_next_coin_xp = math.min(data.remaining_income, 1 - initial_xp)
-
-		if self._next_coin_xp == nil then
-			self._next_coin_xp = total_next_coin_xp
-		end
-
-		local coin_xp_gained = dt * math.max(0.66, self._next_coin_xp)
-		self._next_coin_xp = self._next_coin_xp - coin_xp_gained
-
-		if self._next_coin_xp <= 0 then
-			coin_xp_gained = coin_xp_gained + self._next_coin_xp
-			self._next_coin_xp = 0
-		end
-
-		local ratio = initial_xp + total_next_coin_xp - self._next_coin_xp
-
-		self._coins_circle:set_color(Color(ratio, 1, 1))
-
-		if self._next_coin_xp == 0 then
-			local is_coin_up = self._safehouse_data.current % 1 + data.remaining_income > 1
-
-			if is_coin_up then
-				self._safehouse_data.current = math.floor(self._safehouse_data.current + 1)
-
-				self:set_coin_text(self._safehouse_data.current)
-				self:coin_up(self._safehouse_data.current, 0.66)
-
-				self._wait_t = 0.65
-			else
-				self._safehouse_data.current = self._safehouse_data.current + data.remaining_income
-				self._wait_t = 0.4
-			end
-
-			data.remaining_income = data.remaining_income - total_next_coin_xp
-			self._next_coin_xp = nil
-
-			self:_end_count_up_sound()
-		end
-	else
-
-		self._wait_t = 0.5
-
-		self:_end_count_up_sound()
-		self:step_stage_up()
-	end
 end

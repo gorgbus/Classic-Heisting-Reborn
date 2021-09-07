@@ -40,6 +40,10 @@
 	"menu_cash": "Cash: $money",
 	
 	"menu_skilltree": "SKILLS",
+	"menu_visit_community": "Gamehub",
+	"menu_quit": "Quit",
+	"menu_lby_crimenet": "Choose new contract",
+	"menu_lby_job_crimenet": "Choose new contract",
 	"menu_crimenet": "Crime.net",
 	"menu_crimenet_offline": "Crime.net Offline",
 	"menu_max_progress": "Max account progression",
@@ -49,7 +53,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-restored | pre U78 inventory\n-fixed | alaskan deal boat npcs not moving\n\nnote: skins are temporary disabled",
+	"menu_ch_changelog_text": "-made few menu tweaks\n-added back skins (not weapon colours)",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

@@ -50,6 +50,15 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 				end
 			end
 		end
+		
+		MenuHelper:RemoveMenuItem(mainmenu, "story_missions")
+		MenuHelper:RemoveMenuItem(mainmenu, "steam_inventory")
+		MenuHelper:RemoveMenuItem(mainmenu, "achievements")
+		MenuHelper:RemoveMenuItem(mainmenu, "fbi_files")
+		MenuHelper:RemoveMenuItem(mainmenu, "movie_the_end")
+		MenuHelper:RemoveMenuItem(mainmenu, "movie_theater")
+		MenuHelper:RemoveMenuItem(mainmenu, "divider_test2")
+		MenuHelper:RemoveMenuItem(mainmenu, "divider_infamy")
 
 		local data = {
 			type = "CoreMenuItem.Item",
@@ -67,9 +76,9 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 			new_item:set_callback_handler(mainmenu.callback_handler)
 		end
 
-		local position = 14
-		MenuHelper:RemoveMenuItem(mainmenu, "story_missions")
-		MenuHelper:RemoveMenuItem(mainmenu, "steam_inventory")
+		local position = 11
+		
+
 		table.insert(mainmenu._items, position, new_item)
 
 		params = {
@@ -84,13 +93,15 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 			new_item:set_callback_handler(mainmenu.callback_handler)
 		end
 
-		if position == 14 then
-			position = 15
+		if position == 11 then
+			position = 12
 		end
 
 		table.insert(mainmenu._items, position, new_item)
 		
 		params = {
+			icon = "guis/textures/pd2/shared_skillpoint_symbol",
+			icon_visible_callback = "current_points",
 			name = "select_skilltree_btn",
 			text_id = "menu_skilltree",
 			help_id = "menu_skilltree_help",
@@ -102,7 +113,7 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 			new_item:set_callback_handler(mainmenu.callback_handler)
 		end
 
-		position = 14
+		position = 11
 		table.insert(mainmenu._items, position, new_item)
 
 		local lobby = nodes.lobby
@@ -117,8 +128,11 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 		end
 
 		MenuHelper:RemoveMenuItem(lobby, "story_missions")
+		MenuHelper:RemoveMenuItem(lobby, "achievements")
+		MenuHelper:RemoveMenuItem(lobby, "divider_test2")
+		MenuHelper:RemoveMenuItem(lobby, "divider_test1")
 
-		position = 7
+		position = 5
 		table.insert(lobby._items, position, new_item)
 
 		
@@ -191,6 +205,14 @@ end
 
 function MenuCallbackHandler:open_skills()
 	managers.menu:open_node("skilltree_new", {})
+end
+
+function MenuCallbackHandler:current_points()
+	if managers.skilltree:points() < 1 then
+		return false
+	else
+		return managers.skilltree:points()
+	end
 end
 
 function MenuCallbackHandler:max_progress_msg()

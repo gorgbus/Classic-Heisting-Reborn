@@ -2943,6 +2943,51 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 	end
 	self:set_tab_positions()
 	self:_round_everything()
+
+	local new_givens = managers.blackmarket:fetch_new_tradable_items() or {}
+	local params = {
+		sound_event = "stinger_new_weapon"
+	}
+	local ti_td = nil
+	local max_items_to_show = 10
+	local inventory_tradable = managers.blackmarket:get_inventory_tradable()
+	local index = 0
+
+	for i, instance_id in ipairs(new_givens) do
+		if max_items_to_show <= index and index < #new_givens then
+			params.amount_more = #new_givens - (index - 1)
+
+			managers.menu:show_and_more_tradable_item_received(params)
+
+			break
+		elseif inventory_tradable[instance_id] then
+			index = index + 1
+			params.instance_id = instance_id
+			params.item = inventory_tradable[instance_id]
+			params.amount_more = #new_givens - (index - 1)
+
+			if params.item.category == "weapon_skins" then
+				ti_td = tweak_data:get_raw_value("blackmarket", params.item.category, params.item.entry)
+			else
+				ti_td = tweak_data:get_raw_value("economy", params.item.category, params.item.entry)
+			end
+
+			if ti_td then
+				params.item_name = managers.localization:text(ti_td.name_id)
+				params.rarity_name = managers.localization:text(tweak_data.economy.rarities[ti_td.rarity or "common"] and tweak_data.economy.rarities[ti_td.rarity or "common"].name_id or "nil")
+				params.quality_name = managers.localization:text(tweak_data.economy.qualities[params.item.quality or "poor"] and tweak_data.economy.qualities[params.item.quality or "poor"].name_id or "nil")
+				params.container = params.item.category == "safes" and {
+					content = tweak_data.economy.safes[params.item.entry] and tweak_data.economy.safes[params.item.entry].content,
+					drill = ti_td.drill,
+					safe = params.item.entry,
+					safe_id = params.item.instance_id
+				}
+
+				managers.menu:show_new_tradable_item_received(params)
+			end
+		end
+	end
+
 end
 
 function BlackMarketGui:_update_borders()

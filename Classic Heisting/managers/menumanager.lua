@@ -248,7 +248,7 @@ function MenuCallbackHandler:max_progress()
 
 	for name, item in pairs(tweak_data.blackmarket.weapon_mods) do
 		if not item.dlc or managers.dlc:is_dlc_unlocked(item.dlc) then
-			for i = 100, 100 do
+			for i = 1, 10 do
 				managers.blackmarket:add_to_inventory(item.dlc or "normal", "weapon_mods", name)
 			end
 		end

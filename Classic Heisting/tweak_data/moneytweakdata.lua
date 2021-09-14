@@ -55,14 +55,12 @@ Hooks:PostHook(MoneyTweakData, "init", "restore_init", function(self)
 	self.bag_values.shells = 2100
 	self.bag_values.turret = 10000
 	self.buy_premium_multiplier = {
-		easy = 0.5,
-		normal = 0.75,
-		hard = 1.25,
-		overkill = 1.5,
-		overkill_145 = 2,
-		easy_wish = 2,
-		overkill_290 = 2.5,
-		sm_wish = 2.5
+		easy = 1,
+		normal = 1,
+		hard = 1.1,
+		overkill = 1.2,
+		overkill_145 = 1.4,
+		overkill_290 = 3
 	}
 	self.buy_premium_static_fee = {
 		easy = 100000,
@@ -70,9 +68,7 @@ Hooks:PostHook(MoneyTweakData, "init", "restore_init", function(self)
 		hard = 150000,
 		overkill = 200000,
 		overkill_145 = 300000,
-		easy_wish = 300000,
-		overkill_290 = 360000,
-		sm_wish = 360000
+		overkill_290 = 360000
 	}
 	self.difficulty_multiplier = {
 		4,
@@ -82,6 +78,22 @@ Hooks:PostHook(MoneyTweakData, "init", "restore_init", function(self)
 		40,
 		0,
 		0
+	}
+
+	self.difficulty_multiplier_payout = {
+		1,
+		1.5,
+		2,
+		2.75,
+		3.75,
+		0,
+		0
+	}
+	self.mission_asset_cost_multiplier_by_risk = {
+		0.5,
+		1,
+		2,
+		4
 	}
 	local smallest_cashout = (self.stage_completion[1] + self.job_completion[1]) * self.offshore_rate
 	local biggest_mask_cost = self.biggest_cashout * 40

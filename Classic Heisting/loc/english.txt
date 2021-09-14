@@ -33,6 +33,12 @@
 	"menu_cleaner":							"Cleaner",
 	"menu_cleaner_desc":					"BASIC: ##$basic## \nYou deal ##5%## more damage against special enemies. \n\nACE: ##$pro## \nYou can now bag a maximum of ##2## corpses.",	
 	
+	"bm_menu_weapon_colors": "Weapon Color",
+	
+	"bm_menu_btn_set_weapon_cosmetic_scheme": "Choose paint scheme",
+	"bm_menu_btn_set_weapon_cosmetic_wear": "Choose wear",
+	"bm_menu_btn_set_weapon_cosmetic_scale": "Choose scale",
+	
 	"menu_asset_lock_additional_assets":	"Requires the 'Inside Man' skill to unlock.",
 	"menu_asset_lock_special_damage_taken_multiplier": "Requires the 'Cleaner' skill to unlock.",
 	
@@ -53,7 +59,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-made few menu tweaks\n-added back skins (not weapon colours)",
+	"menu_ch_changelog_text": "-made contract costs and payouts closer to U24 values",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

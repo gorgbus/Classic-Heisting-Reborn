@@ -1,7 +1,6 @@
-local data = NarrativeTweakData.init
-function NarrativeTweakData:init(tweak_data)
-	data(self, tweak_data)
 
+
+Hooks:PostHook(NarrativeTweakData, "init", "init_pro_jobs", function(self)
 	self.jobs.firestarter_prof = deep_clone(self.jobs.firestarter)
 	self.jobs.firestarter_prof.jc = 70
 	self.jobs.firestarter_prof.professional = true
@@ -15,6 +14,7 @@ function NarrativeTweakData:init(tweak_data)
 		300000,
 		300000
 	}
+
 	self.jobs.firestarter_prof.heat = {this_job = -25, other_jobs = 30}
 
 	self.jobs.alex_prof = deep_clone(self.jobs.alex)
@@ -108,22 +108,22 @@ function NarrativeTweakData:init(tweak_data)
 	self.jobs.mia_prof.professional = true
 	self.jobs.mia_prof.region = "professional"
 	self.jobs.mia_prof.payout = {
-		25000,
-		35000,
-		50000,
-		65000,
-		100000,
-		100000,
-		100000
+		45000,
+		55000,
+		70000,
+		85000,
+		200000,
+		200000,
+		200000
 	}
 	self.jobs.mia_prof.contract_cost = {
 		62000,
 		124000,
 		310000,
 		620000,
-		800000,
-		800000,
-		800000
+		900000,
+		900000,
+		900000
 	}
 	self.jobs.mia_prof.experience_mul = {
 		1.5,
@@ -220,110 +220,23 @@ function NarrativeTweakData:init(tweak_data)
 		1.5,
 		1.5,
 		1.5
-	}	
-	
-	self._jobs_index = {
-		"jewelry_store",
-		"four_stores",
-		"nightclub",
-		"mallcrasher",
-		"ukrainian_job_prof",
-		"branchbank_deposit",
-		"branchbank_cash",
-		"branchbank_prof",
-		"branchbank_gold_prof",
-		"firestarter",
-		"firestarter_prof",
-		"alex",
-		"alex_prof",
-		"watchdogs_wrapper",
-		"watchdogs_wrapper_prof",
-		"watchdogs_night",
-		"watchdogs",
-		"framing_frame",
-		"framing_frame_prof",
-		"welcome_to_the_jungle_wrapper_prof",
-		"family",
-		"election_day",
-		"election_day_prof",
-		"kosugi",
-		"arm_fac",
-		"arm_par",
-		"arm_hcm",
-		"arm_und",
-		"arm_cro",
-		"arm_for",
-		"big",
-		"mia",
-		"mia_prof",
-		"gallery",
-		"hox",
-		"hox_prof",
-		"hox_3",
-		"pines",
-		"cage",
-		"mus",
-		"crojob1",
-		"crojob_wrapper",
-		"crojob2",
-		"crojob2_night",
-		"rat",
-		"shoutout_raid",
-		"arena",
-		"kenaz",
-		"jolly",
-		"red2",
-		"dinner",
-		"nail",
-		"cane",
-		"pbr",
-		"pbr2",
-		"peta",
-		"peta_prof",
-		"pal",
-		"man",
-		"mad",
-		"dark",
-		"born",
-		"born_pro",
-		"chill",
-		"chill_combat",
-		"friend",
-		"flat",
-		"help",
-		"haunted",
-		"spa",
-		"fish",
-		"moon",
-		"run",
-		"glace",
-		"dah",
-		"rvd",
-		"crime_spree",
-		"hvh",
-		"wwh",
-		"brb",
-		"tag",
-		"des",
-		"nmh",
-		"sah",
-		"skm_mus",
-		"skm_red2",
-		"skm_run",
-		"skm_watchdogs_stage2",
-		"skm_cas",
-		"skm_big2",
-		"skm_mallcrasher",
-		"skm_arena",
-		"skm_bex",
-		"vit",
-		"bph",
-		"mex",
-		"mex_cooking",
-		"bex",
-		"pex",
-		"fex",
-		"chas",
-		"sand"
 	}
-end
+
+	local _pro_jobs = {
+		"born_pro",
+		"peta_prof",
+		"hox_prof",
+		"mia_prof",
+		"election_day_prof",
+		"branchbank_gold_prof",
+		"branchbank_prof",
+		"watchdogs_wrapper_prof",
+		"framing_frame_prof",
+		"alex_prof",
+		"firestarter_prof"
+	}
+
+	for _, id in pairs(_pro_jobs) do
+		table.insert(self._jobs_index, id)
+	end
+end)

@@ -76,7 +76,7 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 			new_item:set_callback_handler(mainmenu.callback_handler)
 		end
 
-		local position = 11
+		local position = 10
 		
 
 		table.insert(mainmenu._items, position, new_item)
@@ -93,8 +93,8 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 			new_item:set_callback_handler(mainmenu.callback_handler)
 		end
 
-		if position == 11 then
-			position = 12
+		if position == 10 then
+			position = 11
 		end
 
 		table.insert(mainmenu._items, position, new_item)
@@ -113,7 +113,7 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 			new_item:set_callback_handler(mainmenu.callback_handler)
 		end
 
-		position = 11
+		position = 10
 		table.insert(mainmenu._items, position, new_item)
 
 		local lobby = nodes.lobby

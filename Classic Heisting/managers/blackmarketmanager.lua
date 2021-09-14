@@ -96,3 +96,76 @@ function BlackMarketManager:outfit_string()
 
 	return s
 end
+
+function BlackMarketManager:accuracy_multiplier(name, categories, silencer, current_state, spread_moving, fire_mode, blueprint, is_single_shot)
+	local multiplier = 1
+	for _, category in ipairs(categories) do
+		multiplier = multiplier + 1 - managers.player:upgrade_value(category, "spread_multiplier", 1)
+	end
+
+	if silencer then
+		multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "silencer_spread_multiplier", 1)
+
+		for _, category in ipairs(categories) do
+			multiplier = multiplier + 1 - managers.player:upgrade_value(category, "silencer_spread_multiplier", 1)
+		end
+	end
+
+	if blueprint and self:is_weapon_modified(managers.weapon_factory:get_factory_id_by_weapon_id(name), blueprint) then
+		multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "modded_spread_multiplier", 1)
+	end
+
+	return self:_convert_add_to_mul(multiplier)
+end
+
+function BlackMarketManager:set_equipped_player_style(player_style, loading)
+	Global.blackmarket_manager.equipped_player_style = player_style
+
+	if not loading then
+		if managers.menu_scene then
+			managers.menu_scene:set_character_player_style(player_style, self:get_suit_variation(player_style))
+		end
+
+		MenuCallbackHandler:_update_outfit_information()
+
+		if SystemInfo:distribution() == Idstring("STEAM") then
+			managers.statistics:publish_equipped_to_steam()
+		end
+	end
+
+	return true
+end
+
+function BlackMarketManager:set_suit_variation(player_style, material_variation, loading)
+	player_style = player_style or self:equipped_player_style()
+
+	Global.blackmarket_manager.player_styles[player_style].equipped_material_variation = material_variation
+	
+	if not loading and (player_style == self:equipped_player_style() or player_style == (managers.menu_scene and managers.menu_scene:get_player_style())) then
+		if managers.menu_scene then
+			managers.menu_scene:set_character_player_style(player_style, material_variation)
+		end
+		MenuCallbackHandler:_update_outfit_information()
+		if SystemInfo:distribution() == Idstring("STEAM") then
+			managers.statistics:publish_equipped_to_steam()
+		end
+	end
+
+	return true
+end
+
+function BlackMarketManager:set_equipped_glove_id(glove_id, loading)
+	Global.blackmarket_manager.equipped_glove_id = glove_id
+	
+	if not loading then
+		if managers.menu_scene then
+			managers.menu_scene:set_character_gloves(glove_id)
+		end
+		MenuCallbackHandler:_update_outfit_information()
+		if SystemInfo:distribution() == Idstring("STEAM") then
+			managers.statistics:publish_equipped_to_steam()
+		end
+	end
+
+	return true
+end

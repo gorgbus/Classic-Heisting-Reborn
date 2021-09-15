@@ -3,7 +3,7 @@
 	"description" : "Restores gameplay to U24.2 as closely as possible",
 	"author" : "RedFlame, gorgbus",
 	"contact" : "gorgbus - github or modworkshop.net",
-	"version" : "3",
+	"version" : "1.0",
 	"priority" : "-11",
 	"image" : "ch_reborn.dds"
 	"blt_version" : 2,

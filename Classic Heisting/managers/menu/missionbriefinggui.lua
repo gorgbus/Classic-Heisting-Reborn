@@ -463,3 +463,237 @@ function MissionBriefingGui:special_btn_pressed(button)
 
 	return false
 end
+
+function NewLoadoutTab:init(panel, text, i, menu_component_data)
+	self._my_menu_component_data = menu_component_data
+
+	NewLoadoutTab.super.init(self, panel, text, i)
+	self._panel:move(0, 5)
+	self._panel:grow(0, -5)
+
+	self._index = i
+	local player_loadout_data = managers.blackmarket:player_loadout_data()
+	local items = {
+		player_loadout_data.primary,
+		player_loadout_data.secondary,
+		player_loadout_data.melee_weapon,
+		player_loadout_data.armor,
+		player_loadout_data.deployable
+	}
+	local selected = self._my_menu_component_data.selected or 1
+	self._items = {}
+	local columns = NewLoadoutTab.columns
+	local rows = NewLoadoutTab.rows
+
+	for row = 1, rows do
+		for column = 1, columns do
+			local item = items[(row - 1) * columns + column]
+
+			if item then
+				local new_item = NewLoadoutItem:new(self._panel, columns, rows, column, row, item)
+
+				table.insert(self._items, new_item)
+
+				if #self._items == selected then
+					new_item:select_item()
+
+					self._item_selected = #self._items
+					self._my_menu_component_data.selected = selected
+				end
+			end
+		end
+	end
+end
+
+function NewLoadoutTab:populate_category(data, category)
+	local crafted_category = managers.blackmarket:get_crafted_category(category) or {}
+	local new_data = {}
+	local index = 0
+	local max_items = data.override_slots and data.override_slots[1] * data.override_slots[2] or 9
+	local max_rows = tweak_data.gui.MAX_WEAPON_ROWS or 3
+	max_items = max_rows * (data.override_slots and data.override_slots[1] or 3)
+	for i = 1, max_items do
+		data[i] = nil
+	end
+
+	local weapon_data = Global.blackmarket_manager.weapons
+	local guis_catalog = "guis/"
+
+	for i, crafted in pairs(crafted_category) do
+		guis_catalog = "guis/"
+		local bundle_folder = tweak_data.weapon[crafted.weapon_id] and tweak_data.weapon[crafted.weapon_id].texture_bundle_folder
+
+		if bundle_folder then
+			guis_catalog = guis_catalog .. "dlcs/" .. tostring(bundle_folder) .. "/"
+		end
+
+		new_data = {
+			name = crafted.weapon_id,
+			name_localized = managers.weapon_factory:get_weapon_name_by_factory_id(crafted.factory_id),
+			category = category,
+			slot = i,
+			custom_name_text = managers.blackmarket:get_crafted_custom_name(category, index, true),
+			unlocked = managers.blackmarket:weapon_unlocked(crafted.weapon_id)
+		}
+		new_data.lock_texture = not new_data.unlocked and "guis/textures/pd2/lock_level"
+		new_data.equipped = crafted.equipped
+		new_data.can_afford = true
+		new_data.skill_based = weapon_data[crafted.weapon_id].skill_based
+		new_data.skill_name = new_data.skill_based and "bm_menu_skill_locked_" .. new_data.name
+		new_data.func_based = weapon_data[crafted.weapon_id].func_based
+		new_data.level = managers.blackmarket:weapon_level(crafted.weapon_id)
+		local texture_name, bg_texture = managers.blackmarket:get_weapon_icon_path(crafted.weapon_id, crafted.cosmetics)
+		new_data.bitmap_texture = texture_name
+		new_data.bg_texture = bg_texture
+		new_data.comparision_data = new_data.unlocked and managers.blackmarket:get_weapon_stats(category, i)
+		new_data.stream = false
+		new_data.global_value = tweak_data.weapon[new_data.name] and tweak_data.weapon[new_data.name].global_value or "normal"
+		new_data.dlc_locked = tweak_data.lootdrop.global_values[new_data.global_value].unlock_id or nil
+		new_data.lock_texture = BlackMarketGui.get_lock_icon(self, new_data)
+		new_data.name_color = crafted.locked_name and crafted.cosmetics and tweak_data.economy.rarities[tweak_data.blackmarket.weapon_skins[crafted.cosmetics.id].rarity or "common"].color
+
+		if not new_data.equipped and new_data.unlocked then
+			table.insert(new_data, "lo_w_equip")
+		end
+
+		local icon_list = managers.menu_component:create_weapon_mod_icon_list(crafted.weapon_id, category, crafted.factory_id, i)
+		local icon_index = 1
+		new_data.mini_icons = {}
+
+		for _, icon in pairs(icon_list) do
+			table.insert(new_data.mini_icons, {
+				layer = 1,
+				h = 16,
+				stream = false,
+				w = 16,
+				bottom = 0,
+				texture = icon.texture,
+				right = (icon_index - 1) * 18,
+				alpha = icon.equipped and 1 or 0.25
+			})
+
+			icon_index = icon_index + 1
+		end
+
+		data[i] = new_data
+		index = i
+	end
+
+	for i = 1, max_items do
+		if not data[i] then
+			new_data = {
+				name = "empty_slot",
+				name_localized = managers.localization:text("bm_menu_empty_weapon_slot")
+			}
+			new_data.name_localized_selected = new_data.name_localized
+			new_data.is_loadout = true
+			new_data.category = category
+			new_data.empty_slot = true
+			new_data.slot = i
+			new_data.unlocked = true
+			new_data.equipped = false
+			new_data.mid_text = {
+				noselected_text = new_data.name_localized,
+				noselected_color = tweak_data.screen_colors.button_stage_3
+			}
+			new_data.mid_text.selected_text = new_data.mid_text.noselected_text
+			new_data.mid_text.selected_color = new_data.mid_text.noselected_color
+			new_data.mid_text.is_lock_same_color = true
+			data[i] = new_data
+		end
+	end
+end
+
+function NewLoadoutTab:open_node(node)
+	self._my_menu_component_data.changing_loadout = nil
+	self._my_menu_component_data.current_slot = nil
+
+	if node == 1 then
+		self._my_menu_component_data.changing_loadout = "primary"
+		self._my_menu_component_data.current_slot = managers.blackmarket:equipped_weapon_slot("primaries")
+
+		managers.menu_component:post_event("menu_enter")
+		managers.menu:open_node("loadout", {
+			self:create_primaries_loadout()
+		})
+	elseif node == 2 then
+		self._my_menu_component_data.changing_loadout = "secondary"
+		self._my_menu_component_data.current_slot = managers.blackmarket:equipped_weapon_slot("secondaries")
+
+		managers.menu_component:post_event("menu_enter")
+		managers.menu:open_node("loadout", {
+			self:create_secondaries_loadout()
+		})
+	elseif node == 3 then
+		managers.menu_component:post_event("menu_enter")
+		managers.menu:open_node("loadout", {
+			self:create_melee_weapon_loadout()
+		})
+	elseif node == 4 then
+		managers.menu_component:post_event("menu_enter")
+		managers.menu:open_node("loadout", {
+			self:create_armor_loadout()
+		})
+	elseif node == 5 then
+		managers.menu_component:post_event("menu_enter")
+		managers.menu:open_node("loadout", {
+			self:create_deployable_loadout()
+		})
+	end
+
+	managers.menu_component:on_ready_pressed_mission_briefing_gui(false)
+end
+
+function NewLoadoutTab:populate_primaries(data)
+	self:populate_category(data, "primaries")
+end
+
+function NewLoadoutTab:populate_secondaries(data)
+	self:populate_category(data, "secondaries")
+end
+
+function NewLoadoutTab:create_primaries_loadout()
+	local data = {}
+
+	table.insert(data, {
+		name = "bm_menu_primaries",
+		category = "primaries",
+		on_create_func = callback(self, self, "populate_primaries"),
+		override_slots = {
+			3,
+			3
+		},
+		identifier = Idstring("weapon")
+	})
+
+	data.topic_id = "menu_loadout_blackmarket"
+	data.topic_params = {
+		category = managers.localization:text("bm_menu_primaries")
+	}
+	data.is_loadout = true
+
+	return data
+end
+
+function NewLoadoutTab:create_secondaries_loadout()
+	local data = {}
+
+	table.insert(data, {
+		name = "bm_menu_secondaries",
+		category = "secondaries",
+		on_create_func = callback(self, self, "populate_secondaries"),
+		override_slots = {
+			3,
+			3
+		},
+		identifier = Idstring("weapon")
+	})
+
+	data.topic_id = "menu_loadout_blackmarket"
+	data.topic_params = {
+		category = managers.localization:text("bm_menu_secondaries")
+	}
+	data.is_loadout = true
+
+	return data
+end

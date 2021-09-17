@@ -142,7 +142,10 @@ end
 
 function CrimeNetGui:open_filters(o, k)
 	if k == Idstring("f") and alive(self._panel:child("filters_button")) then
-		managers.menu:open_node("crimenet_filters", {})
+		if _G.already_open and managers.chat._crimenet_chat_state then
+			managers.menu:open_node("crimenet_filters", {})
+			_G.already_open = false
+		end
 	end
 end
 
@@ -165,6 +168,7 @@ Hooks:PostHook(CrimeNetGui, "init", "initFilter", function(self, ws, fullscreen_
 		self:make_fine_text(filters_button)
 		filters_button:set_right(self._panel:w() - 10)
 		self._fullscreen_ws:connect_keyboard(Input:keyboard())  
+		_G.already_open = true
 		self._fullscreen_panel:key_press(callback(self, self, "open_filters")) 
 end)
 

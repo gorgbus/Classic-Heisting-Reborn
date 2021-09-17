@@ -200,4 +200,5 @@ Hooks:PostHook(CrimeNetGui, "mouse_moved", "mouse_movedFilter", function(self, o
 	end
 end)
 
+CriminalsManager = CriminalsManager or class()
 CriminalsManager.MAX_NR_TEAM_AI = 2

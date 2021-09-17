@@ -17,7 +17,11 @@ function json_decode(path)
 	local file = io.open(path, "r")
 	if file then
 		local results = json.decode(file:read("*all") or {})
-		_G.ch_settings.settings.flash_off = results.settings.flash_off or results.flash_off
+		if not results.settings then
+			_G.ch_settings.settings.flash_off = false
+		else
+			_G.ch_settings.settings.flash_off = results.settings.flash_off
+		end
 		file:close()
 	end
 end

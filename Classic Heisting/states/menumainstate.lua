@@ -1,5 +1,5 @@
 local path = SavePath .. "ch_changelog_version.txt"
-local new_version = "1.9"
+_G._new_version = "1.1"
 
 local old_version = ""
 
@@ -17,7 +17,7 @@ function read(path)
         old_version = file:read("*all") or ""
 	    file:close()
     else
-        old_version = new_version
+        old_version = _G._new_version
 	end
 end
 
@@ -27,8 +27,8 @@ local short = MenuMainState.at_enter
 function MenuMainState:at_enter(old_state)
 	short(self, old_state)
 
-    if new_version ~= old_version then
-        write(new_version, path)
+    if _G._new_version ~= old_version then
+        write(_G._new_version, path)
         local my_advanced_message = {
             focus_button = 1,
             texture = false,

@@ -1,8 +1,9 @@
 _G.ch_settings = {}
 _G.ch_settings.path = SavePath .. "ch_settings.json"
-_G.ch_settings.flash_off = false
-
-local menu_id = "ch_settings"
+_G.ch_settings.mod_path = ModPath
+_G.ch_settings.settings = {
+	flash_off = false
+}
 
 function json_encode(tab, path)
 	local file = io.open(path, "w+")
@@ -16,23 +17,14 @@ function json_decode(path)
 	local file = io.open(path, "r")
 	if file then
 		local results = json.decode(file:read("*all") or {})
-		_G.ch_settings.flash_off = results.flash_off
+		_G.ch_settings.settings.flash_off = results.settings.flash_off or results.flash_off
 		file:close()
 	end
 end
 
 json_decode(_G.ch_settings.path)
 
-Hooks:Add("MenuManagerSetupCustomMenus", "MenuManagerSetupCustomMenusSettingsCH", function(menu_manager, nodes)
-    MenuHelper:NewMenu(menu_id)
-end)
-
 Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_manager, nodes)
-		nodes[menu_id] = MenuHelper:BuildMenu(menu_id)
-    	MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "menu_ch_name", "menu_ch_name")
-
-		---------------------------
-
 		local mainmenu = nodes.main
 		if not mainmenu then
 			return
@@ -158,16 +150,8 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 		table.insert(adv_options._items, position, new_item)
 end)
 
-Hooks:Add("MenuManagerPopulateCustomMenus", "CSModifiersMenuManagerPopulateCustomMenus", function(menu_manager, nodes)
-	MenuHelper:AddToggle({
-		id = "ch_flash_toggle",
-		title = "menu_ch_flash_title",
-		desc = "menu_ch_flash_desc",
-		callback = "ch_toggle_flash",
-		value = _G.ch_settings.flash_off,
-		menu_id = menu_id,
-		priority = 10
-	})
+Hooks:Add('MenuManagerInitialize', 'MenuManagerInitialize_CHSettings', function(menu_manager)
+	MenuHelper:LoadFromJsonFile(_G.ch_settings.mod_path .. "menu/options.json", _G.ch_settings, _G.ch_settings.settings)
 end)
 
 function MenuHelper:GetMenuItem(parent_menu, child_menu)
@@ -185,14 +169,9 @@ function MenuHelper:RemoveMenuItem(parent_menu, child_menu)
 	end
 end
 
-function MenuCallbackHandler:ch_toggle_flash()
-	if _G.ch_settings.flash_off then
-		_G.ch_settings.flash_off = false
-		json_encode(_G.ch_settings, _G.ch_settings.path)
-	else
-		_G.ch_settings.flash_off = true
-		json_encode(_G.ch_settings, _G.ch_settings.path)
-	end
+function MenuCallbackHandler:ch_toggle_flash(item)
+	_G.ch_settings.settings[item:name()] = item:value() == 'on'
+	json_encode(_G.ch_settings, _G.ch_settings.path)
 end
 
 function MenuCallbackHandler:open_safehouse()

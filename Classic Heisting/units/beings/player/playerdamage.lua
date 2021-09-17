@@ -1,6 +1,6 @@
 local _hit_direction_actual = PlayerDamage._hit_direction
 function PlayerDamage:_hit_direction(position_vector, ...)
-	if _G.ch_settings.flash_off then
+	if _G.ch_settings.settings.flash_off then
 		if position_vector then
 			managers.hud:on_hit_direction(position_vector, self:get_real_armor() > 0 and HUDHitDirection.DAMAGE_TYPES.ARMOUR or HUDHitDirection.DAMAGE_TYPES.HEALTH)
 		end

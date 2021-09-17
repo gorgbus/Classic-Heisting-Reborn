@@ -7,3 +7,9 @@ function HUDManager:set_player_armor(data)
 		return
 	end
 end
+
+function HUDManager:challenge_popup(d)
+end
+
+function HUDManager:safe_house_challenge_popup(id, c_type)
+end

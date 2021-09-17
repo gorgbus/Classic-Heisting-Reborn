@@ -59,7 +59,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-made contract costs and payouts closer to U24 values",
+	"menu_ch_changelog_text": "-mod is no longer Work-in-progress\n-fixed henry's rock\n-removed unnecessary menu popups (career mode, etc...)",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

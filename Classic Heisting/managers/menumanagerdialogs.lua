@@ -36,3 +36,6 @@ end
 
 function MenuManager:show_new_item_gained(params)
 end
+
+function MenuManager:show_new_player_popup(params)
+end

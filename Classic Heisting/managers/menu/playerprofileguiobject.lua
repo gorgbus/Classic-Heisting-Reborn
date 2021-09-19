@@ -338,20 +338,20 @@ function PlayerProfileGuiObject:init(ws)
 
 	if MenuCallbackHandler:can_become_infamous() then
 
-		params = {
+		local params = {
 			name = "become_infamous_btn",
 			text_id = "menu_become_infamous",
 			help_id = "menu_become_infamous_help",
 			callback = "become_infamous"
 		}
-		new_item = _G.mainmenu:create_item(data, params)
+		local new_item = _G.mainmenu:create_item(data, params)
 		new_item.dirty_callback = callback(_G.mainmenu, _G.mainmenu, "item_dirty")
 		if _G.mainmenu.callback_handler then
 			new_item:set_callback_handler(_G.mainmenu.callback_handler)
 		end
 
-		position = 16
-		
+		local position = 11
+
 		local once_pls = true
 		for index, item in pairs(_G.mainmenu._items) do
 			if item._parameters.name == "become_infamous_btn" then

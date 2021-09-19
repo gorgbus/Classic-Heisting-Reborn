@@ -1,0 +1,6 @@
+<unit type="tst" slot="1" >
+    <object file="units/menu/menu_scene/menu_logo" />
+    <extensions>
+         <extension class="ScriptUnitData" name="unit_data" /> 
+    </extensions>
+</unit>

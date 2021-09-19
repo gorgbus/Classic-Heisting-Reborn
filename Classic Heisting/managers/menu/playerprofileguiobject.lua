@@ -351,7 +351,17 @@ function PlayerProfileGuiObject:init(ws)
 		end
 
 		position = 16
-		table.insert(_G.mainmenu._items, position, new_item)
+		
+		local once_pls = true
+		for index, item in pairs(_G.mainmenu._items) do
+			if item._parameters.name == "become_infamous_btn" then
+				once_pls = false
+			end
+		end
+
+		if once_pls then
+			table.insert(_G.mainmenu._items, position, new_item)
+		end
 	else
 		MenuHelper:RemoveMenuItem(_G.mainmenu, "become_infamous_btn")
 	end

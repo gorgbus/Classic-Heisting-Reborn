@@ -65,7 +65,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-fixed big oil for clients(hopefully)\n-did few tweaks and fixes to gui\nmuted swat turret announcement",
+	"menu_ch_changelog_text": "-fixed big oil for clients(hopefully)\n-did few tweaks and fixes to gui\n-muted swat turret announcement\n-fixed infamy outfits/gloves being unequipped after game restart",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

@@ -697,3 +697,202 @@ function NewLoadoutTab:create_secondaries_loadout()
 
 	return data
 end
+
+function AssetsItem:create_assets(assets_names, max_assets)
+	self._panel:clear()
+	
+	self._asset_locked = {}
+	self._assets_list = {}
+	self._assets_names = assets_names
+	self._unlock_cost = assets_names[3] or false
+	
+	local center_y = math.round( self._panel:h() / 2 ) - tweak_data.menu.pd2_small_font_size
+	self._asset_text_panel = self._panel:panel({
+		layer = 4,
+		name = "asset_text"
+	})
+	--[[
+	local w = self._panel:w() / ( (max_assets or 6) + 1 )
+	for i, asset in pairs( self._assets_list ) do
+		self._panel:child( "bg_rect_" .. tostring(i) ):set_center_x( i * w )
+		self._panel:child( "bg_rect_" .. tostring(i) ):hide()
+		asset:set_center_x( i * w )
+		asset:set_rotation( math.random(2)-1.5 )
+	end]]
+	-- self._panel:set_debug(true)
+	
+	local rect
+	local w = self._panel:w() / (max_assets or 6 )
+	for i=1, #assets_names do -- (max_assets or 6) do
+		local center_x = i * w - w*0.5  -- 45+2.5+(i-1)*90
+		rect = self._panel:rect( { name="bg_rect_"..tostring(i), w=85, h=85 } )
+		rect:set_center( center_x, center_y )
+		rect:set_position( math.round(rect:x()), math.round(rect:y()) )
+		rect:hide()
+		
+		if( i <= #assets_names ) then
+			local texture = assets_names[i][1]
+			local asset
+			
+			if texture and DB:has( Idstring( "texture" ), texture ) then
+				asset = self._panel:bitmap( { name="asset_"..tostring(i), texture=texture, w=65, h=65, rotation=math.random(2)-1.5, layer=1, valign="top" } )
+			else
+				asset = self._panel:bitmap( { name="asset_"..tostring(i), texture="guis/textures/pd2/endscreen/what_is_this", rotation=math.random(2)-1.5, alpha=0, w=65, h=65, layer=1, valign="top" } )
+			end
+			local aspect = asset:texture_width() / math.max( 1, asset:texture_height() )
+
+			local move_a_side = 0
+			if managers.preplanning:has_current_level_preplanning() then
+				move_a_side = 30
+			end
+			
+			asset:set_w( asset:h() * aspect )
+			
+			rect:set_w( rect:h() * aspect )
+			rect:set_center( center_x, center_y )
+			rect:set_position( math.round(rect:x()) + move_a_side, math.round(rect:y()) )
+			
+			asset:set_center( rect:center() )
+			asset:set_position( math.round(asset:x()), math.round(asset:y()) )
+			asset:set_rotation(0.5)
+			
+			
+			if( not assets_names[i][3] ) then
+				local lock = self._panel:bitmap( { name="asset_lock_"..tostring(i), texture=assets_names[i][5] and "guis/textures/pd2/blackmarket/money_lock" or "guis/textures/pd2/skilltree/padlock", color=tweak_data.screen_colors.item_stage_1, layer=3 } )
+				lock:set_center( rect:center() )
+				
+				-- if not assets_names[i][6] then
+					asset:set_color( Color.black:with_alpha(0.6) )
+				-- end
+				self._asset_locked[i] = true
+			end
+			
+			table.insert( self._assets_list, asset )
+		end
+	end
+	self._text_strings_localized = false
+	
+	if rect then
+		self._asset_text = self._panel:text( { name="asset_text", text="", h=32+32, align="center", vertical="top", font_size=tweak_data.menu.pd2_small_font_size, font=tweak_data.menu.pd2_small_font, layer=4, color=tweak_data.screen_colors.text } )
+		self._asset_text:set_top( rect:bottom() + tweak_data.menu.pd2_small_font_size*0.5 - 6 )
+	end
+	
+	self._my_asset_space = w
+	self._my_left_i = self._my_menu_component_data.my_left_i or 1
+	
+	if #self._assets_list > 6 then
+		-- self._move_left_rect = self._panel:rect( { color=tweak_data.screen_colors.button_stage_3, rotation=0, w=32, h=32, blend_mode="add" } )
+		self._move_left_rect = self._panel:bitmap( { texture="guis/textures/pd2/hud_arrow", color=tweak_data.screen_colors.button_stage_3, rotation=360, w=32, h=32, blend_mode="add", layer = 3 } )
+		self._move_left_rect:set_center( 0, self._panel:h() / 2 )
+		self._move_left_rect:set_position( math.round(self._move_left_rect:x()), math.round(self._move_left_rect:y() ) )
+		-- self._move_left_rect:set_top( 10 )
+		-- self._move_left_rect:set_left( 10 )
+		-- self._move_left_rect:set_visible( self._my_left_i ~= 1 )
+		
+		-- self._move_right_rect = self._panel:rect( { color=tweak_data.screen_colors.button_stage_3, rotation=0, w=32, h=32, blend_mode="add" } )
+		self._move_right_rect = self._panel:bitmap( { texture="guis/textures/pd2/hud_arrow", color=tweak_data.screen_colors.button_stage_3, rotation=180, w=32, h=32, blend_mode="add", layer = 3 } )
+		self._move_right_rect:set_center( self._panel:w(), self._panel:h() / 2 )
+		self._move_right_rect:set_position( math.round(self._move_right_rect:x()), math.round(self._move_right_rect:y() ) )
+		
+		-- self._move_right_rect:set_top( 10 )
+		-- self._move_right_rect:set_right( self._panel:w() - 10 )
+		-- self._move_right_rect:set_visible( self._my_left_i+5 ~= #self._assets_list )
+		
+		-- self:update_asset_positions()
+	end
+	
+	if not managers.menu:is_pc_controller() then
+		local legends = { "menu_legend_preview_move", "menu_legend_select" }
+		local t_text = ""
+		for i, string_id in ipairs( legends ) do
+			local spacing = (i > 1) and "  |  " or ""
+			t_text = t_text..spacing..utf8.to_upper( managers.localization:text( string_id, { BTN_UPDATE = managers.localization:btn_macro( "menu_update" ), BTN_BACK = managers.localization:btn_macro( "back" ) } ) )
+		end
+		
+		local legend_text = self._panel:text( { font=tweak_data.menu.pd2_small_font, font_size=tweak_data.menu.pd2_small_font_size, text=t_text } )
+		local _, _, lw, lh = legend_text:text_rect()
+		legend_text:set_size( lw, lh )
+		legend_text:set_righttop( self._panel:w() - 5, 10 )
+	end
+	
+	local first_rect = self._panel:child( "bg_rect_1" )
+	
+	if first_rect then
+		self._select_box_panel = self._panel:panel( { layer=-3, visible=false } )
+		self._select_box_panel:set_shape( first_rect:shape() )
+		
+		self._select_box = BoxGuiObject:new( self._select_box_panel, { sides = { 2, 2, 2, 2 } } )
+	end
+
+	if not managers.preplanning:has_current_level_preplanning() and managers.menu:is_pc_controller() then
+		self.buy_all_button = self._panel:text({
+			name = "buy_all_btn",
+			align = "right",
+			blend_mode = "add",
+			visible = true,
+			text = managers.localization:to_upper_text("menu_asset_buy_all_button"),
+			h = tweak_data.menu.pd2_medium_font_size * 0.95,
+			font_size = tweak_data.menu.pd2_medium_font_size * 0.9,
+			font = tweak_data.menu.pd2_medium_font,
+			color = tweak_data.screen_colors.button_stage_3
+		})
+
+		self.buy_all_button:set_top(10)
+		self.buy_all_button:set_right(self._panel:w() - 5)
+	end
+	self:post_init()
+end
+
+function AssetsItem:move_assets_left()
+	self._my_left_i = math.max( self._my_left_i - 1, 1 )
+	self:update_asset_positions_and_text()
+	-- self:move_left()
+	-- managers.menu_component:post_event( "box_untick" )
+	managers.menu_component:post_event( "menu_enter" )
+end
+
+function AssetsItem:move_assets_right()
+	self._my_left_i = math.min( self._my_left_i + 1, #self._assets_list - 5 )
+	self:update_asset_positions_and_text()
+	-- self:move_right()
+	-- managers.menu_component:post_event( "box_tick" )
+	managers.menu_component:post_event( "menu_enter" )
+end
+
+function AssetsItem:update_asset_positions_and_text()
+	self:update_asset_positions()
+	
+	local bg = self._panel:child( "bg_rect_"..tostring(self._asset_selected) )
+	if( alive( bg ) ) then
+		local _, _, w, _ = self._asset_text:text_rect()
+		
+		self._asset_text:set_w( w )
+		self._asset_text:set_center_x( bg:center_x() )
+		
+		if( self._asset_text:left() < 10 ) then
+			self._asset_text:set_left( 10 )
+		elseif( self._asset_text:right() > self._panel:w()-10 ) then
+			self._asset_text:set_right( self._panel:w()-10 )
+		end
+	end
+end
+
+function AssetsItem:update_asset_positions()
+	self._my_menu_component_data.my_left_i = self._my_left_i
+	
+	local w = self._my_asset_space
+	for i, asset in pairs( self._assets_list ) do
+		local cx = (i-(self._my_left_i-1)) * w - w/2
+		local lock = self._panel:child( "asset_lock_" .. tostring(i) )
+		if alive(lock) then
+			lock:set_center_x( cx )
+		end
+		self._panel:child( "bg_rect_" .. tostring(i) ):set_center_x( cx )
+		self._panel:child( "bg_rect_" .. tostring(i) ):set_left( math.round(self._panel:child( "bg_rect_" .. tostring(i) ):left()) )
+		asset:set_center_x( cx )
+		asset:set_left( math.round(asset:left()) )
+	end
+	
+	self._move_left_rect:set_visible( self._my_left_i ~= 1 )
+	self._move_right_rect:set_visible( self._my_left_i+5 ~= #self._assets_list )
+end

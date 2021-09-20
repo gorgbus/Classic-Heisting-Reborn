@@ -243,6 +243,8 @@ function NarrativeTweakData:init(tweak_data)
 		"framing_frame",
 		"framing_frame_prof",
 		"welcome_to_the_jungle_wrapper_prof",
+		"welcome_to_the_jungle_prof",
+		"welcome_to_the_jungle_night_prof",
 		"family",
 		"election_day",
 		"election_day_prof",

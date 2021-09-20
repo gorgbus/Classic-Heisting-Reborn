@@ -9,7 +9,7 @@
             "id": "flash_off",
             "title": "menu_ch_flash_title",
             "description": "menu_ch_flash_desc",
-            "callback": "ch_toggle_flash",
+            "callback": "ch_toggle_callback",
             "value": "flash_off"
         }
     ]

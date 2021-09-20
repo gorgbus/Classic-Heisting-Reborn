@@ -20,7 +20,7 @@ function json_decode(path)
 		if not results.settings then
 			_G.ch_settings.settings.flash_off = false
 		else
-			_G.ch_settings.settings.flash_off = results.settings.flash_off
+			_G.ch_settings.settings = results.settings
 		end
 		file:close()
 	end
@@ -89,9 +89,7 @@ Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_ma
 			new_item:set_callback_handler(mainmenu.callback_handler)
 		end
 
-		if position == 10 then
-			position = 11
-		end
+		position = 11
 
 		table.insert(mainmenu._items, position, new_item)
 		
@@ -173,7 +171,7 @@ function MenuHelper:RemoveMenuItem(parent_menu, child_menu)
 	end
 end
 
-function MenuCallbackHandler:ch_toggle_flash(item)
+function MenuCallbackHandler:ch_toggle_callback(item)
 	_G.ch_settings.settings[item:name()] = item:value() == 'on'
 	json_encode(_G.ch_settings, _G.ch_settings.path)
 end

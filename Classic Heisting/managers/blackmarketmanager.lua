@@ -169,3 +169,9 @@ function BlackMarketManager:set_equipped_glove_id(glove_id, loading)
 
 	return true
 end
+
+function BlackMarketManager:_verfify_equipped_player_style()
+end
+
+function BlackMarketManager:_verify_equipped_gloves()
+end

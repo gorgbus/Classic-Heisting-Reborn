@@ -1,10 +1,35 @@
 <mod name="Classic Heisting">
     <AddFiles directory="assets">
 	<texture path="guis/textures/pd2/skilltree/icons_atlas" force="true"/>
+
 	<texture path="guis/textures/pd2/blackmarket/icons/colors/color_bg" force="true"/>
+	
 	<model path="units/menu/menu_scene/menu_logo" />
 	<object path="units/menu/menu_scene/menu_logo" />
 	<unit path="units/menu/menu_scene/menu_logo" />
+	
+	<stream path="soundbanks/streamed/hud/139129865" />	
+
+	<!-- mute turret announcement -->
+	<stream path="soundbanks/streamed/npc_cpa/5329107" />
+	<stream path="soundbanks/streamed/npc_cpa/51493853" />
+	<stream path="soundbanks/streamed/npc_cpa/105420712" />
+	<stream path="soundbanks/streamed/npc_cpa/118262913" />
+	<stream path="soundbanks/streamed/npc_cpa/134430557" />
+	<stream path="soundbanks/streamed/npc_cpa/232910351" />
+	<stream path="soundbanks/streamed/npc_cpa/426753169" />
+	<stream path="soundbanks/streamed/npc_cpa/458768143" />
+	<stream path="soundbanks/streamed/npc_cpa/672371513" />
+	<stream path="soundbanks/streamed/npc_cpa/688031761" />
+	<stream path="soundbanks/streamed/npc_cpa/750865112" />
+	<stream path="soundbanks/streamed/npc_cpa/761299230" />
+	<stream path="soundbanks/streamed/npc_cpa/800778394" />
+	<stream path="soundbanks/streamed/npc_cpa/899866889" />
+	<stream path="soundbanks/streamed/npc_cpa/912704165" />
+	<stream path="soundbanks/streamed/npc_cpa/930435211" />
+	<stream path="soundbanks/streamed/npc_cpa/935526825" />
+	<stream path="soundbanks/streamed/npc_cpa/938455201" />
+	
 
     </AddFiles>
 	<Localization directory="loc" default="english.txt">

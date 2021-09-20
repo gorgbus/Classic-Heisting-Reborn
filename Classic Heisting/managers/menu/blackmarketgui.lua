@@ -5103,6 +5103,7 @@ end
 
 function BlackMarketGui:_start_rename_item(category, slot)
 	if not self._renaming_item then
+		self._not_renaming_item = true
 		local custom_name = managers.blackmarket:get_crafted_custom_name(category, slot) or ""
 		self._renaming_item = {
 			category = category,
@@ -5150,6 +5151,9 @@ end
 
 function BlackMarketGui:_cancel_rename_item()
 	if self._renaming_item then
+		DelayedCalls:Add("wait_a_sec", 0.1, function()
+			self._not_renaming_item = false
+		end)
 		self._renaming_item = nil
 		self._rename_info_text = nil
 		if self._caret_connected then
@@ -6967,6 +6971,7 @@ function BlackMarketGui:press_pc_button(button)
 				no_func = callback(self, self, "_dialog_no")
 			}
 			self:_warn_abort_customized_mask_callback(params)
+		elseif self._not_renaming_item then
 		else
 			managers.menu_component:close_blackmarket_gui()
 			managers.menu:back(true)

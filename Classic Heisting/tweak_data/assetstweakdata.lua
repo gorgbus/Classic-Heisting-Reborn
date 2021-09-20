@@ -38,3 +38,6 @@ Hooks:PostHook(AssetsTweakData, "_init_assets", "_init_assetsRestore", function(
 		}
 	}
 end)
+
+function AssetsTweakData:_init_gage_assets(tweak_data)
+end

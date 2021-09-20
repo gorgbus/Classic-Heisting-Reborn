@@ -688,7 +688,7 @@ function InfamyTreeGui:_update_description(name, unlocked)
 		desc_title:set_text(title_text)
 		desc_warning:set_text(unlocked and "" or utf8.to_upper(managers.localization:text("menu_infamy_unlock_prev_tier")))
 		desc_text:set_text(managers.localization:text(infamy_tweak.desc_id, params))
-		managers.menu_component:add_colors_to_text_object(desc_text, tweak_data.screen_colors.resource)
+		managers.menu_component:make_color_text(desc_text, tweak_data.screen_colors.resource)
 	else
 		desc_title:set_text(utf8.to_upper(managers.localization:text("st_menu_infamy_secret")))
 		desc_warning:set_text("")

@@ -42,6 +42,12 @@
 	"menu_asset_lock_additional_assets":	"Requires the 'Inside Man' skill to unlock.",
 	"menu_asset_lock_special_damage_taken_multiplier": "Requires the 'Cleaner' skill to unlock.",
 	
+	"dialog_can_become_infamous_desc": "You have fulfilled the conditions for the next level of infamy. To become infamous, press &apos;$become_infamous_menu_item;&apos; in the main menu.",
+	"menu_infamy_desc_enforcer": "Used in crimes that requires the Enforcer to get his hands dirty.\n\nBONUSES:\nEnforcer skill point requirements for each tier are reduced by ##10%##.\nExperience gained is increased by ##5%##.\n\nNote: Bonuses to skill trees do not stack.\n\nITEMS:\n\n"
+	"menu_infamy_desc_ghost": "Modern assassin that carries out death sentences - for the right price.$NL;$NL;BONUSES:$NL;Ghost skill point requirements for each tier are reduced by ##10%##.$NL;Experience gained is increased by ##5%##.$NL;$NL;Note: Bonuses to skill trees do not stack.$NL;$NL;ITEMS:$NL;$NL;"
+	"menu_infamy_desc_technician": "Cold, calculating and a master of forced disappearances, dead or alive.$NL;$NL;BONUSES:$NL;Technician skill point requirements for each tier are reduced by ##10%##.$NL;Experience gained is increased by ##5%##.$NL;$NL;Note: Bonuses to skill trees do not stack.$NL;$NL;ITEMS:$NL;$NL;"
+	"menu_infamy_desc_mastermind": "Known to cause moral chaos and sway even the most devoted lawman.$NL;$NL;BONUSES:$NL;Mastermind skill point requirements for each tier are reduced by ##10%##.$NL;Experience gained is increased by ##5%##.$NL;$NL;Note: Bonuses to skill trees do not stack.$NL;$NL;ITEMS:$NL;$NL;"
+	
 	"menu_spendable_skill_points": "Unspent skill points: $points",
 	"menu_cash": "Cash: $money",
 	
@@ -59,7 +65,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-mod is no longer Work-in-progress\n-fixed henry's rock\n-removed unnecessary menu popups (career mode, etc...)",
+	"menu_ch_changelog_text": "-fixed big oil for clients(hopefully)\n-did few tweaks and fixes to gui\nmuted swat turret announcement",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

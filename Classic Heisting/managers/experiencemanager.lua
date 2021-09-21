@@ -50,7 +50,7 @@ function ExperienceManager:get_xp_by_params(params)
 	stage_xp_dissect = static_stage_experience or managers.experience:get_stage_xp_by_stars(total_stars)
 	level_limit_dissect = level_limit_dissect + (static_stage_experience or managers.experience:get_stage_xp_by_stars(job_stars))
 	base_xp = job_xp_dissect + stage_xp_dissect
-	risk_dissect = math.round(base_xp * xp_multiplier)
+	
 	days_dissect = math.round(base_xp * days_multiplier - base_xp)
 	local is_level_limited = job_stars > player_stars
 	if is_level_limited then
@@ -63,6 +63,7 @@ function ExperienceManager:get_xp_by_params(params)
 	level_limit_dissect = math.round(base_xp * days_multiplier - base_xp)
 	level_limit_dissect = math.round(level_limit_dissect - days_dissect)
 	base_xp = base_xp + days_dissect + level_limit_dissect
+	risk_dissect = math.round(base_xp * xp_multiplier)
 	contract_xp = base_xp + risk_dissect
 	if not success then
 		local multiplier = tweak_data:get_value("experience_manager", "stage_failed_multiplier") or 1

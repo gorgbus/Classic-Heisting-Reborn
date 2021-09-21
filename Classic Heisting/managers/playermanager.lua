@@ -282,3 +282,94 @@ function PlayerManager:_internal_load()
 		managers.mission:call_global_event("player_regenerate_armor", true)
 	end
 end
+
+function PlayerManager:add_special(params)
+	local name = params.equipment or params.name
+
+	if not tweak_data.equipments.specials[name] then
+		Application:error("Special equipment " .. name .. " doesn't exist!")
+
+		return
+	end
+
+	local unit = self:player_unit()
+	local respawn = params.amount and true or false
+	local equipment = tweak_data.equipments.specials[name]
+	local special_equipment = self._equipment.specials[name]
+	local amount = params.amount or equipment.quantity
+	local extra = self:_equipped_upgrade_value(equipment) + self:upgrade_value(name, "quantity")
+
+	if name == "cable_tie" then
+		extra = self:upgrade_value(name, "quantity")
+	end
+
+	if special_equipment then
+		if equipment.max_quantity or equipment.quantity or params.transfer and equipment.transfer_quantity then
+			local dedigested_amount = special_equipment.amount and Application:digest_value(special_equipment.amount, false) or 1
+			local new_amount = self:has_category_upgrade(name, "quantity_unlimited") and -1 or math.min(dedigested_amount + amount, (params.transfer and equipment.transfer_quantity or equipment.max_quantity or equipment.quantity) + extra)
+			special_equipment.amount = Application:digest_value(new_amount, true)
+
+			if special_equipment.is_cable_tie then
+				managers.hud:set_cable_ties_amount(HUDManager.PLAYER_PANEL, new_amount)
+				self:update_synced_cable_ties_to_peers(new_amount)
+			else
+				managers.hud:set_special_equipment_amount(name, new_amount)
+				self:update_equipment_possession_to_peers(name, new_amount)
+			end
+		end
+
+		return
+	end
+
+	local icon = equipment.icon
+	local action_message = equipment.action_message
+
+	if not params.silent then
+		local text = managers.localization:text(equipment.text_id)
+		local title = managers.localization:text("present_obtained_mission_equipment_title")
+
+		managers.hud:present_mid_text({
+			time = 4,
+			text = text,
+			title = title,
+			icon = icon
+		})
+
+		if action_message and alive(unit) then
+			managers.network:session():send_to_peers_synched("sync_show_action_message", unit, action_message)
+		end
+	end
+
+	local is_cable_tie = name == "cable_tie"
+	local quantity = nil
+
+	if is_cable_tie or not params.transfer then
+		quantity = self:has_category_upgrade(name, "quantity_unlimited") and -1 or equipment.quantity and (respawn and math.min(params.amount, (equipment.max_quantity or equipment.quantity or 1) + extra) or equipment.quantity and math.min(amount + extra, (equipment.max_quantity or equipment.quantity or 1) + extra))
+	else
+		quantity = params.amount
+	end
+
+	if is_cable_tie then
+		managers.hud:set_cable_tie(HUDManager.PLAYER_PANEL, {
+			icon = icon,
+			amount = quantity or nil
+		})
+		self:update_synced_cable_ties_to_peers(quantity)
+	else
+		managers.hud:add_special_equipment({
+			id = name,
+			icon = icon,
+			amount = quantity or equipment.transfer_quantity and 1 or nil
+		})
+		self:update_equipment_possession_to_peers(name, quantity)
+	end
+
+	self._equipment.specials[name] = {
+		amount = quantity and Application:digest_value(quantity, true) or nil,
+		is_cable_tie = is_cable_tie
+	}
+
+	if equipment.player_rule then
+		self:set_player_rule(equipment.player_rule, true)
+	end
+end

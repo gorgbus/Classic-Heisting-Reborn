@@ -155,9 +155,6 @@ end
 function SkillTreeManager:_aquire_skill(skill, skill_id, loading)
 	if skill and skill.upgrades then
 		for _, upgrade in ipairs(skill.upgrades) do
-			if upgrade == "player_corpse_dispose" then
-				upgrade = "player_extra_corpse_dispose_amount"
-			end
 			managers.upgrades:aquire(upgrade, loading, UpgradesManager.AQUIRE_STRINGS[2] .. "_" .. tostring(skill_id))
 		end
 	end

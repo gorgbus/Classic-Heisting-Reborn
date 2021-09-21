@@ -1,5 +1,5 @@
 local path = SavePath .. "ch_changelog_version.txt"
-_G._new_version = "1.1.1"
+_G._new_version = "1.1.2"
 
 local old_version = ""
 

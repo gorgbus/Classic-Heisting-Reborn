@@ -1247,7 +1247,9 @@ function SkillTreeTweakData:init(tweak_data)
 		["icon_xy"] = {5, 3},
 		[1] = {
 			upgrades = {
-				"player_suspicion_bonus"
+				"player_suspicion_bonus",
+				"player_sec_camera_highlight_mask_off",
+				"player_special_enemy_highlight_mask_off"
 			},
 			cost = self.costs.default
 		},
@@ -1270,7 +1272,7 @@ function SkillTreeTweakData:init(tweak_data)
 		},
 		[2] = {
 			upgrades = {
-				"player_corpse_dispose"
+				"player_extra_corpse_dispose_amount"
 			},
 			cost = self.costs.pro
 		}

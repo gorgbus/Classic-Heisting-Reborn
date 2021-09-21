@@ -61,6 +61,7 @@ function NarrativeTweakData:init(tweak_data)
 	self.jobs.watchdogs_wrapper_prof = deep_clone(self.jobs.watchdogs_wrapper)
 	self.jobs.watchdogs_wrapper_prof.jc = 60
 	self.jobs.watchdogs_wrapper_prof.professional = true
+	self.jobs.watchdogs_wrapper_prof.region = "professional"
 	self.jobs.watchdogs_wrapper_prof.payout = {
 		75000,
 		85000,
@@ -134,6 +135,62 @@ function NarrativeTweakData:init(tweak_data)
 		1.5,
 		1.5
 	}	
+
+	self.jobs.man.professional = true
+	self.jobs.man.region = "professional"
+
+	self.jobs.run.professional = true
+	self.jobs.run.region = "professional"
+
+	self.jobs.glace.professional = true
+	self.jobs.glace.region = "professional"
+
+	self.jobs.nmh.professional = true
+	self.jobs.nmh.region = "professional"
+
+	self.jobs.vit.professional = true
+	self.jobs.vit.region = "professional"
+	self.jobs.vit.payout = {
+		90000,
+		225000,
+		350000,
+		650000,
+		800000,
+		700000,
+		700000
+	}
+	self.jobs.vit.contract_cost = {
+		34000,
+		58000,
+		220000,
+		340000,
+		400000,
+		300000,
+		300000
+	}
+
+	self.jobs.pbr.heat = {this_job = -25, other_jobs = 20}
+	self.jobs.pbr.jc = 50
+	self.jobs.pbr.professional = true
+	self.jobs.pbr.region = "professional"
+	self.jobs.pbr.payout = {
+		85000,
+		74000,
+		125000,
+		185000,
+		260000,
+		260000,
+		260000
+	}
+	self.jobs.pbr.contract_cost = {
+		37200,
+		97000,
+		200000,
+		415000,
+		520000,
+		520000,
+		520000
+	}
 
 	self.jobs.hox_prof = deep_clone(self.jobs.hox)
 	self.jobs.hox_prof.jc = 70

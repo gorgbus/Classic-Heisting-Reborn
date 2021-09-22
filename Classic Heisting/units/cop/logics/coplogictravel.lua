@@ -1,6 +1,6 @@
 local level = Global.level_data and Global.level_data.level_id or ''
 local banned_levels = {'spa', 'hox_1', 'hox_2', 'wwh', 'red2', 'kosugi'}
-if table.contains(banned_levels, level) then
+if not table.contains(banned_levels, level) then
 	function CopLogicTravel.queued_update( data )
 		local unit = data.unit
 		local my_data = data.internal_data

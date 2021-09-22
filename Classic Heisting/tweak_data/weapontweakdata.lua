@@ -1341,6 +1341,10 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.pm9.use_data.selection_index = 4
 	self.vityaz.use_data.selection_index = 4
 	self.x_vityaz.use_data.selection_index = 4
+	self.x_type54.use_data.selection_index = 4
+	self.type54.use_data.selection_index = 4
+	self.rsh12.use_data.selection_index = 4
+	self.shak12.use_data.selection_index = 4
 end)
 
 Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(self)

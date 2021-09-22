@@ -2,7 +2,8 @@ _G.ch_settings = {}
 _G.ch_settings.path = SavePath .. "ch_settings.json"
 _G.ch_settings.mod_path = ModPath
 _G.ch_settings.settings = {
-	flash_off = false
+	flash_off = false,
+	lower_grind = false
 }
 
 function json_encode(tab, path)

@@ -1,3 +1,29 @@
+function ExperienceManager:get_job_xp_by_stars(stars)
+	local job_completion = {
+		7500,
+		10000,
+		15000,
+		20000,
+		25000,
+		30000,
+		40000
+	}
+	
+	local amount = 0
+
+	if _G.ch_settings.settings.lower_grind then
+		amount = tweak_data:get_value("experience_manager", "job_completion", stars)
+	else
+		amount = job_completion[stars]
+	end
+	return amount
+end
+
+function ExperienceManager:get_stage_xp_by_stars(stars)
+	local amount = tweak_data:get_value("experience_manager", "stage_completion", stars)
+	return amount
+end
+
 function ExperienceManager:get_xp_by_params(params)
 	local job_id = params.job_id
 	local job_stars = params.job_stars or 0
@@ -12,7 +38,7 @@ function ExperienceManager:get_xp_by_params(params)
 	local ignore_heat = params.ignore_heat
 	local current_job_stage = params.current_stage or 1
 	local pro_job_multiplier = params.professional and tweak_data:get_value("experience_manager", "pro_job_multiplier") or 1
-	local days_multiplier = params.professional and tweak_data:get_value("experience_manager", "pro_day_multiplier", current_job_stage) or tweak_data:get_value("experience_manager", "day_multiplier", current_job_stage)
+	local days_multiplier = 1 --params.professional and tweak_data:get_value("experience_manager", "pro_day_multiplier", current_job_stage) or tweak_data:get_value("experience_manager", "day_multiplier", current_job_stage)
 	local ghost_multiplier = 1 + (managers.job:get_ghost_bonus() or 0)
 	local total_stars = math.min(job_stars, player_stars)
 	local total_difficulty_stars = difficulty_stars
@@ -40,6 +66,21 @@ function ExperienceManager:get_xp_by_params(params)
 	local gage_assignment_dissect = 0
 	local bonus_mutators_dissect = 0
 	local mission_xp_dissect = 0
+	if _G.ch_settings.settings.lower_grind then
+		days_multiplier = params.professional and tweak_data:get_value("experience_manager", "pro_day_multiplier", current_job_stage) or tweak_data:get_value("experience_manager", "day_multiplier", current_job_stage)
+	else
+		local pro_day_multiplier = {
+			1.25,
+			2.25,
+			2.75,
+			5.5,
+			7,
+			8.5,
+			10
+		}
+		days_multiplier = params.professional and pro_day_multiplier[current_job_stage] or tweak_data:get_value("experience_manager", "day_multiplier", current_job_stage)
+	end
+
 	if success and on_last_stage then
 		job_xp_dissect = managers.experience:get_job_xp_by_stars(total_stars)
 		level_limit_dissect = level_limit_dissect + managers.experience:get_job_xp_by_stars(job_stars)

@@ -11,6 +11,17 @@
             "description": "menu_ch_flash_desc",
             "callback": "ch_toggle_callback",
             "value": "flash_off"
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "toggle",
+            "id": "lower_grind",
+            "title": "menu_ch_grind_title",
+            "description": "menu_ch_grind_desc",
+            "callback": "ch_toggle_callback",
+            "value": "lower_grind"
         }
     ]
 }

@@ -400,10 +400,10 @@ function IngameContractGui:init(ws, node)
 			blend_mode = "add",
 			font = tweak_data.menu.pd2_small_font,
 			font_size = font_size,
-			text = self:get_text(show_max and "menu_potential_rewards_max" or "menu_potential_rewards_min", {
+			text = self:get_text("menu_potential_rewards", {
 				BTN_Y = managers.localization:btn_macro("menu_modify_item")
 			}),
-			color = managers.menu:is_pc_controller() and tweak_data.screen_colors.button_stage_3 or tweak_data.screen_colors.text
+			color = managers.menu:is_pc_controller() and tweak_data.screen_colors.text
 		})
 
 		managers.hud:make_fine_text(potential_rewards_title)
@@ -453,4 +453,11 @@ function IngameContractGui:init(ws, node)
 			1
 		}
 	})
+end
+
+function IngameContractGui:mouse_moved(o, x, y)
+	return false, "arrow"
+end
+
+function IngameContractGui:mouse_pressed(button, x, y)
 end

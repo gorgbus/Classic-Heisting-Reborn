@@ -526,10 +526,10 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 		blend_mode = "add",
 		font = font,
 		font_size = font_size,
-		text = managers.localization:to_upper_text(self._customizable and "menu_potential_rewards_min" or "menu_potential_rewards", {
+		text = managers.localization:to_upper_text("menu_potential_rewards", {
 			BTN_Y = managers.localization:btn_macro("menu_modify_item")
 		}),
-		color = managers.menu:is_pc_controller() and self._customizable and tweak_data.screen_colors.button_stage_3 or tweak_data.screen_colors.text,
+		color = managers.menu:is_pc_controller() and tweak_data.screen_colors.text,
 		x = padding
 	})
 
@@ -1517,4 +1517,108 @@ function CrimeNetContractGui:set_offshore_account()
 			end
 		end
 	end
+end
+
+function CrimeNetContractGui:mouse_pressed(o, button, x, y)
+	if alive(self._briefing_len_panel) and self._briefing_len_panel:visible() and self._step > 2 and self._briefing_len_panel:child("button_text"):inside(x, y) then
+		self:toggle_post_event()
+	end
+
+	if self._active_page and button == Idstring("0") then
+		for k, tab_item in pairs(self._tabs) do
+			if not tab_item:is_active() and tab_item:inside(x, y) then
+				self:set_active_page(tab_item:index())
+			end
+		end
+	end
+
+	if self._mod_items and self._mods_tab and self._mods_tab:is_active() and button == Idstring("0") then
+		for _, item in ipairs(self._mod_items) do
+			if item[1]:inside(x, y) then
+				local mod_name = item[1]:name()
+
+				if mod_name then
+					Steam:overlay_activate("url", "https://modworkshop.net/find/mod?q=" .. mod_name .. "&tags=&gid=1")
+
+					break
+				end
+
+				Steam:overlay_activate("url", "https://modworkshop.net")
+
+				break
+			end
+		end
+	end
+end
+
+function CrimeNetContractGui:free_memory(t, dt)
+	self._data = nil
+	self._step = self._step + 1
+
+	if self._counting_sound then
+		managers.menu_component:post_event("count_1_finished")
+
+		self._counting_sound = false
+	end
+
+	if alive(self._potential_rewards_title) then
+
+		if self._step > 3 then
+			--managers.menu_component:post_event("menu_enter")
+		end
+	end
+end
+
+function CrimeNetContractGui:mouse_moved(o, x, y)
+	if alive(self._briefing_len_panel) and self._briefing_len_panel:visible() and self._step > 2 then
+		if self._briefing_len_panel:child("button_text"):inside(x, y) then
+			if not self._button_highlight then
+				self._button_highlight = true
+
+				self._briefing_len_panel:child("button_text"):set_color(tweak_data.screen_colors.button_stage_2)
+				managers.menu_component:post_event("highlight")
+			end
+
+			return true, "link"
+		elseif self._button_highlight then
+			self._briefing_len_panel:child("button_text"):set_color(tweak_data.screen_colors.button_stage_3)
+
+			self._button_highlight = false
+		end
+	end
+
+	local used, pointer = nil
+
+	if self._mod_items and self._mods_tab and self._mods_tab:is_active() then
+		for _, item in ipairs(self._mod_items) do
+			if item[1]:inside(x, y) and not used then
+				pointer = "link"
+				used = true
+
+				item[1]:set_visible(false)
+				item[2]:set_visible(true)
+			else
+				item[1]:set_visible(true)
+				item[2]:set_visible(false)
+			end
+		end
+	end
+
+	if used then
+		return used, pointer
+	end
+
+	if self._active_page then
+		for k, tab_item in pairs(self._tabs) do
+			if not tab_item:is_active() and tab_item:inside(x, y) then
+				return true, "link"
+			end
+		end
+	end
+
+	if x > self._contract_panel:left() + 270 and y > self._contract_panel:bottom() - 140 and x < self._contract_panel:right() and y < self._contract_panel:bottom() then
+		return false
+	end
+
+	return false, "arrow"
 end

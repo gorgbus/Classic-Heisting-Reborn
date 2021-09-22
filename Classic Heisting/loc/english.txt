@@ -71,4 +71,7 @@
 	"menu_ch_name": "Classic Heisting Settings",
 	"menu_ch_flash_title": "Disable Hit Flash",
 	"menu_ch_flash_desc": "Enable or disable hit screen flash."
+	
+	"menu_ch_grind_title": "True U24 grind",
+	"menu_ch_grind_desc": "Enable the true U24 grind experience (needs game restart)"
 }

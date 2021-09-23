@@ -76,8 +76,8 @@ Hooks:PostHook(MoneyTweakData, "init", "restore_init", function(self)
 		12,
 		20,
 		40,
-		0,
-		0
+		40,
+		40
 	}
 
 	self.difficulty_multiplier_payout = {
@@ -86,8 +86,8 @@ Hooks:PostHook(MoneyTweakData, "init", "restore_init", function(self)
 		2,
 		2.75,
 		3.75,
-		0,
-		0
+		3.75,
+		3.75
 	}
 	self.mission_asset_cost_multiplier_by_risk = {
 		0.5,

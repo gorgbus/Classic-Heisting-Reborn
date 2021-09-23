@@ -41,6 +41,8 @@ tweak_data.experience_manager.difficulty_multiplier = {
 	2,
 	5,
 	10,
+	13,
+	13,
 	13
 }
 

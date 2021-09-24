@@ -942,7 +942,7 @@ function SkillTreeTweakData:init(tweak_data)
 		},
 		[2] = {
 			upgrades = {
-				"player_drill_autorepair",
+				"player_drill_autorepair_1",
 				"player_sentry_gun_deploy_time_multiplier"
 			},
 			cost = self.costs.pro

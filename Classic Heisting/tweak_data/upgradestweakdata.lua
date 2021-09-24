@@ -222,7 +222,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.trip_mine_deploy_time_multiplier = {0.8, 0.6}
 	self.values.trip_mine.sensor_toggle = {true}
 	self.values.player.drill_fix_interaction_speed_multiplier = {0.75}
-	self.values.player.drill_autorepair = {0.3}
+	self.values.player.drill_autorepair_1 = {0.3}
 	self.values.player.sentry_gun_deploy_time_multiplier = {0.5}
 	self.values.sentry_gun.armor_multiplier = {2.5}
 	self.values.weapon.single_spread_multiplier = {0.8}
@@ -1700,13 +1700,13 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1
 		}
 	}
-	self.definitions.player_drill_autorepair = {
-		category = "feature",
+	self.definitions.player_drill_autorepair_1 = {
 		name_id = "menu_player_drill_autorepair",
+		category = "feature",
 		upgrade = {
-			category = "player",
-			upgrade = "drill_autorepair",
-			value = 1
+			value = 1,
+			upgrade = "drill_autorepair_1",
+			category = "player"
 		}
 	}
 	self.definitions.player_long_dis_revive = {
@@ -2033,6 +2033,15 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			category = "sentry_gun",
 			upgrade = "quantity",
+			value = 1
+		}
+	}
+	self.definitions.weapon_single_spread_multiplier = {
+		category = "feature",
+		name_id = "menu_weapon_single_spread_multiplier",
+		upgrade = {
+			category = "weapon",
+			upgrade = "single_spread_multiplier",
 			value = 1
 		}
 	}

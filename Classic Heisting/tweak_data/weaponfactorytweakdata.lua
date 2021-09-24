@@ -2365,247 +2365,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_olympic", "restore", function(self
 	self.wpn_fps_smg_olympic_primary_npc.unit = "units/payday2/weapons/wpn_fps_smg_olympic/wpn_fps_smg_olympic_primary_npc"
 end)
 
---[[Hooks:PostHook(WeaponFactoryTweakData, "_init_ak_parts", "restore", function(self)
-	self.parts.wpn_upg_ak_fg_combo1 = {
-		type = "foregrip",
-		name_id = "bm_wp_ak_fg_combo1",
-		a_obj = "a_fg",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_fg_combo1",
-		stats = {value = 1}
-	}
-	self.parts.wpn_upg_ak_fg_combo2 = {
-		pcs = {
-			10,
-			20,
-			30,
-			40
-		},
-		type = "foregrip",
-		name_id = "bm_wp_ak_fg_combo2",
-		a_obj = "a_fg",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_fg_combo2",
-		stats = {
-			value = 3,
-			spread_moving = -1,
-			spread = 1,
-			recoil = 1
-		},
-		forbids = {
-			"wpn_fps_ak_extra_ris"
-		}
-	}
-	self.parts.wpn_upg_ak_fg_combo3 = {
-		pcs = {
-			10,
-			20,
-			30,
-			40
-		},
-		type = "foregrip",
-		name_id = "bm_wp_ak_fg_combo3",
-		a_obj = "a_fg",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_fg_combo3",
-		stats = {
-			value = 5,
-			spread_moving = -2,
-			recoil = 2,
-			spread = 1,
-			concealment = -1
-		},
-		forbids = {
-			"wpn_fps_addon_ris",
-			"wpn_fps_ak_extra_ris"
-		}
-	}
-	self.parts.wpn_upg_ak_fg_combo4 = {
-		type = "foregrip",
-		name_id = "bm_wp_ak_fg_combo4",
-		a_obj = "a_fg",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_fg_combo4",
-		stats = {value = 1}
-	}
-	self.parts.wpn_upg_ak_fg_standard = {
-		type = "foregrip",
-		name_id = "bm_wp_ak_fg_standard",
-		a_obj = "a_fg",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_fg_standard",
-		stats = {value = 1},
-		override = {
-			wpn_fps_upg_o_specter = {a_obj = "a_of"},
-			wpn_fps_upg_o_aimpoint = {a_obj = "a_of"},
-			wpn_fps_upg_o_aimpoint_2 = {a_obj = "a_of"},
-			wpn_fps_upg_o_docter = {a_obj = "a_of"},
-			wpn_fps_upg_o_eotech = {a_obj = "a_of"},
-			wpn_fps_upg_o_t1micro = {a_obj = "a_of"},
-			wpn_fps_upg_o_cmore = {a_obj = "a_of"},
-			wpn_fps_upg_o_acog = {a_obj = "a_of"}
-		}
-	}
-	self.parts.wpn_upg_ak_g_standard = {
-		type = "grip",
-		name_id = "bm_wp_ak_g_standard",
-		a_obj = "a_g",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_g_standard",
-		stats = {value = 1}
-	}
-	self.parts.wpn_upg_ak_m_akm = {
-		type = "magazine",
-		name_id = "bm_wp_ak_m_akm",
-		a_obj = "a_m",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_akm",
-		stats = {value = 1},
-		animations = {
-			reload = "reload",
-			reload_not_empty = "reload_not_empty"
-		}
-	}
-	self.parts.wpn_upg_ak_m_drum = {
-		type = "magazine",
-		name_id = "bm_wp_ak_m_drum",
-		a_obj = "a_m",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_drum",
-		stats = {value = 5, concealment = -4},
-		animations = {
-			reload = "reload",
-			reload_not_empty = "reload_not_empty"
-		}
-	}
-	self.parts.wpn_upg_ak_s_adapter = {
-		type = "stock_adapter",
-		name_id = "bm_wp_ak_s_adapter",
-		a_obj = "a_s",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_s_adapter",
-		stats = {value = 1},
-		adds = {
-			"wpn_upg_ak_g_standard"
-		}
-	}
-	self.parts.wpn_upg_ak_s_folding = {
-		pcs = {
-			10,
-			20,
-			30,
-			40
-		},
-		type = "stock",
-		name_id = "bm_wp_ak_s_folding",
-		a_obj = "a_s",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_s_folding",
-		stats = {
-			value = 3,
-			spread_moving = 2,
-			recoil = -1,
-			concealment = 2
-		},
-		adds = {
-			"wpn_upg_ak_g_standard"
-		}
-	}
-	self.parts.wpn_upg_ak_s_psl = {
-		pcs = {
-			10,
-			20,
-			30,
-			40
-		},
-		type = "stock",
-		name_id = "bm_wp_ak_s_psl",
-		a_obj = "a_s",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_s_psl",
-		stats = {
-			value = 6,
-			spread = 3,
-			spread_moving = -3,
-			recoil = 0,
-			concealment = -3
-		},
-		forbids = {
-			"wpn_upg_ak_g_standard",
-			"wpn_fps_upg_ak_g_hgrip",
-			"wpn_fps_upg_ak_g_wgrip",
-			"wpn_fps_upg_ak_g_pgrip"
-		}
-	}
-	self.parts.wpn_upg_ak_s_skfoldable = {
-		pcs = {
-			10,
-			20,
-			30,
-			40
-		},
-		type = "stock",
-		name_id = "bm_wp_ak_s_skfoldable",
-		a_obj = "a_s",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_s_skfoldable",
-		stats = {
-			value = 3,
-			spread_moving = 2,
-			recoil = -1,
-			concealment = 2
-		},
-		adds = {
-			"wpn_upg_ak_g_standard"
-		}
-	}
-	self.parts.wpn_fps_ak_extra_ris = {
-		type = "extra",
-		name_id = "bm_wp_ak_s_skfoldable",
-		a_obj = "a_of",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_fps_ak_extra_ris"
-	}
-	self.parts.wpn_upg_ak_fg_combo1.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_fg_combo1"
-	self.parts.wpn_upg_ak_fg_combo2.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_fg_combo2"
-	self.parts.wpn_upg_ak_fg_combo3.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_fg_combo3"
-	self.parts.wpn_upg_ak_fg_combo4.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_fg_combo4"
-	self.parts.wpn_upg_ak_fg_standard.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_fg_standard"
-	self.parts.wpn_upg_ak_g_standard.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_g_standard"
-	self.parts.wpn_upg_ak_m_akm.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_akm"
-	self.parts.wpn_upg_ak_m_drum.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_drum"
-	self.parts.wpn_upg_ak_s_adapter.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_s_adapter"
-	self.parts.wpn_upg_ak_s_folding.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_s_folding"
-	self.parts.wpn_upg_ak_s_psl.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_s_psl"
-	self.parts.wpn_upg_ak_s_skfoldable.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_s_skfoldable"
-	self.parts.wpn_fps_ak_extra_ris.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_ak_extra_ris"
-	self.parts.wpn_upg_ak_s_folding_vanilla = deep_clone(self.parts.wpn_upg_ak_s_folding)
-	self.parts.wpn_upg_ak_s_folding_vanilla.stats = nil
-	self.parts.wpn_upg_ak_s_folding_vanilla.pcs = nil
-	self.parts.wpn_upg_ak_s_skfoldable_vanilla = deep_clone(self.parts.wpn_upg_ak_s_skfoldable)
-	self.parts.wpn_upg_ak_s_skfoldable_vanilla.stats = nil
-	self.parts.wpn_upg_ak_s_skfoldable_vanilla.pcs = nil
-	self.parts.wpn_fps_ass_akm_body_upperreceiver = {
-		type = "upper_reciever",
-		name_id = "bm_wp_akm_body_upperreceiver",
-		a_obj = "a_body",
-		unit = "units/payday2/weapons/wpn_fps_ass_akm_pts/wpn_fps_ass_akm_body_upperreceiver",
-		stats = {value = 1}
-	}
-	self.parts.wpn_fps_ass_ak_body_lowerreceiver = {
-		type = "lower_reciever",
-		name_id = "bm_wp_ak_body_lowerreceiver",
-		a_obj = "a_body",
-		unit = "units/payday2/weapons/wpn_fps_ass_akm_pts/wpn_fps_ass_ak_body_lowerreceiver",
-		stats = {value = 1},
-		animations = {
-			reload = "reload",
-			fire = "recoil",
-			fire_steelsight = "recoil"
-		}
-	}
-	self.parts.wpn_fps_ass_akm_b_standard = {
-		type = "barrel",
-		name_id = "bm_wp_akm_b_standard",
-		a_obj = "a_b",
-		unit = "units/payday2/weapons/wpn_fps_ass_akm_pts/wpn_fps_ass_akm_b_standard",
-		stats = {value = 1}
-	}
-	self.parts.wpn_fps_ass_akm_body_upperreceiver.third_unit = "units/payday2/weapons/wpn_third_ass_akm_pts/wpn_third_ass_akm_body_upperreceiver"
-	self.parts.wpn_fps_ass_akm_b_standard.third_unit = "units/payday2/weapons/wpn_third_ass_akm_pts/wpn_third_ass_akm_b_standard"
-	self.parts.wpn_fps_ass_ak_body_lowerreceiver.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_ass_ak_body_lowerreceiver"
-	self.parts.wpn_fps_ass_akm_body_upperreceiver_vanilla = deep_clone(self.parts.wpn_fps_ass_akm_body_upperreceiver)
-	self.parts.wpn_fps_ass_akm_body_upperreceiver_vanilla.stats = nil
-	self.parts.wpn_fps_ass_akm_body_upperreceiver_vanilla.pc = nil
-end)]]--
-
 Hooks:PostHook(WeaponFactoryTweakData, "_init_ak74", "restore", function(self)
 	self.parts.wpn_fps_ass_74_b_standard = {
 		type = "barrel",
@@ -2858,18 +2617,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_akmsu", "restore", function(self)
 		unit = "units/payday2/weapons/wpn_fps_smg_akmsu_pts/wpn_fps_smg_akmsu_b_standard",
 		stats = {value = 1}
 	}
-	self.parts.wpn_fps_smg_akmsu_body_lowerreceiver = {
-		type = "lower_receiver",
-		name_id = "bm_wp_akmsu_body_lowerreceiver",
-		a_obj = "a_body",
-		unit = "units/payday2/weapons/wpn_fps_smg_akmsu_pts/wpn_fps_smg_akmsu_body_lowerreceiver",
-		stats = {value = 1},
-		animations = {
-			reload = "reload",
-			fire = "recoil",
-			fire_steelsight = "recoil"
-		}
-	}
+	
 	self.parts.wpn_fps_smg_akmsu_fg_rail = {
 		pcs = {30, 40},
 		type = "foregrip",
@@ -3014,8 +2762,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_akmsu", "restore", function(self)
 	self.wpn_fps_smg_akmsu_primary_npc.unit = "units/payday2/weapons/wpn_fps_smg_akmsu/wpn_fps_smg_akmsu_primary_npc"
 end)
 
+
 Hooks:PostHook(WeaponFactoryTweakData, "_init_saiga", "restore", function(self)
-	--[[self.parts.wpn_fps_shot_saiga_b_standard = {
+	self.parts.wpn_fps_shot_saiga_b_standard = {
 		type = "barrel",
 		name_id = "bm_wp_saiga_b_standard",
 		a_obj = "a_b",
@@ -3119,7 +2868,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_init_saiga", "restore", function(self)
 		wpn_fps_upg_o_acog = {
 			"wpn_fps_ak_extra_ris"
 		}
-	}]]--
+	}
 	self.wpn_fps_shot_saiga.default_blueprint = {
 		"wpn_fps_smg_akmsu_body_lowerreceiver",
 		"wpn_fps_ass_akm_body_upperreceiver_vanilla",

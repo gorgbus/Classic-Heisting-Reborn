@@ -877,6 +877,106 @@ function AssetsItem:update_asset_positions_and_text()
 	end
 end
 
+function AssetsItem:select_asset( i, instant )
+	-- self._last_asset_selected = i or self._last_asset_selected
+	if #self._assets_list > 6 then
+		if i then
+			if i < self._my_left_i then
+				self._my_left_i = i
+			elseif i > self._my_left_i + 5 then
+				self._my_left_i = i - 5
+			end
+		end
+		self:update_asset_positions()
+	end
+	
+	if( not i ) then
+		return
+	end
+	local bg = self._panel:child( "bg_rect_"..tostring(i) )
+	if not self._assets_names[i] then
+		return
+	end
+	
+	local text_string = self._assets_names[i][2]
+	local extra_string = ""
+	local extra_color = nil
+	
+	if( not self._text_strings_localized ) then
+		text_string = managers.localization:text( text_string )
+	end
+	text_string = text_string .. "\n"
+	
+	if self._asset_selected == i and not instant then
+		return
+	end
+	local is_init = self._asset_selected == nil
+	self:check_deselect_item()
+	
+	self._asset_selected = i
+	self._my_menu_component_data.selected = self._asset_selected
+	
+	local rect = self._panel:child( "bg_rect_"..tostring(i) )
+	if rect then
+		self._select_box_panel:set_shape( rect:shape() )
+		self._select_box:create_sides( self._select_box_panel, { sides = { 2, 2, 2, 2 } } )
+	end
+	-- self._last_asset_selected = i
+	
+	if( self._asset_locked[i] ) then
+		local can_client_unlock = managers.assets.ALLOW_CLIENTS_UNLOCK == true or ( type( managers.assets.ALLOW_CLIENTS_UNLOCK ) == "string" and managers.player:has_team_category_upgrade( "player", managers.assets.ALLOW_CLIENTS_UNLOCK ) )
+		local is_server = Network:is_server() or can_client_unlock
+		local can_unlock = self._assets_names[i][5]
+		text_string = self._assets_names[i][6] and text_string or ""
+		
+		if( is_server and can_unlock ) then
+			extra_string = extra_string .. managers.localization:text( "st_menu_cost" ) .. " " .. managers.experience:cash_string( managers.money:get_mission_asset_cost_by_id(self._assets_names[i][4]) ) .. "\n"
+			if not managers.money:can_afford_mission_asset( self._assets_names[i][4] ) then
+				extra_string = extra_string .. managers.localization:text("bm_menu_not_enough_cash")
+				extra_color = tweak_data.screen_colors.important_1
+			end
+		else
+			extra_string = extra_string .. managers.localization:text( (not is_server) and "menu_briefing_asset_server_locked" or (managers.assets:get_asset_unlock_text_by_id(self._assets_names[i][4])) ) -- "menu_briefing_unable_to_unlock" )
+		end
+		extra_color = extra_color or (can_unlock and tweak_data.screen_colors.text or tweak_data.screen_colors.important_1)
+	end
+	extra_color = extra_color or tweak_data.screen_colors.text
+	
+	self._asset_text:set_text( text_string .. extra_string )
+	self._asset_text:set_selection( utf8.len(text_string), utf8.len(self._asset_text:text()) )
+	
+	self._asset_text:set_color( tweak_data.screen_colors.text )
+	self._asset_text:set_selection_color( extra_color )
+	
+	self._assets_list[ i ]:stop()
+	self._assets_list[ i ]:animate( self.animate_select, self._panel:child("bg_rect_"..tostring(i)), instant )
+	
+	if( alive( bg ) ) then
+		local _, _, w, _ = self._asset_text:text_rect()
+		
+		self._asset_text:set_w( w )
+		self._asset_text:set_center_x( bg:center_x() )
+		
+		
+		if( self._asset_text:left() < 10 ) then
+			self._asset_text:set_left( 10 )
+			
+			local len_to_left = math.abs( self._assets_list[ i ]:center_x() - self._asset_text:left() )
+			local len_to_center = math.abs( self._assets_list[ i ]:center_x() - self._asset_text:center_x() )
+			
+			self._asset_text:set_align( len_to_left<len_to_center and "left" or "center")
+		elseif( self._asset_text:right() > self._panel:w()-10 ) then
+			self._asset_text:set_right( self._panel:w()-10 )
+			local len_to_right = math.abs( self._assets_list[ i ]:center_x() - self._asset_text:right() )
+			local len_to_center = math.abs( self._assets_list[ i ]:center_x() - self._asset_text:center_x() )
+			
+			self._asset_text:set_align( len_to_right<len_to_center and "right" or "center")
+		else
+			self._asset_text:set_align("center")
+		end
+	end
+end
+
 function AssetsItem:update_asset_positions()
 	self._my_menu_component_data.my_left_i = self._my_left_i
 	
@@ -895,4 +995,85 @@ function AssetsItem:update_asset_positions()
 	
 	self._move_left_rect:set_visible( self._my_left_i ~= 1 )
 	self._move_right_rect:set_visible( self._my_left_i+5 ~= #self._assets_list )
+end
+
+function AssetsItem:something_selected()
+	return self._asset_selected and true or false
+end
+
+function AssetsItem:mouse_moved( x, y )
+	if alive(self._move_left_rect) and alive(self._move_right_rect) then
+		if self._move_left_rect:visible() and self._move_left_rect:inside( x, y ) then
+			if not self._move_left_highlighted then
+				self._move_left_highlighted = true
+				self._move_left_rect:set_color( tweak_data.screen_colors.button_stage_2 )
+				managers.menu_component:post_event( "highlight" )
+				self:check_deselect_item()
+			end
+			self._asset_text:set_text("")
+			return false, true
+		elseif self._move_left_highlighted then
+			self._move_left_rect:set_color( tweak_data.screen_colors.button_stage_3 )
+			self._move_left_highlighted = false
+		end
+		if self._move_right_rect:visible() and self._move_right_rect:inside( x, y ) then
+			if not self._move_right_highlighted then
+				self._move_right_highlighted = true
+				self._move_right_rect:set_color( tweak_data.screen_colors.button_stage_2 )
+				managers.menu_component:post_event( "highlight" )
+				self:check_deselect_item()
+			end
+			self._asset_text:set_text("")
+			return false, true
+		elseif self._move_right_highlighted then
+			self._move_right_rect:set_color( tweak_data.screen_colors.button_stage_3 )
+			self._move_right_highlighted = false
+		end
+	end
+	
+	local selected, highlighted = AssetsItem.super.mouse_moved( self, x, y )
+	if not ( self._panel:inside( x, y ) and selected ) then
+		self:check_deselect_item()
+		return selected, highlighted
+	end
+	
+	self._assets_list = self._assets_list or {}
+	
+	local update_select = false
+	if( not self._asset_selected ) then
+		update_select = true
+	elseif( self._assets_list[ self._asset_selected ] and not self._panel:child("bg_rect_"..tostring(self._asset_selected)):inside( x, y ) and self._assets_list[ self._asset_selected ]:visible() ) then
+		-- self._assets_list[ self._asset_selected ]:stop()
+		-- self._assets_list[ self._asset_selected ]:animate( self.animate_deselect, self._panel:child("bg_rect_"..tostring(self._asset_selected)) )
+		-- self._asset_selected = nil
+		-- self._my_menu_component_data.selected = self._last_asset_selected
+		-- self._asset_text:set_text("")
+		update_select = true
+	end
+	
+	if( update_select ) then
+		for i, asset in ipairs( self._assets_list ) do
+			if( self._panel:child("bg_rect_"..tostring(i)):inside( x, y ) and asset:visible() ) then
+				-- asset:stop()
+				-- asset:animate( self.animate_select )
+				
+				-- self._asset_selected = i
+				-- self._asset_text:set_text( managers.localization:text( self._assets_names[i][2] ) )
+				
+				--[[
+				if self._assets_list[ self._asset_selected ] then
+					self._assets_list[ self._asset_selected ]:stop()
+					self._assets_list[ self._asset_selected ]:animate( self.animate_deselect, self._panel:child("bg_rect_"..tostring(self._asset_selected)) )
+				end]]
+				
+				update_select = false
+				self:select_asset( i )
+				break
+			end
+		end
+	end
+	if not update_select then
+		return false, true
+	end
+	return selected, highlighted
 end

@@ -65,7 +65,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-fixed cable guy and chameleon skills\n-fixed heists giving way too much more xp then they should\n-added 6 pro jobs\n-fixed void ui label crash\n-tried to fix fwb guards not moving",
+	"menu_ch_changelog_text": "-fixed assets tab not working properly\n-fixed guard on no mercy plan A not coming from stairs\n-bots can't carry bags\n-changed xp end screen",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

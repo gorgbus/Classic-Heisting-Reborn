@@ -1706,7 +1706,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "drill_autorepair_1",
-			category = "player"
+			category = "player",
+			synced = true
 		}
 	}
 	self.definitions.player_long_dis_revive = {
@@ -1913,7 +1914,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			category = "ecm_jammer",
 			upgrade = "affects_cameras",
-			value = 1
+			value = 1,
+			synced = true
 		}
 	}
 	self.definitions.ecm_jammer_affects_pagers = {
@@ -1922,7 +1924,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			category = "ecm_jammer",
 			upgrade = "affects_pagers",
-			value = 1
+			value = 1,
+			synced = true
 		}
 	}
 	self.definitions.ecm_jammer_feedback_duration_boost = {
@@ -1931,7 +1934,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			category = "ecm_jammer",
 			upgrade = "feedback_duration_boost",
-			value = 1
+			value = 1,
+			synced = true
 		}
 	}
 	self.definitions.ecm_jammer_feedback_duration_boost_2 = {
@@ -1940,7 +1944,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			category = "ecm_jammer",
 			upgrade = "feedback_duration_boost_2",
-			value = 1
+			value = 1,
+			synced = true
 		}
 	}
 	self.definitions.ecm_jammer_interaction_speed_multiplier = {

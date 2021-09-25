@@ -836,3 +836,82 @@ function HUDStageEndScreen:stage_experience_show_all( t, dt )
 	self._lp_xp_nl:show()
 	self:step_stage_up()
 end
+
+function HUDStageEndScreen:stage_experience_spin_slowdown(t, dt)
+	local data = self._data
+	local level_cap = data.end_t.level == managers.experience:level_cap()
+	local xp_gained_frame = dt * self._speed * math.max(data.end_t.total * 0.1, 450, (level_cap and self._experience_added or 0) * 0.075)
+	local total_xp = data.end_t.total - data.end_t.current
+
+	if level_cap then
+		if not self._endgame_setup then
+			self._endgame_setup = true
+
+			self._experience_text_panel:show()
+			self._lp_xp_gained:show()
+			self._lp_curr_xp:show()
+			self._lp_next_level:show()
+
+			local start_max_level = self._data.start_t.level == managers.experience:level_cap()
+
+			self._lp_next_level:set_visible(not start_max_level)
+			self._lp_xp_nl:set_visible(not start_max_level)
+			self._lp_xp_gain:show()
+			self._lp_xp_curr:show()
+			self._lp_xp_nl:show()
+			self._lp_circle:set_color(Color(1, 1, 1))
+		end
+
+		self._gained_xp = self._gained_xp + xp_gained_frame
+		local countdown_xp = math.max(self._experience_added - math.floor(self._gained_xp), 0)
+
+		self._experience_text_panel:child("stat"):set_text(managers.money:add_decimal_marks_to_string(tostring(countdown_xp)))
+		self._lp_xp_gain:set_text(managers.money:add_decimal_marks_to_string(tostring(math.floor(self._gained_xp))))
+
+		self._next_level_xp = total_xp
+
+		if countdown_xp == 0 then
+			WalletGuiObject.refresh()
+			self._lp_xp_gain:set_text(managers.money:add_decimal_marks_to_string(tostring(math.floor(self._experience_added))))
+			self:step_stage_up()
+		end
+
+		return
+	end
+
+	self._next_level_xp = self._next_level_xp - xp_gained_frame
+
+	if self._next_level_xp < total_xp then
+		WalletGuiObject.refresh()
+
+		xp_gained_frame = xp_gained_frame + self._next_level_xp - total_xp
+		self._next_level_xp = total_xp
+
+		self:step_stage_up()
+	end
+
+	xp_gained_frame = math.min(xp_gained_frame, self._next_level_xp)
+	self._current_xp = self._current_xp + xp_gained_frame
+	self._gained_xp = self._gained_xp + xp_gained_frame
+
+	if data.end_t.current ~= 0 then
+		self._top_speed = self._top_speed or 1
+		local ex = (data.end_t.total - self._next_level_xp) / data.end_t.current
+		self._speed = math.max(1, self._top_speed / (self._top_speed * 2)^ex)
+	end
+
+	local ratio = 1 - self._next_level_xp / data.end_t.total
+
+	self._lp_circle:set_color(Color(ratio, 1, 1))
+
+	if data.end_t.level < managers.experience:level_cap() then
+		local floored_gained = math.max(math.floor(self._gained_xp), 0)
+
+		self._experience_text_panel:child("stat"):set_text(managers.money:add_decimal_marks_to_string(tostring(self._experience_added - floored_gained)))
+		self._lp_xp_curr:set_text(managers.money:add_decimal_marks_to_string(tostring(math.floor(self._current_xp))))
+		self._lp_xp_gain:set_text(managers.money:add_decimal_marks_to_string(tostring(floored_gained)))
+		self._lp_xp_nl:set_text(managers.money:add_decimal_marks_to_string(tostring(math.floor(self._next_level_xp))))
+	else
+		self._lp_xp_nl:set_text("")
+	end
+end

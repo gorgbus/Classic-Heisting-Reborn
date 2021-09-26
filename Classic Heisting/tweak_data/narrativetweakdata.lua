@@ -383,6 +383,7 @@ function NarrativeTweakData:init(tweak_data)
 		"pex",
 		"fex",
 		"chas",
-		"sand"
+		"sand",
+		"roberts"
 	}
 end

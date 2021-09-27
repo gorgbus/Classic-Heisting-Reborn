@@ -65,7 +65,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-fixed assets tab not working properly\n-fixed guard on no mercy plan A not coming from stairs\n-bots can't carry bags\n-changed xp end screen",
+	"menu_ch_changelog_text": "-fixed some of the assets not being available\n-lowered multi day heists xp\n-civilians can't be moved",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

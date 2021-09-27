@@ -70,15 +70,30 @@ function ExperienceManager:get_xp_by_params(params)
 		days_multiplier = params.professional and tweak_data:get_value("experience_manager", "pro_day_multiplier", current_job_stage) or tweak_data:get_value("experience_manager", "day_multiplier", current_job_stage)
 	else
 		local pro_day_multiplier = {
-			1.25,
-			2.25,
-			2.75,
+			1.10,
+			1.15,
+			1.35,
 			5.5,
 			7,
 			8.5,
 			10
 		}
-		days_multiplier = params.professional and pro_day_multiplier[current_job_stage] or tweak_data:get_value("experience_manager", "day_multiplier", current_job_stage)
+
+		local days_multipliers = {
+			1,
+			1.3,
+			1.75,
+			4,
+			5,
+			6,
+			7
+		}
+
+		if job_id == "peta" then
+			days_multipliers[2] = 2.35
+		end
+
+		days_multiplier = params.professional and pro_day_multiplier[current_job_stage] or days_multipliers[current_job_stage]
 	end
 
 	if success and on_last_stage then

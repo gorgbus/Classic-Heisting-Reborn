@@ -32,7 +32,7 @@ Hooks:PreHook(HUDAssaultCorner, 'pager_used', 'initialize_proper_pagers', functi
     if not _G.VoidUI then
         return
     end
-    if self._pagers == 0 then
+    if self._pagers == 1 then
         return
     end
 end)

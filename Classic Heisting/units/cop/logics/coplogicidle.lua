@@ -60,7 +60,6 @@ function CopLogicIdle.on_intimidated(data, amount, aggressor_unit)
         local aggressor_can_intimidate
         local aggressor_intimidation_mul = 1
         if aggressor_unit:base().is_local_player then
-            log("can intimidate? " .. tostring(aggressor_can_intimidate))
             aggressor_can_intimidate = managers.player:has_category_upgrade("player", required_skill)
             aggressor_intimidation_mul = aggressor_intimidation_mul * managers.player:upgrade_value("player", "empowered_intimidation_mul", 1) * managers.player:upgrade_value("player", "intimidation_multiplier", 1)
         else

@@ -32,8 +32,8 @@ Hooks:PreHook(HUDAssaultCorner, 'pager_used', 'initialize_proper_pagers', functi
     if not _G.VoidUI then
         return
     end
-    if self._pagers == 1 then
-        return
+    if self._pagers == 0 then
+        self._pagers = 1
     end
 end)
 --I had to inlude _G.VoidUI inside each Hook because these scripts are beeing executed before VoidUI, soo script like;

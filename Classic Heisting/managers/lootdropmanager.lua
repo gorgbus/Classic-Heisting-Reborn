@@ -167,22 +167,133 @@ Hooks:PostHook(LootDropManager, "add_qlvl_to_weapon_mods", "add_qlvl_to_weapon_m
         "bm_wp_rage_b_short",
         "bm_wp_rage_b_comp2",
         "bm_wp_rage_b_long",
-        "sdss_bm_wpn_fps_pis_deagle_b_legend",
     }
 
-    local function has_id(tab, val)
-        for index, value in ipairs(tab) do
-            if value == val then
-                return true
-            end
-        end
-
-        return false
-    end
-
     for item, item_tweak in pairs(tweak_data.blackmarket.weapon_mods) do
-        if not has_id(whitelist, item_tweak.name_id) then
+        if not table.contains(whitelist, item_tweak.name_id) then
             tweak_data.blackmarket.weapon_mods[item].qlvl = 101
         end
     end
 end)
+if _G.ch_settings.settings.u24_progress then
+    Hooks:PostHook(LootDropManager, "_setup", "remove_masks", function(self)
+        local masks = {
+            "bm_msk_character_locked",
+            "bm_msk_skull",
+            "bm_msk_wolf_clean",
+            "bm_msk_hoxton_clean",
+            "bm_msk_dallas_clean",
+            "bm_msk_chains_clean",
+            "bm_msk_dallas",
+            "bm_msk_hoxton",
+            "bm_msk_chains",
+            "bm_msk_wolf",
+            "bm_msk_cthulhu",
+            "bm_msk_grin",
+            "bm_msk_anonymous",
+            "bm_msk_dillinger_death_mask",
+            "bm_msk_alienware",
+            "bm_msk_greek_tragedy",
+            "bm_msk_jaw",
+            "bm_msk_hockey",
+            "bm_msk_bear",
+            "bm_msk_troll",
+            "bm_msk_gagball",
+            "bm_msk_tounge",
+            "bm_msk_zipper",
+            "bm_msk_biglips",
+            "bm_msk_clowncry",
+            "bm_msk_mr_sinister",
+            "bm_msk_clown_56",
+            "bm_msk_buha",
+            "bm_msk_dripper",
+            "bm_msk_shogun",
+            "bm_msk_oni",
+            "bm_msk_monkeybiss",
+            "bm_msk_babyrhino",
+            "bm_msk_hog",
+            "bm_msk_outlandish_a",
+            "bm_msk_outlandish_b",
+            "bm_msk_outlandish_c",
+            "bm_msk_bullet",
+            "bm_msk_shrunken",
+            "bm_msk_brainiack",
+            "bm_msk_zombie",
+            "bm_msk_scarecrow",
+            "bm_msk_mummy",
+            "bm_msk_vampire",
+            "bm_msk_day_of_the_dead",
+            "bm_msk_dawn_of_the_dead",
+            "bm_msk_demon",
+            "bm_msk_stonekisses",
+            "bm_msk_demonictender",
+            "bm_msk_kawaii",
+            "bm_msk_irondoom",
+            "bm_msk_rubber_male",
+            "bm_msk_rubber_female",
+            "bm_msk_heat",
+            "bm_msk_clinton",
+            "bm_msk_bush",
+            "bm_msk_obama",
+            "bm_msk_nixon",
+            "bm_msk_goat",
+            "bm_msk_panda",
+            "bm_msk_pitbull",
+            "bm_msk_eagle",
+            "bm_msk_santa_happy",
+            "bm_msk_santa_mad",
+            "bm_msk_santa_drunk",
+            "bm_msk_santa_surprise",
+            "bm_msk_aviator",
+            "bm_msk_ghost",
+            "bm_msk_welder",
+            "bm_msk_plague",
+            "bm_msk_smoker",
+            "bm_msk_cloth_commander",
+            "bm_msk_gage_blade",
+            "bm_msk_rambo",
+            "bm_msk_deltaforce",
+            "bm_msk_skullhard",
+            "bm_msk_skullveryhard",
+            "bm_msk_skulloverkill",
+            "bm_msk_skulloverkillplus",
+            "bm_msk_sms_01",
+            "bm_msk_sms_02",
+            "bm_msk_sms_03",
+            "bm_msk_sms_04"
+        }
+
+        for item, item_tweak in pairs(tweak_data.blackmarket.masks) do
+            if not table.contains(masks, item_tweak.name_id) then
+                tweak_data.blackmarket.masks[item].qlvl = 101
+            end
+        end
+
+        local allowed_dlc = {
+			"armored_transport",
+			"preorder",
+			"gage_pack",
+			"gage_pack_lmg"
+		}
+
+        for item, item_tweak in pairs(tweak_data.blackmarket.materials) do
+            if item_tweak.global_value == "halloween" then
+                tweak_data.blackmarket.materials[item].qlvl = 101
+            end
+
+            if item_tweak.dlc and not table.contains(allowed_dlc, item_tweak.dlc) then
+                tweak_data.blackmarket.materials[item].qlvl = 101
+            end
+        end
+
+        for item, item_tweak in pairs(tweak_data.blackmarket.textures) do
+            if item_tweak.global_value == "halloween" then
+                tweak_data.blackmarket.textures[item].qlvl = 101
+            end
+
+            if item_tweak.dlc and not table.contains(allowed_dlc, item_tweak.dlc) then
+                tweak_data.blackmarket.textures[item].qlvl = 101
+            end
+        end
+    end)
+end

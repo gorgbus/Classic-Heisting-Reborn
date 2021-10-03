@@ -13,15 +13,22 @@
             "value": "flash_off"
         },
         {
+            "type": "toggle",
+            "id": "dmg_pad",
+            "title": "menu_ch_dmg_pad_title",
+            "description": "menu_ch_dmg_pad_desc",
+            "callback": "ch_toggle_callback",
+            "value": "dmg_pad"
+        },
+        {
             "type": "divider"
         },
         {
-            "type": "toggle",
+            "type": "button",
             "id": "lower_grind",
             "title": "menu_ch_grind_title",
             "description": "menu_ch_grind_desc",
-            "callback": "ch_toggle_callback",
-            "value": "lower_grind"
+            "callback": "switch_progress_msg"
         }
     ]
 }

@@ -1266,13 +1266,15 @@ function SkillTreeTweakData:init(tweak_data)
 		["icon_xy"] = {7, 2},
 		[1] = {
 			upgrades = {
-				"weapon_special_damage_taken_multiplier"
+				"weapon_special_damage_taken_multiplier",
+				"player_corpse_dispose",
+				"player_corpse_dispose_amount_1",
 			},
 			cost = self.costs.default
 		},
 		[2] = {
 			upgrades = {
-				"player_extra_corpse_dispose_amount"
+				"player_corpse_dispose_amount_2"
 			},
 			cost = self.costs.pro
 		}
@@ -1622,8 +1624,8 @@ function SkillTreeTweakData:init(tweak_data)
 		"player_special_enemy_highlight",
 		"player_hostage_trade",
 		"player_sec_camera_highlight",
-		"player_corpse_dispose",
-		"player_corpse_dispose_amount_1",
+		--"player_corpse_dispose",
+		--"player_corpse_dispose_amount_1",
 		"player_civ_harmless_melee",
 		"striker_reload_speed_default"
 	}

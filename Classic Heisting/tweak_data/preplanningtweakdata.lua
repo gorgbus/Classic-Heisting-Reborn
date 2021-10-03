@@ -11,4 +11,9 @@ Hooks:PostHook(PrePlanningTweakData, "init", "init_restore", function(self)
         upgrade = "special_damage_taken_multiplier",
 		category = "weapon"
     }
+    self.types.bodybags_bag.total = 1
+    self.types.ammo_bag.total = 1
+    self.types.grenade_crate.total = 1
+    self.types.health_bag .total = 1
+
 end)

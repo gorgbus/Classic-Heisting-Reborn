@@ -150,6 +150,163 @@ local function from_complete_heist_stats_item(self, item)
 	}
 end
 
+function AchievementsTweakData:_init_visual(tweak_data)
+	self.tags = {
+		progress = {
+			"leveling",
+			"beginner",
+			"completion",
+			"heisting",
+			"generic"
+		},
+		contracts = {
+			"all"
+		},
+		difficulty = {
+			"normal",
+			"hard",
+			"very_hard",
+			"overkill",
+			"mayhem",
+			"death_wish",
+			"death_sentence"
+		},
+		unlock = {
+			"mask",
+			"weapon",
+			"skill_slot",
+			"character"
+		},
+		tactics = {
+			"loud",
+			"stealth",
+			"killer",
+			"timed"
+		},
+		inventory = {
+			"mask",
+			"weapon",
+			"armor",
+			"skill",
+			"equipment"
+		},
+		teamwork = {
+			"players_1_to_4",
+			"players_4"
+		}
+	}
+
+	table.insert(self.tags.unlock, "outfit")
+	table.insert(self.tags.unlock, "weapon_color")
+	table.insert(self.tags.unlock, "gloves")
+
+	local contacts = {}
+
+	for _, job_id in ipairs(tweak_data.narrative:get_jobs_index()) do
+		local contact = tweak_data.narrative:job_data(job_id).contact
+
+		if contact ~= "wip" and contact ~= "tests" and not table.contains(self.tags.contracts, contact) then
+			table.insert(self.tags.contracts, contact)
+		end
+	end
+
+	for cat_name, cat in pairs(self.tags) do
+		local converted = {}
+
+		for _, tag in pairs(cat) do
+			converted[tag] = cat_name .. "_" .. tag
+		end
+
+		self.tags[cat_name] = converted
+	end
+
+	self.visual = init_auto_generated_achievement_data(self.tags)
+
+	self:_init_non_auto_generated(tweak_data)
+
+	for stat, unlocks in pairs(self.persistent_stat_unlocks) do
+		for _, v in pairs(unlocks) do
+			local data = self.visual[v.award]
+
+			if not data then
+				Application:error("Achievement visual data for '" .. v.award .. "' doesn't exists! (achievement was found in 'persistent_stat_unlocks')")
+			elseif type(data.progress) ~= "table" then
+				data.progress = {
+					persistent = true,
+					get = function ()
+						return managers.achievment:get_stat(stat)
+					end,
+					max = v.at,
+					update = tracking.second
+				}
+			end
+		end
+	end
+
+	for name, data in pairs(tweak_data.dlc) do
+		local visual = data.achievement_id and self.visual[data.achievement_id]
+
+		if visual then
+			if visual.need_unlock_icons == false then
+				visual.need_unlock_icons = nil
+			else
+				visual.need_unlock_icons = nil
+				visual.unlock_icons = visual.unlock_icons or {}
+				visual.unlock_id = visual.unlock_id or true
+
+				for _, loot in pairs(data.content.loot_drops or {}) do
+					local tex_data = get_texture_path(tweak_data, loot.type_items, loot.item_entry)
+					
+
+					if not table.contains(visual.unlock_icons, tex_data) then
+						tex_data.type_items = loot.type_items
+						tex_data.original_order = #visual.unlock_icons + 1
+
+						table.insert(visual.unlock_icons, tex_data)
+					end
+				end
+
+				local sort_order = {
+					"characters",
+					"weapon_mods",
+					"weapon_skins",
+					"masks",
+					"player_styles",
+					"gloves",
+					"melee_weapons",
+					"materials",
+					"textures"
+				}
+
+				table.sort(visual.unlock_icons, function (lhs, rhs)
+					local l = table.index_of(sort_order, lhs.type_items)
+					local r = table.index_of(sort_order, rhs.type_items)
+
+					if l == r then
+						return lhs.original_order < rhs.original_order
+					elseif not l or not r then
+						return l
+					end
+
+					return l < r
+				end)
+			end
+		elseif data.achievement_id then
+			for _, loot in pairs(data.content.loot_drops) do
+				get_texture_path(tweak_data, loot.type_items, loot.item_entry)
+			end
+		end
+	end
+
+	for name, data in pairs(self.visual) do
+		data.name_id = data.name_id or "achievement_" .. name
+		data.desc_id = data.desc_id or "achievement_" .. name .. "_desc"
+		data.additional_id = data.additional_id == true and "achievement_" .. name .. "_additional" or data.additional_id
+		data.unlock_id = data.unlock_id == true and "achievement_" .. name .. "_unlock" or data.unlock_id
+		data.icon_id = data.icon_id or data.sort_name
+	end
+end
+
 function AchievementsTweakData:_init_non_auto_generated(tweak_data)
 	self.visual.bulldog_1.unlock_icons = {
 		{

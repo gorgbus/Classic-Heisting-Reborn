@@ -36,8 +36,8 @@ function ContractBoxGui:create_contract_box()
 		color = Color(0.5, 0, 0, 0)
 	})
 
-	local font = tweak_data.menu.pd2_small_font
-	local font_size = tweak_data.menu.pd2_small_font_size
+	local font = tweak_data.menu.pd2_medium_font
+	local font_size = tweak_data.menu.pd2_medium_font_size
 
 	if contact_data then
 		self._contract_text_header = self._panel:text({

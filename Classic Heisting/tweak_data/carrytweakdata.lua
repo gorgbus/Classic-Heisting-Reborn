@@ -11,5 +11,5 @@ Hooks:PostHook(CarryTweakData, "init", "restore_init", function(self, tweak_data
 	self.engine_10.type = "mega_heavy"
 	self.engine_11.type = "mega_heavy"
 	self.engine_12.type = "mega_heavy"
-	--self.ammo.type = "explosives"
+	self.ammo.type = "explosives"
 end)

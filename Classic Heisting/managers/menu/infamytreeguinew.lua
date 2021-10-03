@@ -490,6 +490,8 @@ function InfamyTreeGui:_unlock_item(index)
 	end
 end
 
+
+
 function InfamyTreeGui:_select_item(index)
 	if type(index) == "string" then
 		for i, name in ipairs(tweak_data.infamy.tree) do

@@ -70,7 +70,7 @@ function IngameContractGui:init(ws, node)
 	local is_job_ghostable = managers.job:is_job_ghostable(managers.job:current_job_id())
 	local ghostable_text = nil
 
-	if is_job_ghostable then
+	if is_job_ghostable and not _G.ch_settings.settings.u24_progress then
 		local min_ghost_bonus, max_ghost_bonus = managers.job:get_job_ghost_bonus(managers.job:current_job_id())
 		local min_ghost = math.round(min_ghost_bonus * 100)
 		local max_ghost = math.round(max_ghost_bonus * 100)

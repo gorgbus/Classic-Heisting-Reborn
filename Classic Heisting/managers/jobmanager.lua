@@ -1,31 +1,18 @@
-function JobManager:get_min_jc_for_player()
-	local data = tweak_data.narrative.STARS[math.clamp(managers.experience:level_to_stars(), 1, 10)]
-	if not data then
-		return
-	end
-	local jcs = data.jcs
-	if not jcs then
-		return
-	end
-	local min_jc = 100
-	for _, jc in ipairs(jcs) do
-		min_jc = math.min(min_jc, jc)
-	end
-	return min_jc
-end
+if _G.ch_settings.settings.u24_progress then
+    function JobManager:start_accumulate_ghost_bonus(job_id)
+        self._global.active_ghost_bonus = nil
+        self._global.accumulated_ghost_bonus = nil
+    end
 
-function JobManager:get_max_jc_for_player()
-	local data = tweak_data.narrative.STARS[math.clamp(managers.experience:level_to_stars(), 1, 10)]
-	if not data then
-		return
-	end
-	local jcs = data.jcs
-	if not jcs then
-		return
-	end
-	local max_jc = 0
-	for _, jc in ipairs(jcs) do
-		max_jc = math.max(max_jc, jc)
-	end
-	return max_jc
+    function JobManager:accumulate_ghost_bonus()
+        return 0
+    end
+
+    function JobManager:activate_accumulated_ghost_bonus()
+        if self:current_job_id() ~= "safehouse" and self:current_job_id() ~= "chill" then
+            self:_set_ghost_bonus(0, true)
+
+            return
+        end
+    end
 end

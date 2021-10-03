@@ -5,6 +5,7 @@
 	"menu_inside_man_desc":					"BASIC: ##$basic## \nReduces the asset costs in the Job Overview by ##50%##. \n\nACE: ##$pro## \nUnlocks special Inside Man assets in the Job Overview menu.",
 	"menu_inspire":							"Inspire",
 	"menu_inspire_desc":					"BASIC: ##$basic## \nYou revive crew members ##50%## faster. Shouting at your teammates will increase their movement speed by ##20%## for ##10## seconds. \n\nACE: ##$pro## \nThere is a ##75%## chance that you can revive crew members at a distance by shouting at them.",
+	"menu_kilmer_desc":                     "BASIC: ##$basic## \nIncreases your reload speed with assault rifles by ##25%##. \n\nACE: ##$pro## \nYour weapon accuracy while moving with assault rifles is increased by ##50%##. \n\nRun and reload - you can reload your weapons while sprinting.",
 	"menu_fast_learner":					"Fast Learner",
 	"menu_fast_learner_desc":				"BASIC: ##$basic## \nYou gain ##15%## more experience when you complete days and jobs. \n\nACE: ##$pro## \nYour crew gains ##30%## more experience when you complete days and jobs.",
 	"menu_stockholm_syndrome":				"Stockholm Syndrome",
@@ -14,8 +15,12 @@
 	"menu_black_marketeer_desc":			"BASIC: ##$basic## \nReduces the cost of all your purchases by ##10%##. \n\nACE: ##$pro## \nFurther reduces the cost of all your purchases by ##30%## and selling items is now ##25%## more lucrative.",
 	"menu_carbon_blade":					"Carbon Blade",
 	"menu_carbon_blade_desc":				"BASIC: ##$basic## \nYou replace your saw blades with carbon blades, increasing your saw efficiency by ##20%##. \n\nACE: ##$pro## \nAttacking enemies with the OVE9000 portable saw wears it down ##50%## less than before. Saws are ##20%## more effective.",
+	"menu_overkill_desc":                   "BASIC: ##$basic## \nWhen you kill an enemy using a shotgun or the OVE9000 portable saw, you receive a ##75%## damage bonus for ##5## seconds. \n\nACE: ##$pro## \nThe damage bonus applies to ranged weapons. The skill must still be activated using a shotgun or the ove9000 protable saw.",
+	"menu_wolverine_desc":                  "BASIC: ##$basic## \nThe lower your health, the more damage you do. When your health is below ##25%##, you will do up to ##250%## more melee and saw damage. \n\nACE: ##$pro## \nWhen your health is below ##25%##, you will do up to ##100%## more damage with range weapons.",
 	"menu_sentry_targeting_package":		"Sentry Targeting Package",
 	"menu_sentry_targeting_package_desc":	"BASIC: ##$basic## \nYour sentry gun accuracy is improved by ##100%##. \n\nACE: ##$pro## \nYour sentry gun rotational speed is increased by ##150%##.",
+	"menu_mag_plus_desc":                   "BASIC: ##$basic## \nYour weapon magazine capacity is increased by ##5## rounds. \n\nACE: ##$pro## \nFurther increases your weapon magazine capacity by ##10## rounds.",
+	"menu_rifleman_desc":                   "BASIC: ##$basic## \nYour snap to zoom is ##100%## faster with assault rifles. \n\nACE: ##$pro## \nYour weapon zoom level is increased by ##25%## with assault rifles.",
 	"menu_good_luck_charm":					"Lucky Charm",
 	"menu_good_luck_charm_desc":			"BASIC: ##$basic## \nYour chance of getting a higher quality item during a PAYDAY is increased by ##50%##. \n\nACE: ##$pro## \nYour chance is further increased by ##200%##.",
 	"menu_ecm_feedback":					"ECM Feedback",
@@ -34,6 +39,8 @@
 	"menu_cleaner_desc":					"BASIC: ##$basic## \nYou deal ##5%## more damage against special enemies. \n\nACE: ##$pro## \nYou can now bag a maximum of ##2## corpses.",	
 	
 	"bm_menu_weapon_colors": "Weapon Color",
+	
+	"menu_wpn_special": "saw",
 	
 	"bm_menu_btn_set_weapon_cosmetic_scheme": "Choose paint scheme",
 	"bm_menu_btn_set_weapon_cosmetic_wear": "Choose wear",
@@ -65,13 +72,16 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-fixed some of the assets not being available\n-lowered multi day heists xp\n-civilians can't be moved",
+	"menu_ch_changelog_text": "-ui adjustments\n-'True U24 grind' changed to 'True U24' mode, will now use different save file\n-fixed firestarter day 3 assets screen",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",
 	"menu_ch_flash_title": "Disable Hit Flash",
 	"menu_ch_flash_desc": "Enable or disable hit screen flash."
 	
-	"menu_ch_grind_title": "True U24 grind",
-	"menu_ch_grind_desc": "Enable the true U24 grind experience (needs game restart)"
+	"menu_ch_dmg_pad_title": "Enable you are hurt indicator",
+	"menu_ch_dmg_pad_desc": "Enables the 'You are hurt - take cover' indicator after your armor goes to 0",
+	
+	"menu_ch_grind_desc": "",
+	"menu_switch_progress_msg": "You are about to switch to $mode mode.\n$text\n\nAfter pressing 'Yes' game will restart and swap save file.\n\nIf you get error on steam 'game already running' or game won't start, just start game through steam normally.",
 }

@@ -62,6 +62,16 @@ Hooks:PostHook(MoneyTweakData, "init", "restore_init", function(self)
 		overkill_145 = 1.4,
 		overkill_290 = 3
 	}
+	if _G.ch_settings.settings.u24_progress then
+		self.buy_premium_multiplier = {
+			easy = 0.5,
+			normal = 0.75,
+			hard = 1.25,
+			overkill = 1.5,
+			overkill_145 = 2,
+			overkill_290 = 2.5
+		}
+	end
 	self.buy_premium_static_fee = {
 		easy = 100000,
 		normal = 100000,

@@ -1,3 +1,34 @@
+if _G.ch_settings.settings.u24_progress then
+	function MoneyManager:get_money_by_job(job_id, difficulty)
+		if not job_id or not tweak_data.narrative.jobs[job_id] then
+			Application:error("Error: Missing Job =", job_id)
+			return 0, 0, 0
+		end
+		local tweak_job = tweak_data.narrative:job_data(job_id)
+		if tweak_job.payout and tweak_job.payout[difficulty] then
+			local payout = tweak_job.payout[difficulty] or 0
+			local base_payout = tweak_job.payout[1] or 0
+			local risk_payout = payout - base_payout
+			return payout, base_payout, risk_payout
+		else
+			local payout = 0
+			local base_payout = 0
+			local risk_payout = 0
+			local job_chain = tweak_data.narrative:job_chain(job_id)
+			for _, level in pairs(job_chain) do
+				if tweak_data.narrative[level.level_id] and tweak_data.narrative[level.level_id].payout and tweak_data.narrative[level.level_id].payout[difficulty] then
+					local cash = tweak_data.narrative[level.level_id].payout[difficulty] or 0
+					local base_cash = tweak_data.narrative[level.level_id].payout[1] or 0
+					payout = payout + cash
+					base_payout = base_payout + base_cash
+					risk_payout = risk_payout + (cash - base_cash)
+				end
+			end
+			return payout, base_payout, risk_payout
+		end
+	end
+end
+
 function MoneyManager:get_cost_of_premium_contract(job_id, difficulty_id)
 	local job_data = tweak_data.narrative:job_data(job_id)
 

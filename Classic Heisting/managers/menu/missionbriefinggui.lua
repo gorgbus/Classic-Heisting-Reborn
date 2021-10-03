@@ -720,9 +720,11 @@ function AssetsItem:create_assets(assets_names, max_assets)
 		asset:set_rotation( math.random(2)-1.5 )
 	end]]
 	-- self._panel:set_debug(true)
+
+	local level = Global.level_data and Global.level_data.level_id or ''
 	
 	local rect
-	local w = self._panel:w() / (max_assets or 6 )
+	local w = self._panel:w() / (level == 'firestarter_3' and 3 or 6)
 	for i=1, #assets_names do -- (max_assets or 6) do
 		local center_x = i * w - w*0.5  -- 45+2.5+(i-1)*90
 		rect = self._panel:rect( { name="bg_rect_"..tostring(i), w=85, h=85 } )
@@ -743,7 +745,7 @@ function AssetsItem:create_assets(assets_names, max_assets)
 
 			local move_a_side = 0
 			if managers.preplanning:has_current_level_preplanning() then
-				move_a_side = 30
+				move_a_side = level == 'firestarter_3' and 0 or 30
 			end
 			
 			asset:set_w( asset:h() * aspect )
@@ -752,10 +754,10 @@ function AssetsItem:create_assets(assets_names, max_assets)
 			rect:set_center( center_x, center_y )
 			rect:set_position( math.round(rect:x()) + move_a_side, math.round(rect:y()) )
 			
+			
 			asset:set_center( rect:center() )
 			asset:set_position( math.round(asset:x()), math.round(asset:y()) )
 			asset:set_rotation(0.5)
-			
 			
 			if( not assets_names[i][3] ) then
 				local lock = self._panel:bitmap( { name="asset_lock_"..tostring(i), texture=assets_names[i][5] and "guis/textures/pd2/blackmarket/money_lock" or "guis/textures/pd2/skilltree/padlock", color=tweak_data.screen_colors.item_stage_1, layer=3 } )

@@ -11,7 +11,7 @@ function ExperienceManager:get_job_xp_by_stars(stars)
 	
 	local amount = 0
 
-	if _G.ch_settings.settings.lower_grind then
+	if _G.ch_settings.settings.u24_progress then
 		amount = tweak_data:get_value("experience_manager", "job_completion", stars)
 	else
 		amount = job_completion[stars]
@@ -66,7 +66,7 @@ function ExperienceManager:get_xp_by_params(params)
 	local gage_assignment_dissect = 0
 	local bonus_mutators_dissect = 0
 	local mission_xp_dissect = 0
-	if _G.ch_settings.settings.lower_grind then
+	if _G.ch_settings.settings.u24_progress then
 		days_multiplier = params.professional and tweak_data:get_value("experience_manager", "pro_day_multiplier", current_job_stage) or tweak_data:get_value("experience_manager", "day_multiplier", current_job_stage)
 	else
 		local pro_day_multiplier = {

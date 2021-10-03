@@ -1,8 +1,9 @@
 <mod name="Classic Heisting">
     <AddFiles directory="assets">
 	<texture path="guis/textures/pd2/skilltree/icons_atlas" force="true"/>
-
+	<texture path="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4" />
 	<texture path="guis/textures/pd2/blackmarket/icons/colors/color_bg" force="true"/>
+	
 	
 	<model path="units/menu/menu_scene/menu_logo" />
 	<object path="units/menu/menu_scene/menu_logo" />

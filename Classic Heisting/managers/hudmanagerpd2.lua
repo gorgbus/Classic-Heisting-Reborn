@@ -4,6 +4,29 @@ end
 function HUDManager:challenge_popup(d)
 end
 
+Hooks:PostHook(HUDManager, "_add_name_label", "_add_name_label_upper" , function(self, data)
+    local last_id = self._hud.name_labels[#self._hud.name_labels] and self._hud.name_labels[#self._hud.name_labels].id or 0
+	local id = last_id + 1
+
+    for _, panels in pairs(self._hud.name_labels) do
+        panels.panel:child("text"):set_text(utf8.to_upper(panels.character_name))
+    end
+end)
+
+Hooks:PostHook(HUDManager, "set_teammate_name", "set_teammate_name_upper", function(self, i, teammate_name)
+    self._teammate_panels[i]:set_name(utf8.to_upper(teammate_name))
+end)
+
+function HUDManager:set_player_armor(data)
+    if (math.floor(data.current * 10) / 10) < 0.1 then
+        if _G.ch_settings.settings.dmg_pad then
+            managers.hint:show_hint("damage_pad")
+        end
+    end
+
+	self:set_teammate_armor(HUDManager.PLAYER_PANEL, data)
+end
+
 --Set total pagers according to skills;
 --Even when pager panel has x4 the value self._pagers can be 2 (VoidUI is checking tweakdata for that, which always returns 4, because skill is using two tweakdatas, one for non-skill and one for skill variant)
 --Soo here we're correcting it.

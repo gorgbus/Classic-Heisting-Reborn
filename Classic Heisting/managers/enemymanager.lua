@@ -1,4 +1,4 @@
-function EnemyManager:_update_queued_tasks(t)
+--[[function EnemyManager:_update_queued_tasks(t)
 	local i_asap_task, asp_task_t
 	
 	for i_task, task_data in ipairs(self._queued_tasks) do
@@ -19,4 +19,4 @@ function EnemyManager:_update_queued_tasks(t)
 		local clbk = table.remove(all_clbks, 1)[3]
 		clbk()
 	end
-end
+end]]--

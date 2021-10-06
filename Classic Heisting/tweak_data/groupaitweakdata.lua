@@ -1,5 +1,5 @@
 Hooks:PostHook(GroupAITweakData, "init", "restore_init", function(self, tweak_data)
-	self.ai_tick_rate = 0.005555555555555555
+	self.ai_tick_rate = 0.00833333333
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "restore_init_unit_categories", function(self, difficulty_index)

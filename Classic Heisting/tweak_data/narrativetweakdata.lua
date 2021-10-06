@@ -4,7 +4,8 @@ _G.ch_settings.mod_path = ModPath
 _G.ch_settings.settings = {
     flash_off = false,
     u24_progress = false,
-	dmg_pad = true
+	dmg_pad = true,
+	card = true
 }
 
 function json_decode(path)
@@ -14,9 +15,9 @@ function json_decode(path)
 		if not results.settings then
 			_G.ch_settings.settings.flash_off = false
 		else
-			_G.ch_settings.settings.flash_off = results.settings.flash_off or false
-			_G.ch_settings.settings.u24_progress = results.settings.u24_progress or false
-			_G.ch_settings.settings.dmg_pad = results.settings.dmg_pad or true
+			for i, result in pairs(results.settings) do
+				_G.ch_settings.settings[i] = result
+			end
 		end
 		file:close()
 	end

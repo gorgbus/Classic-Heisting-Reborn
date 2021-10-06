@@ -21,6 +21,14 @@
             "value": "dmg_pad"
         },
         {
+            "type": "toggle",
+            "id": "card",
+            "title": "menu_ch_card_title",
+            "description": "menu_ch_card_desc",
+            "callback": "ch_toggle_callback",
+            "value": "card"
+        },
+        {
             "type": "divider"
         },
         {

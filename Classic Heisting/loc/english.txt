@@ -82,6 +82,9 @@
 	"menu_ch_dmg_pad_title": "Enable you are hurt indicator",
 	"menu_ch_dmg_pad_desc": "Enables the 'You are hurt - take cover' indicator after your armor goes to 0",
 	
+	"menu_ch_card_title": "Old infamy cards",
+	"menu_ch_card_desc": "Restores infamy 1.0 infamy card appearance",
+	
 	"menu_ch_grind_desc": "",
 	"menu_switch_progress_msg": "You are about to switch to $mode mode.\n$text\n\nAfter pressing 'Yes' game will restart and swap save file.\n\nIf you get error on steam 'game already running' or game won't start, just start game through steam normally.",
 }

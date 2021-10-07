@@ -2252,6 +2252,12 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			y = info_box_panel:y(),
 			w = info_box_panel:w()
 		})
+		self._armor_info_panel = self._weapon_info_panel:panel({
+			layer = 10,
+			w = self._weapon_info_panel:w(),
+			h = self._weapon_info_panel:h()
+		})
+		self._armor_info_panel:hide()
 		self._detection_panel = self._panel:panel({
 			name = "suspicion_panel",
 			layer = 1,

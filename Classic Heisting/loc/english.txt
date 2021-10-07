@@ -72,7 +72,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-ui adjustments\n-'True U24 grind' changed to 'True U24' mode, will now use different save file\n-fixed firestarter day 3 assets screen",
+	"menu_ch_changelog_text": "-name labels should now show player level\n-made LAS compatible",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

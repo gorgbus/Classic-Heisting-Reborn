@@ -171,6 +171,9 @@ function MenuHelper:RemoveMenuItem(parent_menu, child_menu)
 	end
 end
 
+core:import("CoreMenuCallbackHandler")
+MenuCallbackHandler = MenuCallbackHandler or class(CoreMenuCallbackHandler.CallbackHandler)
+
 function MenuCallbackHandler:ch_toggle_callback(item)
 	_G.ch_settings.settings[item:name()] = item:value() == 'on'
 	json_encode(_G.ch_settings, _G.ch_settings.path)
@@ -310,6 +313,8 @@ function MenuCallbackHandler:max_progress()
 		end
 	end
 end
+
+SkillSwitchInitiator = SkillSwitchInitiator or class()
 
 function SkillSwitchInitiator:modify_node(node, data)
 end

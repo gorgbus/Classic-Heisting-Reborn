@@ -48,8 +48,6 @@
 		{ "hook_id" : "lib/managers/savefilemanager", "script_path" : "managers/menumanager.lua" },
 		{ "hook_id" : "lib/managers/jobmanager", "script_path" : "managers/jobmanager.lua" },
 		{ "hook_id" : "lib/managers/menu/crimenetcontractgui", "script_path" : "managers/menu/crimenetcontractgui.lua" },
-		{ "hook_id" : "lib/managers/menu/items/contractbrokerheistitem", "script_path" : "managers/menu/items/contractbrokerheistitem.lua" },
-		{ "hook_id" : "lib/managers/group_ai_states/groupaistatebase", "script_path" : "managers/group_ai_states/groupaistatebase.lua" },
 		{ "hook_id" : "lib/managers/group_ai_states/groupaistatebesiege", "script_path" : "managers/group_ai_states/groupaistatebesiege.lua" },
 		{ "hook_id" : "lib/managers/blackmarketmanager", "script_path" : "managers/blackmarketmanager.lua" },
 		{ "hook_id" : "lib/managers/menu/blackmarketgui", "script_path" : "managers/menu/blackmarketgui.lua" },

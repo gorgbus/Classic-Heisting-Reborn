@@ -37,6 +37,7 @@
 	"menu_joker_desc":						"BASIC: ##$basic## \nYou can convert a non-special enemy to fight on your side.\nThis can not be done during stealth and the enemy must have surrendered in order for you to convert it. \n\nACE: ##$pro## \nThe converted enemy gains ##55%## more health and deals ##45%## more damage.",	
 	"menu_cleaner":							"Cleaner",
 	"menu_cleaner_desc":					"BASIC: ##$basic## \nYou deal ##5%## more damage against special enemies. \n\nACE: ##$pro## \nYou can now bag a maximum of ##2## corpses.",	
+	"menu_juggernaut_desc": "BASIC: ##$basic;##$NL;Unlocks the ability to wear the Improved Combined Tactical Vest.$NL;$NL;ACE: ##$pro;##$NL;When you melee Shield enemies, they get knocked back by the sheer force.$NL;$NL;Run and shoot - you can shoot from the hip while sprinting.",
 	
 	"bm_menu_weapon_colors": "Weapon Color",
 	

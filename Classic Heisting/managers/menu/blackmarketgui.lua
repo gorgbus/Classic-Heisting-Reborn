@@ -7919,7 +7919,7 @@ function BlackMarketGui:populate_mods(data)
 				local stat = new_data.unlock_tracker.stat or false
 				local max_progress = new_data.unlock_tracker.max_progress or 0
 				local award = new_data.unlock_tracker.award or false
-				if new_data.unlock_tracker.text_id then
+				--[[if new_data.unlock_tracker.text_id then
 					if max_progress > 0 and stat then
 						local progress_left = max_progress - (managers.achievment:get_stat(stat) or 0)
 						if progress_left > 0 then
@@ -7936,10 +7936,10 @@ function BlackMarketGui:populate_mods(data)
 						font_size = small_font_size
 						no_upper = true
 					end
-					selected_text = managers.localization:text(text_id, {progress = progress})
-				end
+					selected_text = managers.localization:text("bm_menu_no_items")
+				end]]--
 			end
-			selected_text = selected_text or managers.localization:text("bm_menu_no_items")
+			selected_text = managers.localization:text("bm_menu_no_items")
 			noselected_text = selected_text
 			new_data.mid_text = {}
 			new_data.mid_text.selected_text = selected_text

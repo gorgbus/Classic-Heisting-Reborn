@@ -1,3 +1,12 @@
+core:import("CoreMenuManager")
+core:import("CoreMenuCallbackHandler")
+MenuManager = MenuManager or class(CoreMenuManager.Manager)
+MenuCallbackHandler = MenuCallbackHandler or class(CoreMenuCallbackHandler.CallbackHandler)
+SkillSwitchInitiator = SkillSwitchInitiator or class()
+MenuCrimeNetFiltersInitiator = MenuCrimeNetFiltersInitiator or class()
+MenuCrimeNetSpecialInitiator = MenuCrimeNetSpecialInitiator or class()
+MenuCrimeNetContactInfoInitiator = MenuCrimeNetContactInfoInitiator or class()--Fix error in console
+
 function json_encode(tab, path)
 	local file = io.open(path, "w+")
 	if file then

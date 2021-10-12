@@ -265,6 +265,16 @@ function MissionBriefingGui:init(saferect_ws, fullrect_ws, node)
 	self._enabled = true
 
 	self:flash_ready()
+
+	local level = Global.level_data and Global.level_data.level_id or ''
+	if level ~= 'hox_3' then
+		tweak_data.interaction.hostage_move.requires_upgrade = {
+			upgrade = "no_hostage_moving_for_you",
+			category = "player"
+		}
+	else
+		tweak_data.interaction.hostage_move.requires_upgrade = nil
+	end
 end
 
 function MissionBriefingGui:mouse_pressed(button, x, y)

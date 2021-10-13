@@ -559,7 +559,8 @@ function NarrativeTweakData:init(tweak_data)
 			"fex",
 			"chas",
 			"sand",
-			"roberts"
+			"roberts",
+			"chca"
 		}
 	else
 		self._jobs_index = {

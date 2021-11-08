@@ -5,9 +5,6 @@ function HUDManager:challenge_popup(d)
 end
 
 Hooks:PostHook(HUDManager, "_add_name_label", "_add_name_label_upper" , function(self, data)
-    local is_husk_player = data.unit:base().is_husk_player
-    local rank = 0
-
     for _, panels in pairs(self._hud.name_labels) do
         if panels.text:text() == data.name then
             panels.text:set_text(utf8.to_upper(data.name))

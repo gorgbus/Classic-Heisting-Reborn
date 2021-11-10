@@ -166,6 +166,14 @@ function PlayerManager:activate_temporary_upgrade(category, upgrade)
 	end
 end
 
+function PlayerManager:has_active_temporary_property(name)
+	if name == "bullet_storm" then
+		return managers.player:has_activate_temporary_upgrade("temporary", "no_ammo_cost")
+	else
+		return self._temporary_properties:has_active_property(name)
+	end
+end
+
 function PlayerManager:_internal_load()
 	local player = self:player_unit()
 

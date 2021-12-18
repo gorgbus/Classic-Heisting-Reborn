@@ -22,6 +22,14 @@
         },
         {
             "type": "toggle",
+            "id": "upper_label",
+            "title": "menu_ch_upper_label_title",
+            "description": "menu_ch_upper_label_title",
+            "callback": "ch_toggle_callback",
+            "value": "upper_label"
+        },
+        {
+            "type": "toggle",
             "id": "card",
             "title": "menu_ch_card_title",
             "description": "menu_ch_card_desc",

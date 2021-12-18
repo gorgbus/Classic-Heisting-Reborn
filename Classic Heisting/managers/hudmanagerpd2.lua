@@ -4,17 +4,19 @@ end
 function HUDManager:challenge_popup(d)
 end
 
-Hooks:PostHook(HUDManager, "_add_name_label", "_add_name_label_upper" , function(self, data)
-    for _, panels in pairs(self._hud.name_labels) do
-        if panels.text:text() == data.name then
-            panels.text:set_text(utf8.to_upper(data.name))
+if _G.ch_settings.settings.upper_label then
+    Hooks:PostHook(HUDManager, "_add_name_label", "_add_name_label_upper" , function(self, data)
+        for _, panels in pairs(self._hud.name_labels) do
+            if panels.text:text() == data.name then
+                panels.text:set_text(utf8.to_upper(data.name))
+            end
         end
-    end
-end)
+    end)
 
-Hooks:PostHook(HUDManager, "set_teammate_name", "set_teammate_name_upper", function(self, i, teammate_name)
-    self._teammate_panels[i]:set_name(utf8.to_upper(teammate_name))
-end)
+    Hooks:PostHook(HUDManager, "set_teammate_name", "set_teammate_name_upper", function(self, i, teammate_name)
+        self._teammate_panels[i]:set_name(utf8.to_upper(teammate_name))
+    end)
+end
 
 function HUDManager:set_player_armor(data)
     if (math.floor(data.current * 10) / 10) < 0.1 then

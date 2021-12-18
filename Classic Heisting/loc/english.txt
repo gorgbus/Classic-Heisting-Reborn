@@ -73,7 +73,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-name labels should now show player level\n-made LAS compatible",
+	"menu_ch_changelog_text": "-added option to toggle uppercase name labels\n-made enemy flashbangs more like they used to be\n\n-way to prevent crashes on murkywater heists:\nremove any mod that changes murkywater appearance,\nthis will be fixed once the reason behind it is found",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",
@@ -82,6 +82,8 @@
 	
 	"menu_ch_dmg_pad_title": "Enable you are hurt indicator",
 	"menu_ch_dmg_pad_desc": "Enables the 'You are hurt - take cover' indicator after your armor goes to 0",
+	
+	"menu_ch_upper_label_title": "Enable uppercase name labels",
 	
 	"menu_ch_card_title": "Old infamy cards",
 	"menu_ch_card_desc": "Restores infamy 1.0 infamy card appearance",

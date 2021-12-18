@@ -5,7 +5,8 @@ _G.ch_settings.settings = {
     flash_off = false,
     u24_progress = false,
 	dmg_pad = true,
-	card = true
+	card = true,
+	upper_label = true
 }
 
 function json_decode(path)

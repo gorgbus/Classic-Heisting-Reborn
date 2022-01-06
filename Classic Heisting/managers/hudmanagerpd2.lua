@@ -1,3 +1,5 @@
+require("lib/managers/hud/HudStatsScreen")
+
 function HUDManager:safe_house_challenge_popup(id, c_type)
 end
 

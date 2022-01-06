@@ -10,6 +10,7 @@
 	"color" : "0 0 1",
 	"hooks" : [
 		{ "hook_id" : "core/lib/managers/mission/coremissionmanager", "script_path" : "managers/mission/coremissionmanager.lua" },
+		{ "hook_id" : "core/lib/managers/mission/coreelementunitsequence", "script_path" : "managers/mission/coreelementunitsequence.lua" },
 		{ "hook_id" : "lib/states/menumainstate", "script_path" : "states/menumainstate.lua" },
 		{ "hook_id" : "lib/managers/infamymanagernew", "script_path" : "managers/infamymanagernew.lua" },
 		{ "hook_id" : "lib/managers/featuremanager", "script_path" : "managers/featuremanager.lua" },

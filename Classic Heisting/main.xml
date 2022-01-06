@@ -11,6 +11,9 @@
 	<unit path="units/menu/menu_scene/menu_logo" />
 	
 	<stream path="soundbanks/streamed/hud/139129865" />	
+	
+	<!-- old bain cook off lines -->
+	<bnk path="soundbanks/job_h_rat_stage1"/>
 
 	<!-- mute turret announcement -->
 	<stream path="soundbanks/streamed/npc_cpa/5329107" />

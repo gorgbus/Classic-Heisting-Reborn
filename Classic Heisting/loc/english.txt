@@ -73,7 +73,7 @@
 	"menu_difficulty_easy_wish": "Death Wish",
 	
 	"menu_ch_changelog_title": "Latest Changelog:",
-	"menu_ch_changelog_text": "-added option to toggle uppercase name labels\n-made enemy flashbangs more like they used to be\n\n-way to prevent crashes on murkywater heists:\nremove any mod that changes murkywater appearance,\nthis will be fixed once the reason behind it is found",
+	"menu_ch_changelog_text": "-fixed murkywater/federales heists crash\n-restored old Bain cook off lines\n-restored old frag grenade damage\n-restored old black dozer stats\n-restored old stealth detection mechanic (noisy sprinting)\n-restored old tab screen\n-changed enemy behavior related to shooting and reloading\n-removed titan cams from Four Stores, Diamond Store and Big Oil day 1",
 	"menu_ch_changelog_btn_text": "Confirm",
 	
 	"menu_ch_name": "Classic Heisting Settings",

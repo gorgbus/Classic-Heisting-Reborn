@@ -86,3 +86,30 @@ function CopActionShoot:_get_unit_shoot_pos(t, pos, dis, w_tweak, falloff, i_ran
 		return error_vec
 	end
 end
+
+-- Provided by MY NAME IS JAMES
+local data = CopActionShoot.update
+function CopActionShoot:update(t)
+    data(self, t)
+    if not self._ext_anim.reload and not self._ext_anim.equip and not self._ext_anim.melee then
+        if self._weapon_base:clip_empty() then
+            if self._autofiring then
+                self._weapon_base:stop_autofire()
+                self._ext_movement:play_redirect("up_idle")
+
+                self._autofiring = nil
+                self._autoshots_fired = nil
+            end
+
+            local res = CopActionReload._play_reload(self)
+
+            if res then
+                self._machine:set_speed(res, self._reload_speed)
+            end
+
+            if Network:is_server() then
+                managers.network:session():send_to_peers("reload_weapon_cop", self._unit)
+            end
+        end
+    end
+end

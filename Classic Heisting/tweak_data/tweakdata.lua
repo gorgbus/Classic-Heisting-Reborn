@@ -65,6 +65,8 @@ tweak_data.experience_manager.pro_day_multiplier = {
 	10
 }
 
+tweak_data.projectiles.frag.damage = 30
+
 if _G.ch_settings.settings.u24_progress then
 	tweak_data.criminals = {
 		characters = {

@@ -15,6 +15,8 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.g36_npc.CLIP_AMMO_MAX = 20
 	self.mp9_npc.CLIP_AMMO_MAX = 32
 	self.sentry_gun.DAMAGE = 1
+	self.saiga_npc.DAMAGE = 5
+	self.saiga_npc.CLIP_AMMO_MAX = 20
 	--
 	self.new_m4.stats = {
 		damage = 10,

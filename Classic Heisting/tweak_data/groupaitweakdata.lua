@@ -97,7 +97,29 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "restore_init_unit_cat
 		},
 		access = access_type_walk_only
 	}
-	
+
+	----murky/federales crash fix provided by MY NAME IS JAMES
+	self.unit_categories.FBI_suit_C45_M4.unit_types.murkywater = {
+		Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1"),
+		Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2")
+	}
+
+	self.unit_categories.FBI_suit_C45_M4.unit_types.federales = {
+		Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1"),
+		Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2")
+	}
+
+	self.unit_categories.FBI_suit_M4_MP5.unit_types.murkywater = {
+		Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2"),
+		Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3")
+	}
+
+	self.unit_categories.FBI_suit_M4_MP5.unit_types.federales = {
+		Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2"),
+		Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3")
+	}
+	----
+
 	if difficulty_index < 6 then
 		self.unit_categories.FBI_swat_R870 = {
 			unit_types = {

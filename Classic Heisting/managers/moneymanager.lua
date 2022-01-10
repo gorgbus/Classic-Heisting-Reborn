@@ -79,3 +79,17 @@ function MoneyManager:get_cost_of_premium_contract(job_id, difficulty_id)
 
 	return total_value
 end
+
+-- provided by MY NAME IS JAMES
+local data = MoneyManager.get_bag_value
+function MoneyManager:get_bag_value(carry_id, multiplier)
+    local value = data(self, carry_id, multiplier)
+    local job_id = managers.job:current_job_id()
+    local total_stages = job_id and #tweak_data.narrative.jobs[job_id].chain or 1
+
+    if managers.loot:is_bonus_bag(carry_id) and not tweak_data.carry.small_loot[carry_id] then
+        value = value * total_stages
+    end
+
+    return math.round(value)
+end

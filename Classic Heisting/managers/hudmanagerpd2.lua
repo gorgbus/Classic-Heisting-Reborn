@@ -1,4 +1,6 @@
-require("lib/managers/hud/HudStatsScreen")
+if _G.ch_settings.settings.tab_screen then
+    require("lib/managers/hud/HudStatsScreen")
+end
 
 function HUDManager:safe_house_challenge_popup(id, c_type)
 end

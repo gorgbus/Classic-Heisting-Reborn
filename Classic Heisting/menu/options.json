@@ -37,6 +37,14 @@
             "value": "card"
         },
         {
+            "type": "toggle",
+            "id": "tab_screen",
+            "title": "menu_ch_tab_screen_title",
+            "description": "menu_ch_tab_screen_desc",
+            "callback": "ch_toggle_callback",
+            "value": "tab_screen"
+        },
+        {
             "type": "divider"
         },
         {

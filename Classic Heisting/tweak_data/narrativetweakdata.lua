@@ -6,16 +6,15 @@ _G.ch_settings.settings = {
     u24_progress = false,
 	dmg_pad = true,
 	card = true,
-	upper_label = true
+	upper_label = true,
+	tab_screen = true
 }
 
 function json_decode(path)
 	local file = io.open(path, "r")
 	if file then
 		local results = json.decode(file:read("*all") or {})
-		if not results.settings then
-			_G.ch_settings.settings.flash_off = false
-		else
+		if results.settings then
 			for i, result in pairs(results.settings) do
 				_G.ch_settings.settings[i] = result
 			end

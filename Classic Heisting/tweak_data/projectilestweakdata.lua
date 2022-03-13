@@ -19,8 +19,31 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	self.projectiles.frag.is_explosive = true
 	self.projectiles.frag_com = {
 	}
+
+	self.projectiles.molotov = {
+		name_id = "bm_grenade_molotov",
+		unit = "units/pd2_dlc_bbq/weapons/molotov_cocktail/wpn_molotov_third",
+		unit_dummy = "units/pd2_dlc_bbq/weapons/molotov_cocktail/wpn_molotov_husk",
+		icon = "molotov_grenade",
+		dlc = "bbq",
+		no_cheat_count = true,
+		impact_detonation = true,
+		time_cheat = 1,
+		throwable = true,
+		max_amount = 3,
+		texture_bundle_folder = "bbq",
+		physic_effect = Idstring("physic_effects/molotov_throw"),
+		animation = "throw_molotov",
+		anim_global_param = "projectile_molotov",
+		throw_allowed_expire_t = 0.1,
+		expire_t = 1.3,
+		repeat_expire_t = 1.5,
+		is_a_grenade = true
+	}
+
 	self._projectiles_index = {
-		"frag"
+		"frag",
+		"molotov"
 	}
 	local free_dlcs = tweak_data:free_dlc_list()
 

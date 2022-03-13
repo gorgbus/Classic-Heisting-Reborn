@@ -1574,6 +1574,124 @@ function CharacterTweakData:_presets(tweak_data)
 			}
 		}
 	}
+	presets.weapon.normal.is_flamethrower = {
+		aim_delay = {
+			0.5,
+			0.5
+		},
+		focus_delay = 0,
+		focus_dis = 300,
+		spread = 0,
+		miss_dis = 40,
+		RELOAD_SPEED = 0.6,
+		melee_speed = 1,
+		melee_dmg = 2,
+		melee_retry_delay = {
+			1,
+			2
+		},
+		range = {
+			optimal = 400,
+			far = 1700,
+			close = 1400
+		},
+		autofire_rounds = {
+			20,
+			40
+		},
+		FALLOFF = {
+			{
+				dmg_mul = 6,
+				r = 100,
+				acc = {
+					1,
+					1
+				},
+				recoil = {
+					0.15,
+					0.25
+				},
+				mode = {
+					0,
+					0,
+					0,
+					1
+				}
+			},
+			{
+				dmg_mul = 5,
+				r = 500,
+				acc = {
+					1,
+					1
+				},
+				recoil = {
+					0.45,
+					0.65
+				},
+				mode = {
+					0,
+					0,
+					0,
+					1
+				}
+			},
+			{
+				dmg_mul = 4,
+				r = 1000,
+				acc = {
+					1,
+					1
+				},
+				recoil = {
+					0.75,
+					1
+				},
+				mode = {
+					0,
+					0,
+					0,
+					1
+				}
+			},
+			{
+				dmg_mul = 2,
+				r = 2000,
+				acc = {
+					1,
+					1
+				},
+				recoil = {
+					0.75,
+					1
+				},
+				mode = {
+					0,
+					0,
+					0,
+					1
+				}
+			},
+			{
+				dmg_mul = 1,
+				r = 3000,
+				acc = {
+					1,
+					1
+				},
+				recoil = {
+					0.75,
+					1
+				},
+				mode = {
+					0,
+					0,
+					0,
+					1
+				}
+			}
+		}
+	}
 	presets.weapon.good = {
 		is_pistol = {}
 	}
@@ -2306,6 +2424,7 @@ function CharacterTweakData:_presets(tweak_data)
 			}
 		}
 	}
+	presets.weapon.good.is_flamethrower = presets.weapon.normal.is_flamethrower
 	presets.weapon.expert = {
 		is_pistol = {}
 	}
@@ -3006,6 +3125,7 @@ function CharacterTweakData:_presets(tweak_data)
 			}
 		}
 	}
+	presets.weapon.expert.is_flamethrower = presets.weapon.normal.is_flamethrower
 	presets.weapon.sniper = {
 		is_rifle = {}
 	}
@@ -3728,6 +3848,7 @@ function CharacterTweakData:_presets(tweak_data)
 			}
 		}
 	}
+	presets.weapon.deathwish.is_flamethrower = presets.weapon.normal.is_flamethrower
 	presets.weapon.easywish = {
 		is_revolver = {}
 	}
@@ -4620,6 +4741,7 @@ function CharacterTweakData:_presets(tweak_data)
 			}
 		}
 	}
+	presets.weapon.easywish.is_flamethrower = presets.weapon.normal.is_flamethrower
 	presets.weapon.gang_member = {
 		is_pistol = {}
 	}
@@ -4906,6 +5028,7 @@ function CharacterTweakData:_presets(tweak_data)
 	presets.weapon.gang_member.rifle = deep_clone(presets.weapon.gang_member.is_rifle)
 	presets.weapon.gang_member.rifle.autofire_rounds = nil
 	presets.weapon.gang_member.akimbo_pistol = presets.weapon.gang_member.is_pistol
+	presets.weapon.gang_member.is_flamethrower = presets.weapon.normal.is_flamethrower
 	presets.detection = {
 		normal = {
 			idle = {},

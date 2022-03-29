@@ -21,6 +21,7 @@
 		{ "hook_id" : "lib/units/interactions/interactionext", "script_path" : "units/interactions/interactionext.lua" },
 		{ "hook_id"	: "lib/units/weapons/trip_mine/tripminebase", "script_path" : "units/weapons/trip_mine/tripminebase.lua" },
 		{ "hook_id"	: "lib/units/weapons/newraycastweaponbase", "script_path" : "units/weapons/newraycastweaponbase.lua" },
+		{ "hook_id"	: "lib/units/weapons/raycastweaponbase", "script_path" : "units/weapons/raycastweaponbase.lua" },
 		{ "hook_id"	: "lib/units/weapons/shotgun/shotgunbase", "script_path" : "units/weapons/shotgun/shotgunbase.lua" },
 		{ "hook_id" : "lib/managers/menu/playerinventorygui", "script_path" : "managers/chatmanager.lua" },
 		{ "hook_id" : "lib/managers/menu/contractboxgui", "script_path" : "managers/menu/contractboxgui.lua" },

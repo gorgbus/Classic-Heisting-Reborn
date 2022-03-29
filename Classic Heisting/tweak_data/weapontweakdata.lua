@@ -816,8 +816,8 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.new_m14.AMMO_MAX = self.new_m14.CLIP_AMMO_MAX * self.new_m14.NR_CLIPS_MAX
 	self.new_m14.AMMO_PICKUP = self:_pickup_chance(self.new_m14.AMMO_MAX, 2)
 	self.new_m14.fire_mode_data.fire_rate = 0.085
-	self.new_m14.spread.standing = self.new_m4.spread.standing
-	self.new_m14.spread.crouching = self.new_m4.spread.standing
+	self.new_m14.spread.standing = self.new_m4.spread.standing * 2
+	self.new_m14.spread.crouching = self.new_m4.spread.standing * 2
 	self.new_m14.spread.steelsight = self.new_m4.spread.steelsight
 	self.new_m14.spread.moving_standing = self.new_m4.spread.standing * 2.5
 	self.new_m14.spread.moving_crouching = self.new_m4.spread.standing * 2.5

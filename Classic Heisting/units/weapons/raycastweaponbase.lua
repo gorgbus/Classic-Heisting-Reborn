@@ -3,7 +3,32 @@ local mvec_spread_direction = Vector3()
 function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul)
 	local result = {}
 	local hit_unit
-	local spread = self:_get_spread(user_unit)
+
+	local function get_spread()
+		local spread_multiplier = self:spread_multiplier()
+		local current_state = user_unit:movement()._current_state
+
+		if current_state._moving then
+			spread_multiplier = spread_multiplier * managers.player:upgrade_value(self:weapon_tweak_data().category, "move_spread_multiplier", 1)
+		end
+
+		if current_state:in_steelsight() then
+			return self._spread * tweak_data.weapon[self._name_id].spread[current_state._moving and "moving_steelsight" or "steelsight"] * spread_multiplier
+		end
+
+		for _, category in ipairs(self:weapon_tweak_data().categories) do
+			spread_multiplier = spread_multiplier * managers.player:upgrade_value(category, "hip_fire_spread_multiplier", 1)
+		end
+
+		if current_state._state_data.ducking then
+			return self._spread * tweak_data.weapon[self._name_id].spread[current_state._moving and "moving_crouching" or "crouching"] * spread_multiplier
+		end
+
+		return self._spread * tweak_data.weapon[self._name_id].spread[current_state._moving and "moving_standing" or "standing"] * spread_multiplier
+	end
+
+	local spread = get_spread()
+
 	mvector3.set(mvec_spread_direction, direction)
 	if spread then
 		mvector3.spread(mvec_spread_direction, spread * (spread_mul or 1))

@@ -196,7 +196,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.saw.hip_fire_spread_multiplier = {0.8}
 	self.values.player.saw_speed_multiplier = {0.95, 0.65}
 	self.values.saw.lock_damage_multiplier = {1.2, 1.4}
-	self.values.saw.enemy_slicer = {true}
+	self.values.saw.enemy_slicer = {10}
 	self.values.player.melee_damage_health_ratio_multiplier = {2.5}
 	self.values.player.damage_health_ratio_multiplier = {1}
 	self.player_damage_health_ratio_threshold = 0.25

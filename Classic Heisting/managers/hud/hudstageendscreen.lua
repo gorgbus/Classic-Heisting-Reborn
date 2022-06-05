@@ -55,6 +55,46 @@ HUDStageEndScreen.stages = {
 	}
 }
 
+function HUDStageEndScreen:clear_stage()
+	self._wait_t = nil
+	self._csl = nil
+	self._all_done = nil
+	self._playing_sound = nil
+
+	self._coins_backpanel:child("bg_progress_circle"):hide()
+	self._coins_forepanel:child("coin_progress_text"):hide()
+	self._lp_text:hide()
+	self._lp_circle:hide()
+	self._lp_backpanel:child("bg_progress_circle"):hide()
+	self._lp_forepanel:child("level_progress_text"):hide()
+	self._lp_curr_xp:hide()
+	self._lp_xp_gained:hide()
+	self._lp_next_level:hide()
+	self._lp_skill_points:hide()
+	self._lp_sp_info:hide()
+	self._lp_xp_gain:hide()
+	self._lp_xp_curr:hide()
+	self._lp_xp_nl:hide()
+	self._lp_sp_gain:hide()
+	self._lp_text:set_text(tostring(self._data and self._data.start_t.level or 0))
+	self:reset_skill_points()
+
+	self._endgame_setup = false
+
+	if self._background_layer_full:child("money_video") then
+		self._background_layer_full:child("money_video"):stop()
+		self._background_layer_full:remove(self._background_layer_full:child("money_video"))
+	end
+
+	if self._money_panel then
+		self._money_panel:parent():remove(self._money_panel)
+
+		self._money_panel = nil
+	end
+
+	WalletGuiObject.hide_wallet()
+end
+
 function HUDStageEndScreen:init(hud, workspace)
 	self._backdrop = MenuBackdropGUI:new(workspace)
 

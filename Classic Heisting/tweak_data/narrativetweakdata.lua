@@ -7,7 +7,8 @@ _G.ch_settings.settings = {
 	dmg_pad = true,
 	card = true,
 	upper_label = true,
-	tab_screen = true
+	tab_screen = true,
+    old_char = false
 }
 
 function json_decode(path)

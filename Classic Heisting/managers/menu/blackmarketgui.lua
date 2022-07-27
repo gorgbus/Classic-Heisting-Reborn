@@ -7236,7 +7236,7 @@ end
 function BlackMarketGui:populate_characters(data)
 	local new_data = {}
 	local max_items = math.ceil(CriminalsManager.get_num_characters() / (data.override_slots[1] or 3)) * (data.override_slots[1] or 3)
-	if _G.ch_settings.settings.u24_progress then
+	if _G.ch_settings.settings.u24_progress or _G.ch_settings.settings.old_char then
 		max_items = 4
 	end
 	for i = 1, max_items do
@@ -7244,7 +7244,7 @@ function BlackMarketGui:populate_characters(data)
 	end
 	local guis_catalog = "guis/"
 	local char_num = CriminalsManager.get_num_characters()
-	if _G.ch_settings.settings.u24_progress then
+	if _G.ch_settings.settings.u24_progress or _G.ch_settings.settings.old_char then
 		char_num = 4
 	end
 	for i = 1, char_num do
@@ -8324,6 +8324,7 @@ function BlackMarketGui:_start_page_data()
 			override_slots = {3, 3},
 			identifier = self.identifiers.player_style
 		})
+        
 		table.insert(data, {
 			name = "bm_menu_gloves",
 			category = "gloves",
@@ -8333,13 +8334,23 @@ function BlackMarketGui:_start_page_data()
 		})
 		
 		if not managers.network:session() then
-			table.insert(data, {
-				name = "bm_menu_characters",
-				category = "characters",
-				on_create_func_name = "populate_characters",
-				override_slots = {3, 3},
-				identifier = self.identifiers.character
-			})
+            if _G.ch_settings.settings.old_char then
+                table.insert(data, {
+                    name = "bm_menu_characters",
+                    category = "characters",
+                    on_create_func_name = "populate_characters",
+                    override_slots = {2, 2},
+                    identifier = self.identifiers.character
+                })
+            else
+                table.insert(data, {
+                    name = "bm_menu_characters",
+                    category = "characters",
+                    on_create_func_name = "populate_characters",
+                    override_slots = {3, 3},
+                    identifier = self.identifiers.character
+                })
+            end
 		end
 	else
 		if not managers.network:session() then

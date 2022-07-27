@@ -45,6 +45,14 @@
             "value": "tab_screen"
         },
         {
+            "type": "toggle",
+            "id": "old_char",
+            "title": "menu_ch_old_char_title",
+            "description": "menu_ch_old_char_desc",
+            "callback": "ch_toggle_callback",
+            "value": "old_char"
+        },
+        {
             "type": "divider"
         },
         {

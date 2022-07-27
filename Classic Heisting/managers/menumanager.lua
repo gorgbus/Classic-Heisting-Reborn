@@ -749,8 +749,8 @@ function MenuCrimeNetContactInfoInitiator:modify_node(original_node, data)
 end
 
 function MenuCrimeNetContactInfoInitiator:create_item(node, contact)
-	local banned_char = {'old_hoxton', 'jowi', 'clover', 'dragan', 'jacket', 'bonnie', 'dragon', 'sokol', 'bodhi', 'jimmy', 'sydney', 'wild', 'chico', 'max', 'joy', 'myh', 'ecp', 'the_dentist', 'the_butcher', 'locke', 'jimmy_contact', 'continental_contact', 'jiufeng'}
-	if table.contains(banned_char, contact.id) and _G.ch_settings.settings.u24_progress then
+	local allowed_char = {'hoxton', 'chains', 'dallas', 'wolf', 'bain', 'hector', 'the_elephant', 'vlad', 'gage'}
+	if not table.contains(allowed_char, contact.id) and _G.ch_settings.settings.u24_progress then
 		return
 	end
 	local text_id = contact.name_localized

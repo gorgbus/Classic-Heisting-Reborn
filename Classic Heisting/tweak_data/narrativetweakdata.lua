@@ -561,7 +561,8 @@ function NarrativeTweakData:init(tweak_data)
 			"sand",
 			"roberts",
 			"chca",
-			"pent"
+			"pent",
+            "ranc"
 		}
 	else
 		self._jobs_index = {

@@ -30,7 +30,7 @@ if _G.ch_settings.settings.u24_progress then
 else
 	Hooks:Add("LocalizationManagerPostInit", "houston_to_hoxton", function(loc)
 		LocalizationManager:add_localized_strings({
-			menu_ch_grind_title = "Switch to 'True U24' mode"
+			menu_ch_grind_title = "Switch to 'True-ish U24' mode"
 		})
 	end)
 end
@@ -197,7 +197,7 @@ function MenuCallbackHandler:switch_progress_msg()
 	local dialog_data = {
 		title = managers.localization:text("dialog_warning_title"),
 		text = managers.localization:text("menu_switch_progress_msg", {
-			mode = _G.ch_settings.settings.u24_progress and "'Normal'" or "'True U24'",
+			mode = _G.ch_settings.settings.u24_progress and "'Normal'" or "'True-ish U24'",
 			text = _G.ch_settings.settings.u24_progress and "Game will go back to the standard version of the mod." or "Makes you one step closer to the old days."
 		}),
 		focus_button = 1

@@ -1354,6 +1354,11 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.hk51b.use_data.selection_index = 4
 	self.scout.use_data.selection_index = 4
 	self.ms3gl.use_data.selection_index = 4
+    self.korth.use_data.selection_index = 4
+    self.x_korth.use_data.selection_index = 4
+    self.sko12.use_data.selection_index = 4
+    self.x_sko12.use_data.selection_index = 4
+    self.hailstorm.use_data.selection_index = 4
 end)
 
 Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(self)

@@ -8267,6 +8267,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "create_ammunition", "restore_create_ammu
 	table.remove(self.wpn_fps_shot_saiga.uses_parts, wpn_fps_upg_a_piercing)
 	table.remove(self.wpn_fps_shot_saiga.uses_parts, wpn_fps_upg_a_dragons_breath)
 	table.remove(self.wpn_fps_shot_saiga.uses_parts, wpn_fps_upg_a_custom_free)
+    table.remove(self.wpn_fps_shot_saiga.uses_parts, wpn_fps_upg_a_rip)
 
 	table.remove(self.wpn_fps_shot_r870.uses_parts, wpn_fps_upg_a_slug)
 	table.remove(self.wpn_fps_shot_r870.uses_parts, wpn_fps_upg_a_custom)
@@ -8274,6 +8275,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "create_ammunition", "restore_create_ammu
 	table.remove(self.wpn_fps_shot_r870.uses_parts, wpn_fps_upg_a_piercing)
 	table.remove(self.wpn_fps_shot_r870.uses_parts, wpn_fps_upg_a_dragons_breath)
 	table.remove(self.wpn_fps_shot_r870.uses_parts, wpn_fps_upg_a_custom_free)
+    table.remove(self.wpn_fps_shot_r870.uses_parts, wpn_fps_upg_a_rip)
 	
 	table.remove(self.wpn_fps_shot_huntsman.uses_parts, wpn_fps_upg_a_slug)
 	table.remove(self.wpn_fps_shot_huntsman.uses_parts, wpn_fps_upg_a_custom)
@@ -8281,6 +8283,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "create_ammunition", "restore_create_ammu
 	table.remove(self.wpn_fps_shot_huntsman.uses_parts, wpn_fps_upg_a_piercing)
 	table.remove(self.wpn_fps_shot_huntsman.uses_parts, wpn_fps_upg_a_dragons_breath)
 	table.remove(self.wpn_fps_shot_huntsman.uses_parts, wpn_fps_upg_a_custom_free)
+    table.remove(self.wpn_fps_shot_huntsman.uses_parts, wpn_fps_upg_a_rip)
 	
 	table.remove(self.wpn_fps_shot_serbu.uses_parts, wpn_fps_upg_a_slug)
 	table.remove(self.wpn_fps_shot_serbu.uses_parts, wpn_fps_upg_a_custom)
@@ -8288,4 +8291,5 @@ Hooks:PostHook(WeaponFactoryTweakData, "create_ammunition", "restore_create_ammu
 	table.remove(self.wpn_fps_shot_serbu.uses_parts, wpn_fps_upg_a_piercing)
 	table.remove(self.wpn_fps_shot_serbu.uses_parts, wpn_fps_upg_a_dragons_breath)
 	table.remove(self.wpn_fps_shot_serbu.uses_parts, wpn_fps_upg_a_custom_free)
+    table.remove(self.wpn_fps_shot_serbu.uses_parts, wpn_fps_upg_a_rip)
 end)

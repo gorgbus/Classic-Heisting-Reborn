@@ -151,3 +151,6 @@ end
 
 function InfamyManager:get_join_stinger_name_id(stinger_name)
 end
+
+function InfamyManager:give_dlc()
+end

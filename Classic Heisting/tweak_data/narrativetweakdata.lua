@@ -2,13 +2,13 @@ _G.ch_settings = {}
 _G.ch_settings.path = SavePath .. "ch_settings.json"
 _G.ch_settings.mod_path = ModPath
 _G.ch_settings.settings = {
-    flash_off = false,
-    u24_progress = false,
+	flash_off = false,
+	u24_progress = false,
 	dmg_pad = true,
 	card = true,
 	upper_label = true,
 	tab_screen = true,
-    old_char = false
+	old_char = false,
 }
 
 function json_decode(path)
@@ -30,8 +30,6 @@ local data = NarrativeTweakData.init
 function NarrativeTweakData:init(tweak_data)
 	data(self, tweak_data)
 
-
-
 	self.jobs.firestarter_prof = deep_clone(self.jobs.firestarter)
 	self.jobs.firestarter_prof.jc = 70
 	self.jobs.firestarter_prof.professional = true
@@ -43,9 +41,9 @@ function NarrativeTweakData:init(tweak_data)
 		250000,
 		300000,
 		300000,
-		300000
+		300000,
 	}
-	self.jobs.firestarter_prof.heat = {this_job = -25, other_jobs = 30}
+	self.jobs.firestarter_prof.heat = { this_job = -25, other_jobs = 30 }
 
 	self.jobs.alex_prof = deep_clone(self.jobs.alex)
 	self.jobs.alex_prof.jc = 70
@@ -58,7 +56,7 @@ function NarrativeTweakData:init(tweak_data)
 		40000,
 		80000,
 		80000,
-		80000
+		80000,
 	}
 	self.jobs.alex_prof.contract_cost = {
 		131000,
@@ -67,10 +65,10 @@ function NarrativeTweakData:init(tweak_data)
 		530000,
 		700000,
 		700000,
-		700000
+		700000,
 	}
-	self.jobs.alex_prof.heat = {this_job = -35, other_jobs = 10}
-	
+	self.jobs.alex_prof.heat = { this_job = -35, other_jobs = 10 }
+
 	self.jobs.welcome_to_the_jungle_wrapper_prof.professional = true
 
 	self.jobs.framing_frame_prof = deep_clone(self.jobs.framing_frame)
@@ -84,9 +82,9 @@ function NarrativeTweakData:init(tweak_data)
 		200000,
 		300000,
 		300000,
-		300000
+		300000,
 	}
-	self.jobs.framing_frame_prof.heat = {this_job = -25, other_jobs = 30}
+	self.jobs.framing_frame_prof.heat = { this_job = -25, other_jobs = 30 }
 
 	self.jobs.watchdogs_wrapper_prof = deep_clone(self.jobs.watchdogs_wrapper)
 	self.jobs.watchdogs_wrapper_prof.jc = 70
@@ -99,9 +97,9 @@ function NarrativeTweakData:init(tweak_data)
 		200000,
 		290000,
 		290000,
-		290000
+		290000,
 	}
-	self.jobs.watchdogs_wrapper_prof.heat = {this_job = -25, other_jobs = 20}
+	self.jobs.watchdogs_wrapper_prof.heat = { this_job = -25, other_jobs = 20 }
 
 	self.jobs.ukrainian_job_prof.jc = 30
 	self.jobs.ukrainian_job_prof.professional = true
@@ -110,14 +108,14 @@ function NarrativeTweakData:init(tweak_data)
 		21000,
 		23000,
 		25000,
-		30000
+		30000,
 	}
 
 	self.jobs.branchbank_prof.jc = 70
 	self.jobs.branchbank_prof.professional = true
-	
+
 	self.jobs.branchbank_gold_prof.professional = true
-	
+
 	self.jobs.election_day_prof = deep_clone(self.jobs.election_day)
 	self.jobs.election_day_prof.jc = 50
 	self.jobs.election_day_prof.professional = true
@@ -129,7 +127,7 @@ function NarrativeTweakData:init(tweak_data)
 		65000,
 		100000,
 		100000,
-		100000
+		100000,
 	}
 	self.jobs.election_day_prof.contract_cost = {
 		31000,
@@ -138,7 +136,7 @@ function NarrativeTweakData:init(tweak_data)
 		310000,
 		400000,
 		400000,
-		400000
+		400000,
 	}
 
 	self.jobs.mia_prof = deep_clone(self.jobs.mia)
@@ -152,7 +150,7 @@ function NarrativeTweakData:init(tweak_data)
 		65000,
 		100000,
 		100000,
-		100000
+		100000,
 	}
 	self.jobs.mia_prof.contract_cost = {
 		62000,
@@ -161,7 +159,7 @@ function NarrativeTweakData:init(tweak_data)
 		620000,
 		800000,
 		800000,
-		800000
+		800000,
 	}
 	self.jobs.mia_prof.experience_mul = {
 		1.5,
@@ -170,8 +168,8 @@ function NarrativeTweakData:init(tweak_data)
 		1.5,
 		1.5,
 		1.5,
-		1.5
-	}	
+		1.5,
+	}
 
 	self.jobs.hox_prof = deep_clone(self.jobs.hox)
 	self.jobs.hox_prof.jc = 70
@@ -184,7 +182,7 @@ function NarrativeTweakData:init(tweak_data)
 		2900000,
 		3800000,
 		3800000,
-		3800000
+		3800000,
 	}
 	self.jobs.hox_prof.experience_mul = {
 		2,
@@ -193,7 +191,7 @@ function NarrativeTweakData:init(tweak_data)
 		2,
 		2,
 		2,
-		2
+		2,
 	}
 	self.jobs.hox_prof.contract_cost = {
 		62000,
@@ -202,7 +200,7 @@ function NarrativeTweakData:init(tweak_data)
 		620000,
 		800000,
 		800000,
-		800000
+		800000,
 	}
 
 	self.jobs.peta_prof = deep_clone(self.jobs.peta)
@@ -216,7 +214,7 @@ function NarrativeTweakData:init(tweak_data)
 		620000,
 		800000,
 		800000,
-		800000
+		800000,
 	}
 	self.jobs.peta_prof.payout = {
 		290000,
@@ -225,9 +223,9 @@ function NarrativeTweakData:init(tweak_data)
 		2900000,
 		3800000,
 		3800000,
-		3800000
+		3800000,
 	}
-	
+
 	self.jobs.born_pro = deep_clone(self.jobs.born)
 	self.jobs.born_pro.jc = 70
 	self.jobs.born_pro.professional = true
@@ -239,7 +237,7 @@ function NarrativeTweakData:init(tweak_data)
 		620000,
 		800000,
 		800000,
-		800000
+		800000,
 	}
 	self.jobs.born_pro.payout = {
 		175000,
@@ -248,7 +246,7 @@ function NarrativeTweakData:init(tweak_data)
 		1750000,
 		2370000,
 		2370000,
-		2370000
+		2370000,
 	}
 	self.jobs.born_pro.experience_mul = {
 		1.5,
@@ -257,8 +255,8 @@ function NarrativeTweakData:init(tweak_data)
 		1.5,
 		1.5,
 		1.5,
-		1.5
-	}	
+		1.5,
+	}
 
 	if not _G.ch_settings.settings.u24_progress then
 		self.jobs.man.professional = true
@@ -282,7 +280,7 @@ function NarrativeTweakData:init(tweak_data)
 			650000,
 			800000,
 			700000,
-			700000
+			700000,
 		}
 		self.jobs.vit.contract_cost = {
 			34000,
@@ -291,10 +289,10 @@ function NarrativeTweakData:init(tweak_data)
 			340000,
 			400000,
 			300000,
-			300000
+			300000,
 		}
 
-		self.jobs.pbr.heat = {this_job = -25, other_jobs = 20}
+		self.jobs.pbr.heat = { this_job = -25, other_jobs = 20 }
 		self.jobs.pbr.jc = 50
 		self.jobs.pbr.professional = true
 		self.jobs.pbr.region = "professional"
@@ -305,7 +303,7 @@ function NarrativeTweakData:init(tweak_data)
 			185000,
 			260000,
 			260000,
-			260000
+			260000,
 		}
 		self.jobs.pbr.contract_cost = {
 			37200,
@@ -314,7 +312,7 @@ function NarrativeTweakData:init(tweak_data)
 			415000,
 			520000,
 			520000,
-			520000
+			520000,
 		}
 	else
 		self.jobs.family.payout = {
@@ -322,7 +320,7 @@ function NarrativeTweakData:init(tweak_data)
 			43000,
 			60000,
 			70000,
-			81000
+			81000,
 		}
 
 		self.jobs.roberts.payout = {
@@ -330,7 +328,7 @@ function NarrativeTweakData:init(tweak_data)
 			37000,
 			81000,
 			101000,
-			202000
+			202000,
 		}
 
 		self.jobs.jewelry_store.payout = {
@@ -338,7 +336,7 @@ function NarrativeTweakData:init(tweak_data)
 			43000,
 			60000,
 			70000,
-			80000
+			80000,
 		}
 
 		self.jobs.run.payout = {
@@ -346,7 +344,7 @@ function NarrativeTweakData:init(tweak_data)
 			27500,
 			68000,
 			100000,
-			158000
+			158000,
 		}
 
 		self.jobs.red2.payout = {
@@ -354,7 +352,7 @@ function NarrativeTweakData:init(tweak_data)
 			25000,
 			62500,
 			125000,
-			162500
+			162500,
 		}
 
 		self.jobs.glace.payout = {
@@ -362,7 +360,7 @@ function NarrativeTweakData:init(tweak_data)
 			28000,
 			69000,
 			143000,
-			158000
+			158000,
 		}
 
 		self.jobs.dah.payout = {
@@ -370,7 +368,7 @@ function NarrativeTweakData:init(tweak_data)
 			32500,
 			62500,
 			105000,
-			135000
+			135000,
 		}
 
 		self.jobs.pal.payout = {
@@ -378,7 +376,7 @@ function NarrativeTweakData:init(tweak_data)
 			28000,
 			50000,
 			95000,
-			120500
+			120500,
 		}
 
 		self.jobs.flat.payout = {
@@ -386,7 +384,7 @@ function NarrativeTweakData:init(tweak_data)
 			29000,
 			65000,
 			127500,
-			150000
+			150000,
 		}
 
 		self.jobs.dinner.payout = {
@@ -394,7 +392,7 @@ function NarrativeTweakData:init(tweak_data)
 			20000,
 			45000,
 			90000,
-			125000
+			125000,
 		}
 
 		self.jobs.man.payout = {
@@ -402,7 +400,7 @@ function NarrativeTweakData:init(tweak_data)
 			22000,
 			50000,
 			70000,
-			100000
+			100000,
 		}
 
 		self.jobs.nmh.payout = {
@@ -410,7 +408,7 @@ function NarrativeTweakData:init(tweak_data)
 			37000,
 			62500,
 			92500,
-			130000
+			130000,
 		}
 
 		self.jobs.framing_frame.payout = {
@@ -418,7 +416,7 @@ function NarrativeTweakData:init(tweak_data)
 			75000,
 			125000,
 			185000,
-			270000
+			270000,
 		}
 
 		self.jobs.welcome_to_the_jungle_wrapper_prof.payout = {
@@ -426,7 +424,7 @@ function NarrativeTweakData:init(tweak_data)
 			36000,
 			50000,
 			90000,
-			150000
+			150000,
 		}
 
 		self.jobs.four_stores.payout = {
@@ -434,7 +432,7 @@ function NarrativeTweakData:init(tweak_data)
 			25000,
 			40000,
 			60000,
-			72000
+			72000,
 		}
 
 		self.jobs.mallcrasher.payout = {
@@ -442,7 +440,7 @@ function NarrativeTweakData:init(tweak_data)
 			40000,
 			50000,
 			60000,
-			70000
+			70000,
 		}
 
 		self.jobs.nightclub.payout = {
@@ -450,10 +448,10 @@ function NarrativeTweakData:init(tweak_data)
 			22500,
 			40000,
 			60000,
-			80000
+			80000,
 		}
 	end
-	
+
 	if not _G.ch_settings.settings.u24_progress then
 		self._jobs_index = {
 			"jewelry_store",
@@ -563,7 +561,9 @@ function NarrativeTweakData:init(tweak_data)
 			"roberts",
 			"chca",
 			"pent",
-            "ranc"
+			"ranc",
+			"trai",
+			"corp",
 		}
 	else
 		self._jobs_index = {
@@ -604,7 +604,7 @@ function NarrativeTweakData:init(tweak_data)
 			"nmh",
 			"flat",
 			"dinner",
-			"man"
+			"man",
 		}
 	end
 end

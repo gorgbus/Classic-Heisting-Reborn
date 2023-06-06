@@ -4,11 +4,11 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 
 	-- NPC Weapons
 	self.c45_npc.NR_CLIPS_MAX = 5
-	self.beretta92_npc.NR_CLIPS_MAX = 4	
+	self.beretta92_npc.NR_CLIPS_MAX = 4
 	self.m4_npc.CLIP_AMMO_MAX = 20
 	self.ak47_npc.CLIP_AMMO_MAX = 20
 	self.m14_npc.CLIP_AMMO_MAX = 12
-	self.r870_npc.DAMAGE = 7	
+	self.r870_npc.DAMAGE = 7
 	self.mossberg_npc.CLIP_AMMO_MAX = 4
 	self.mossberg_npc.NR_CLIPS_MAX = 6
 	self.mac11_npc.CLIP_AMMO_MAX = 32
@@ -30,7 +30,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.glock_17.stats = {
 		damage = 6,
@@ -44,7 +44,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.mp9.stats = {
 		damage = 9,
@@ -58,7 +58,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.r870.stats = {
 		damage = 23,
@@ -72,7 +72,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.glock_18c.stats = {
 		damage = 9,
@@ -86,7 +86,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.amcar.stats = {
 		damage = 7,
@@ -100,7 +100,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.m16.stats = {
 		damage = 13,
@@ -114,7 +114,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.olympic.stats = {
 		damage = 8,
@@ -128,7 +128,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.ak74.stats = {
 		damage = 12,
@@ -142,7 +142,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.akm.stats = {
 		damage = 17,
@@ -156,7 +156,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.akmsu.stats = {
 		damage = 11,
@@ -170,7 +170,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.saiga.stats = {
 		damage = 15,
@@ -184,7 +184,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.ak5.stats = {
 		damage = 9,
@@ -198,7 +198,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.aug.stats = {
 		damage = 12,
@@ -212,7 +212,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.g36.stats = {
 		damage = 11,
@@ -226,7 +226,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.p90.stats = {
 		damage = 9,
@@ -240,7 +240,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.new_m14.stats = {
 		damage = 26,
@@ -254,7 +254,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.deagle.stats = {
 		damage = 19,
@@ -268,7 +268,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.new_mp5.stats = {
 		damage = 8,
@@ -282,7 +282,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.colt_1911.stats = {
 		damage = 10,
@@ -296,7 +296,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.mac10.stats = {
 		damage = 11,
@@ -310,7 +310,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.serbu.stats = {
 		damage = 24,
@@ -324,7 +324,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.huntsman.stats = {
 		damage = 28,
@@ -338,7 +338,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.b92fs.stats = {
 		damage = 8,
@@ -352,7 +352,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.new_raging_bull.stats = {
 		damage = 22,
@@ -366,7 +366,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.saw.stats = {
 		alert_size = 9,
@@ -380,7 +380,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		value = 1,
 		extra_ammo = 6,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.usp.stats = {
 		damage = 9,
@@ -394,7 +394,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.m45.stats = {
 		damage = 12,
@@ -408,7 +408,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 5,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.s552.stats = {
 		damage = 12,
@@ -422,7 +422,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.ppk.stats = {
 		damage = 8,
@@ -436,7 +436,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 1,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.mp7.stats = {
 		damage = 12,
@@ -450,7 +450,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 7,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.scar.stats = {
 		damage = 18,
@@ -464,7 +464,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 9,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.p226.stats = {
 		damage = 10,
@@ -478,7 +478,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 4,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.hk21.stats = {
 		damage = 14,
@@ -492,7 +492,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 9,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.m249.stats = {
 		damage = 12,
@@ -506,7 +506,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 9,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
 	self.rpk.stats = {
 		damage = 13,
@@ -520,17 +520,17 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		extra_ammo = 6,
 		value = 9,
 		total_ammo_mod = 21,
-		reload = 11
+		reload = 11,
 	}
-	
+
 	self.r870.damage_near = 700
-	self.r870.damage_far = 1500	
+	self.r870.damage_far = 1500
 	self.saiga.damage_near = 700
-	self.saiga.damage_far = 1800	
+	self.saiga.damage_far = 1800
 	self.serbu.damage_near = 800
-	self.serbu.damage_far = 1200	
+	self.serbu.damage_far = 1200
 	self.huntsman.damage_near = 1000
-	self.huntsman.damage_far = 2000	
+	self.huntsman.damage_far = 2000
 
 	self.new_m4.timers = {}
 	self.new_m4.timers.reload_not_empty = 2.25
@@ -548,15 +548,15 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.new_m4.spread.moving_standing = self.new_m4.spread.standing
 	self.new_m4.spread.moving_crouching = self.new_m4.spread.standing
 	self.new_m4.spread.moving_steelsight = self.new_m4.spread.steelsight * 2
-	
+
 	self.glock_17.timers = {}
 	self.glock_17.timers.reload_not_empty = 1.47
 	self.glock_17.timers.reload_empty = 2.12
 	self.glock_17.timers.unequip = 0.5
-	self.glock_17.timers.equip = 0.5	
+	self.glock_17.timers.equip = 0.5
 	self.glock_17.CLIP_AMMO_MAX = 17
 	self.glock_17.NR_CLIPS_MAX = math.round(total_damage_secondary / 1.15 / self.glock_17.CLIP_AMMO_MAX)
-	self.glock_17.AMMO_MAX = self.glock_17.CLIP_AMMO_MAX * self.glock_17.NR_CLIPS_MAX	
+	self.glock_17.AMMO_MAX = self.glock_17.CLIP_AMMO_MAX * self.glock_17.NR_CLIPS_MAX
 	self.glock_17.AMMO_PICKUP = self:_pickup_chance(self.glock_17.AMMO_MAX, 1)
 	self.glock_17.fire_mode_data.fire_rate = 0.12
 	self.glock_17.spread.standing = self.new_m4.spread.standing * 0.75
@@ -570,10 +570,10 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.mp9.timers.reload_not_empty = 1.51
 	self.mp9.timers.reload_empty = 2.48
 	self.mp9.timers.unequip = 0.7
-	self.mp9.timers.equip = 0.55	
+	self.mp9.timers.equip = 0.55
 	self.mp9.CLIP_AMMO_MAX = 30
 	self.mp9.NR_CLIPS_MAX = math.round(total_damage_secondary / 1.15 / self.mp9.CLIP_AMMO_MAX)
-	self.mp9.AMMO_MAX = self.mp9.CLIP_AMMO_MAX * self.mp9.NR_CLIPS_MAX	
+	self.mp9.AMMO_MAX = self.mp9.CLIP_AMMO_MAX * self.mp9.NR_CLIPS_MAX
 	self.mp9.AMMO_PICKUP = self:_pickup_chance(self.mp9.AMMO_MAX, 1)
 	self.mp9.fire_mode_data.fire_rate = 0.063
 	self.mp9.spread.standing = self.new_m4.spread.standing * 0.75
@@ -581,8 +581,8 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.mp9.spread.steelsight = self.new_m4.spread.steelsight
 	self.mp9.spread.moving_standing = self.new_m4.spread.standing * 0.75
 	self.mp9.spread.moving_crouching = self.new_m4.spread.standing * 0.75
-	self.mp9.spread.moving_steelsight = self.new_m4.spread.moving_steelsight	
-	
+	self.mp9.spread.moving_steelsight = self.new_m4.spread.moving_steelsight
+
 	self.r870.CLIP_AMMO_MAX = 6
 	self.r870.NR_CLIPS_MAX = math.round(total_damage_primary / 6.5 / self.r870.CLIP_AMMO_MAX)
 	self.r870.AMMO_MAX = self.r870.CLIP_AMMO_MAX * self.r870.NR_CLIPS_MAX
@@ -593,15 +593,15 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.r870.spread.steelsight = self.new_m4.spread.standing * 0.8
 	self.r870.spread.moving_standing = self.new_m4.spread.standing * 1
 	self.r870.spread.moving_crouching = self.new_m4.spread.standing * 1
-	self.r870.spread.moving_steelsight = self.new_m4.spread.standing * 0.8	
+	self.r870.spread.moving_steelsight = self.new_m4.spread.standing * 0.8
 	self.r870.kick.standing = {
 		1.9,
 		2,
 		-0.2,
-		0.2
+		0.2,
 	}
-	self.r870.kick.crouching = self.r870.kick.standing	
-	
+	self.r870.kick.crouching = self.r870.kick.standing
+
 	self.glock_18c.timers = {}
 	self.glock_18c.timers.reload_not_empty = 1.47
 	self.glock_18c.timers.reload_empty = 2.12
@@ -617,13 +617,13 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.glock_18c.spread.steelsight = self.new_m4.spread.steelsight
 	self.glock_18c.spread.moving_standing = self.new_m4.spread.standing * 0.75
 	self.glock_18c.spread.moving_crouching = self.new_m4.spread.standing * 0.75
-	self.glock_18c.spread.moving_steelsight = self.new_m4.spread.moving_steelsight	
-	
+	self.glock_18c.spread.moving_steelsight = self.new_m4.spread.moving_steelsight
+
 	self.amcar.timers = {}
 	self.amcar.timers.reload_not_empty = 2.25
 	self.amcar.timers.reload_empty = 3
 	self.amcar.timers.unequip = 0.8
-	self.amcar.timers.equip = 0.7	
+	self.amcar.timers.equip = 0.7
 	self.amcar.CLIP_AMMO_MAX = 20
 	self.amcar.NR_CLIPS_MAX = math.round(total_damage_primary / 1.6 / self.amcar.CLIP_AMMO_MAX)
 	self.amcar.AMMO_MAX = self.amcar.CLIP_AMMO_MAX * self.amcar.NR_CLIPS_MAX
@@ -634,13 +634,13 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.amcar.spread.steelsight = self.new_m4.spread.steelsight
 	self.amcar.spread.moving_standing = self.new_m4.spread.standing
 	self.amcar.spread.moving_crouching = self.new_m4.spread.standing
-	self.amcar.spread.moving_steelsight = self.new_m4.spread.moving_steelsight	
-	
+	self.amcar.spread.moving_steelsight = self.new_m4.spread.moving_steelsight
+
 	self.m16.timers = {}
 	self.m16.timers.reload_not_empty = 2.25
 	self.m16.timers.reload_empty = 3
 	self.m16.timers.unequip = 0.8
-	self.m16.timers.equip = 0.8	
+	self.m16.timers.equip = 0.8
 	self.m16.CLIP_AMMO_MAX = 30
 	self.m16.NR_CLIPS_MAX = math.round(total_damage_primary / 3 / self.m16.CLIP_AMMO_MAX)
 	self.m16.AMMO_MAX = self.m16.CLIP_AMMO_MAX * self.m16.NR_CLIPS_MAX
@@ -890,7 +890,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.mac10.spread.moving_standing = self.new_m4.spread.standing * 0.75
 	self.mac10.spread.moving_crouching = self.new_m4.spread.standing * 0.75
 	self.mac10.spread.moving_steelsight = self.new_m4.spread.moving_steelsight
-	
+
 	self.serbu.timers = {}
 	self.serbu.timers.unequip = 0.7
 	self.serbu.timers.equip = 0.6
@@ -939,7 +939,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.b92fs.spread.moving_standing = self.new_m4.spread.standing * 0.5
 	self.b92fs.spread.moving_crouching = self.new_m4.spread.standing * 0.5
 	self.b92fs.spread.moving_steelsight = self.new_m4.spread.moving_steelsight
-	
+
 	self.new_raging_bull.timers = {}
 	self.new_raging_bull.timers.reload_not_empty = 2.25
 	self.new_raging_bull.timers.reload_empty = 2.25
@@ -965,7 +965,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.saw.CLIP_AMMO_MAX = 150
 	self.saw.NR_CLIPS_MAX = 2
 	self.saw.AMMO_MAX = self.saw.CLIP_AMMO_MAX * self.saw.NR_CLIPS_MAX
-	self.saw.AMMO_PICKUP = {0, 0}
+	self.saw.AMMO_PICKUP = { 0, 0 }
 	self.saw.fire_mode_data.fire_rate = 0.15
 	self.saw.spread.standing = 1
 	self.saw.spread.crouching = 0.71
@@ -977,19 +977,19 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		1,
 		-1,
 		-1,
-		1
+		1,
 	}
 	self.saw.kick.crouching = {
 		1,
 		-1,
 		-1,
-		1
+		1,
 	}
 	self.saw.kick.steelsight = {
 		0.725,
 		-0.725,
 		-0.725,
-		0.725
+		0.725,
 	}
 
 	self.usp.timers = {}
@@ -1131,7 +1131,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		-0.2,
 		0.8,
 		-0.8,
-		1
+		1,
 	}
 	self.hk21.kick.crouching = self.hk21.kick.standing
 	self.hk21.kick.steelsight = self.hk21.kick.standing
@@ -1156,7 +1156,7 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		-0.2,
 		0.8,
 		-1,
-		1.4
+		1.4,
 	}
 	self.m249.kick.crouching = self.m249.kick.standing
 	self.m249.kick.steelsight = self.m249.kick.standing
@@ -1181,11 +1181,11 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 		-0.2,
 		0.8,
 		-1,
-		1.4
+		1.4,
 	}
 	self.rpk.kick.crouching = self.rpk.kick.standing
 	self.rpk.kick.steelsight = self.rpk.kick.standing
-	
+
 	self.akm_gold.use_data.selection_index = 4
 	self.g22c.use_data.selection_index = 4
 	self.m95.use_data.selection_index = 4
@@ -1354,11 +1354,17 @@ Hooks:PostHook(WeaponTweakData, "init", "restore_init", function(self, tweak_dat
 	self.hk51b.use_data.selection_index = 4
 	self.scout.use_data.selection_index = 4
 	self.ms3gl.use_data.selection_index = 4
-    self.korth.use_data.selection_index = 4
-    self.x_korth.use_data.selection_index = 4
-    self.sko12.use_data.selection_index = 4
-    self.x_sko12.use_data.selection_index = 4
-    self.hailstorm.use_data.selection_index = 4
+	self.korth.use_data.selection_index = 4
+	self.x_korth.use_data.selection_index = 4
+	self.sko12.use_data.selection_index = 4
+	self.x_sko12.use_data.selection_index = 4
+	self.hailstorm.use_data.selection_index = 4
+	self.tkb.use_data.selection_index = 4
+	self.contender.use_data.selection_index = 4
+	self.hcar.use_data.selection_index = 4
+	self.awp.use_data.selection_index = 4
+	self.supernova.use_data.selection_index = 4
+	self.kacchainsaw.use_data.selection_index = 4
 end)
 
 Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(self)
@@ -1382,7 +1388,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(se
 		350,
 		200,
 		100,
-		0
+		0,
 	}
 	self.stats.suppression = {
 		4.5,
@@ -1404,7 +1410,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(se
 		0.8,
 		0.6,
 		0.4,
-		0.2
+		0.2,
 	}
 	self.stats.damage = {
 		1,
@@ -1441,7 +1447,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(se
 		10.5,
 		11,
 		11.5,
-		12
+		12,
 	}
 	self.stats.zoom = {
 		63,
@@ -1453,7 +1459,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(se
 		35,
 		30,
 		25,
-		20
+		20,
 	}
 	self.stats.spread = {
 		2,
@@ -1465,7 +1471,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(se
 		0.8,
 		0.6,
 		0.4,
-		0.2
+		0.2,
 	}
 	self.stats.spread_moving = {
 		3,
@@ -1481,7 +1487,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(se
 		0.8,
 		0.7,
 		0.6,
-		0.5
+		0.5,
 	}
 	self.stats.recoil = {
 		3,
@@ -1498,7 +1504,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(se
 		0.8,
 		0.7,
 		0.6,
-		0.5
+		0.5,
 	}
 	self.stats.value = {
 		1,
@@ -1510,7 +1516,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(se
 		7,
 		8,
 		9,
-		10
+		10,
 	}
 	self.stats.concealment = {
 		0.3,
@@ -1542,13 +1548,12 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "restore_init_stats", function(se
 		1.5,
 		1.525,
 		1.55,
-		1.6
+		1.6,
 	}
 	self.stats.extra_ammo = {}
 	for i = -10, 50, 2 do
 		table.insert(self.stats.extra_ammo, i)
 	end
-
 end)
 
 function WeaponTweakData:_pickup_chance(max_ammo, selection_index)
@@ -1557,19 +1562,18 @@ function WeaponTweakData:_pickup_chance(max_ammo, selection_index)
 	high = 0.05
 	return {
 		max_ammo * low,
-		max_ammo * high
+		max_ammo * high,
 	}
 end
 
-function WeaponTweakData:_set_easy()
-end
-function WeaponTweakData:_set_normal()
-end
-function WeaponTweakData:_set_hard()
-end
-function WeaponTweakData:_set_overkill()
-end
-function WeaponTweakData:_set_overkill_145()
-end
-function WeaponTweakData:_set_overkill_290()
-end
+function WeaponTweakData:_set_easy() end
+
+function WeaponTweakData:_set_normal() end
+
+function WeaponTweakData:_set_hard() end
+
+function WeaponTweakData:_set_overkill() end
+
+function WeaponTweakData:_set_overkill_145() end
+
+function WeaponTweakData:_set_overkill_290() end

@@ -185,12 +185,32 @@ function MenuCallbackHandler:ch_toggle_callback(item)
 	json_encode(_G.ch_settings, _G.ch_settings.path)
 end
 
+function MenuCallbackHandler:close_game()
+	local dialog_data = {
+		title = managers.localization:text("dialog_warning_title"),
+		text = "The game will close, restart game for the new settings to apply" 
+	}
+	local yes_button = {
+		text = managers.localization:text("dialog_yes"),
+		callback_func = callback(self, self, "_close_game_ex")
+	}
+	
+	dialog_data.button_list = {
+		yes_button
+	}
+
+	managers.system_menu:show(dialog_data)
+end
+
+function MenuCallbackHandler:_close_game_ex()
+	setup:quit()
+end
+
 function MenuCallbackHandler:switch_progress()
 	_G.ch_settings.settings.u24_progress = not _G.ch_settings.settings.u24_progress
 	json_encode(_G.ch_settings, _G.ch_settings.path)
 
-	os.execute("start steam://rungameid/218620")
-	os.exit()
+	MenuCallbackHandler:close_game()
 end
 
 function MenuCallbackHandler:switch_progress_msg()

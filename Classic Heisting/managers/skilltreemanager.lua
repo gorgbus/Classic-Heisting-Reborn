@@ -121,7 +121,7 @@ function SkillTreeManager:unlock(tree, skill_id)
 	self:_spend_points(tree, tier, total_points, points)
 	self:_aquire_skill(skill, skill_id)
 	self:_on_skill_unlocked(tree, skill_id)
-	if SystemInfo:platform() == Idstring("WIN32") then
+	if SystemInfo:distribution() == Idstring("STEAM") then
 		managers.statistics:publish_skills_to_steam()
 	end
 end

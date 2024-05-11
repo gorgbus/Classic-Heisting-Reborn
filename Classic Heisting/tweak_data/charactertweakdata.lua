@@ -176,7 +176,7 @@ Hooks:PostHook(CharacterTweakData, "init", "restore_init", function(self, tweak_
 	self.tank.damage.explosion_damage_mul = 0.75
 	self.tank.move_speed = presets.move_speed.very_slow
 	self.tank.ecm_hurts = {
-		ears = {min_duration = 7, max_duration = 9}
+		ears = 8
 	}
 	self.tank.damage.hurt_severity = presets.hurt_severities.only_light_hurt
 	
@@ -187,6 +187,7 @@ Hooks:PostHook(CharacterTweakData, "init", "restore_init", function(self, tweak_
 	self.shield.headshot_dmg_mul = self.shield.HEALTH_INIT / 6
 	self.shield.move_speed = presets.move_speed.fast
 	self.shield.damage.explosion_damage_mul = 0.25
+	self.shield.damage.hurt_severity = presets.hurt_severities.only_explosion_hurts	
 	self.shield.weapon.is_smg.FALLOFF = {
 		{
 			r = 0,

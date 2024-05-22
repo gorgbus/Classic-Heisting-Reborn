@@ -105,10 +105,12 @@
 		{ "hook_id" : "lib/network/matchmaking/networkmatchmakingsteam", "script_path": "network/matchmaking/networkmatchmakingsteam.lua" },
 		{ "hook_id" : "lib/network/matchmaking/networkmatchmakingepic", "script_path": "network/matchmaking/networkmatchmakingepic.lua" },
 		{ "hook_id" : "lib/network/base/networkpeer", "script_path": "network/base/networkpeer.lua" },
-        { "hook_id" : "lib/network/base/basenetworksession", "script_path": "network/base/basenetworksession.lua" },
+        	{ "hook_id" : "lib/network/base/basenetworksession", "script_path": "network/base/basenetworksession.lua" },
 		{ "hook_id" : "lib/units/beings/player/states/playerstandard", "script_path": "units/beings/player/states/playerstandard.lua" },
 		{ "hook_id" : "lib/setups/setup", "script_path": "setups/setup.lua" },
-		{"hook_id":"lib/units/pickups/ammoclip","script_path":"units/pickups/ammoclip.lua"}
+		{"hook_id" : "lib/units/pickups/ammoclip","script_path":"units/pickups/ammoclip.lua"},
+		{ "hook_id" : "core/lib/managers/coreworldinstancemanager", "script_path" : "managers/coreworldinstancemanager.lua" },
+		{ "hook_id" : "lib/managers/mission/elementspawnenemygroup", "script_path" : "managers/elementspawnenemygroupdelay.lua" }
 	],
 	"updates" : [
 		{
